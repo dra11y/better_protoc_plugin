@@ -88,7 +88,7 @@ void assertAllExtensionsSet(TestAllExtensions message) {
   expect(message.getExtension(Unittest.optionalNestedEnumExtension),
       TestAllTypes_NestedEnum.BAZ);
   expect(message.getExtension(Unittest.optionalForeignEnumExtension),
-      ForeignEnum.FOREIGN_BAZ);
+      ForeignEnum.foreignBaz);
   expect(message.getExtension(Unittest.optionalImportEnumExtension),
       ImportEnum.IMPORT_BAZ);
 
@@ -160,7 +160,7 @@ void assertAllExtensionsSet(TestAllExtensions message) {
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[0],
       TestAllTypes_NestedEnum.BAR);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[0],
-      ForeignEnum.FOREIGN_BAR);
+      ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[0],
       ImportEnum.IMPORT_BAR);
 
@@ -200,7 +200,7 @@ void assertAllExtensionsSet(TestAllExtensions message) {
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[1],
       TestAllTypes_NestedEnum.BAZ);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[1],
-      ForeignEnum.FOREIGN_BAZ);
+      ForeignEnum.foreignBaz);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[1],
       ImportEnum.IMPORT_BAZ);
 
@@ -251,7 +251,7 @@ void assertAllExtensionsSet(TestAllExtensions message) {
   expect(message.getExtension(Unittest.defaultNestedEnumExtension),
       TestAllTypes_NestedEnum.FOO);
   expect(message.getExtension(Unittest.defaultForeignEnumExtension),
-      ForeignEnum.FOREIGN_FOO);
+      ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.defaultImportEnumExtension),
       ImportEnum.IMPORT_FOO);
 
@@ -315,7 +315,7 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.optionalImportMessage.d, 120);
 
   expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.BAZ);
-  expect(message.optionalForeignEnum, ForeignEnum.FOREIGN_BAZ);
+  expect(message.optionalForeignEnum, ForeignEnum.foreignBaz);
   expect(message.optionalImportEnum, ImportEnum.IMPORT_BAZ);
 
   expect(message.optionalStringPiece, '124');
@@ -372,7 +372,7 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.repeatedImportMessage[0].d, 220);
 
   expect(message.repeatedNestedEnum[0], TestAllTypes_NestedEnum.BAR);
-  expect(message.repeatedForeignEnum[0], ForeignEnum.FOREIGN_BAR);
+  expect(message.repeatedForeignEnum[0], ForeignEnum.foreignBar);
   expect(message.repeatedImportEnum[0], ImportEnum.IMPORT_BAR);
 
   expect(message.repeatedStringPiece[0], '224');
@@ -400,7 +400,7 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.repeatedImportMessage[1].d, 320);
 
   expect(message.repeatedNestedEnum[1], TestAllTypes_NestedEnum.BAZ);
-  expect(message.repeatedForeignEnum[1], ForeignEnum.FOREIGN_BAZ);
+  expect(message.repeatedForeignEnum[1], ForeignEnum.foreignBaz);
   expect(message.repeatedImportEnum[1], ImportEnum.IMPORT_BAZ);
 
   expect(message.repeatedStringPiece[1], '324');
@@ -448,7 +448,7 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.defaultBytes, '416'.codeUnits);
 
   expect(message.defaultNestedEnum, TestAllTypes_NestedEnum.FOO);
-  expect(message.defaultForeignEnum, ForeignEnum.FOREIGN_FOO);
+  expect(message.defaultForeignEnum, ForeignEnum.foreignFoo);
   expect(message.defaultImportEnum, ImportEnum.IMPORT_FOO);
 
   expect(message.defaultStringPiece, '424');
@@ -515,7 +515,7 @@ void assertClear(TestAllTypes message) {
 
   // Enums without defaults are set to the first value in the enum.
   expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.FOO);
-  expect(message.optionalForeignEnum, ForeignEnum.FOREIGN_FOO);
+  expect(message.optionalForeignEnum, ForeignEnum.foreignFoo);
   expect(message.optionalImportEnum, ImportEnum.IMPORT_FOO);
 
   expect(message.optionalStringPiece, '');
@@ -591,7 +591,7 @@ void assertClear(TestAllTypes message) {
   expect(message.defaultBytes, 'world'.codeUnits);
 
   expect(message.defaultNestedEnum, TestAllTypes_NestedEnum.BAR);
-  expect(message.defaultForeignEnum, ForeignEnum.FOREIGN_BAR);
+  expect(message.defaultForeignEnum, ForeignEnum.foreignBar);
   expect(message.defaultImportEnum, ImportEnum.IMPORT_BAR);
 
   expect(message.defaultStringPiece, 'abc');
@@ -666,7 +666,7 @@ void assertExtensionsClear(TestAllExtensions message) {
   expect(message.getExtension(Unittest.optionalNestedEnumExtension),
       TestAllTypes_NestedEnum.FOO);
   expect(message.getExtension(Unittest.optionalForeignEnumExtension),
-      ForeignEnum.FOREIGN_FOO);
+      ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.optionalImportEnumExtension),
       ImportEnum.IMPORT_FOO);
 
@@ -781,7 +781,7 @@ void assertExtensionsClear(TestAllExtensions message) {
   expect(message.getExtension(Unittest.defaultNestedEnumExtension),
       TestAllTypes_NestedEnum.BAR);
   expect(message.getExtension(Unittest.defaultForeignEnumExtension),
-      ForeignEnum.FOREIGN_BAR);
+      ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.defaultImportEnumExtension),
       ImportEnum.IMPORT_BAR);
 
@@ -822,7 +822,7 @@ void assertPackedExtensionsSet(TestPackedExtensions message) {
   expect(message.getExtension(Unittest.packedDoubleExtension)[0], 612.0);
   expect(message.getExtension(Unittest.packedBoolExtension)[0], true);
   expect(message.getExtension(Unittest.packedEnumExtension)[0],
-      ForeignEnum.FOREIGN_BAR);
+      ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.packedInt32Extension)[1], 701);
   expect(message.getExtension(Unittest.packedInt64Extension)[1], expect64(702));
   expect(message.getExtension(Unittest.packedUint32Extension)[1], 703);
@@ -841,7 +841,7 @@ void assertPackedExtensionsSet(TestPackedExtensions message) {
   expect(message.getExtension(Unittest.packedDoubleExtension)[1], 712.0);
   expect(message.getExtension(Unittest.packedBoolExtension)[1], false);
   expect(message.getExtension(Unittest.packedEnumExtension)[1],
-      ForeignEnum.FOREIGN_BAZ);
+      ForeignEnum.foreignBaz);
 }
 
 // Assert (using expect} that all fields of [message] are set to the values
@@ -874,7 +874,7 @@ void assertPackedFieldsSet(TestPackedTypes message) {
   expect(message.packedFloat[0], 611.0);
   expect(message.packedDouble[0], 612.0);
   expect(message.packedBool[0], true);
-  expect(message.packedEnum[0], ForeignEnum.FOREIGN_BAR);
+  expect(message.packedEnum[0], ForeignEnum.foreignBar);
   expect(message.packedInt32[1], 701);
   expect(message.packedInt64[1], expect64(702));
   expect(message.packedUint32[1], 703);
@@ -888,7 +888,7 @@ void assertPackedFieldsSet(TestPackedTypes message) {
   expect(message.packedFloat[1], 711.0);
   expect(message.packedDouble[1], 712.0);
   expect(message.packedBool[1], false);
-  expect(message.packedEnum[1], ForeignEnum.FOREIGN_BAZ);
+  expect(message.packedEnum[1], ForeignEnum.foreignBaz);
 }
 
 void assertRepeatedExtensionsModified(TestAllExtensions message) {
@@ -956,7 +956,7 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
   expect(message.getExtension(Unittest.optionalNestedEnumExtension),
       TestAllTypes_NestedEnum.BAZ);
   expect(message.getExtension(Unittest.optionalForeignEnumExtension),
-      ForeignEnum.FOREIGN_BAZ);
+      ForeignEnum.foreignBaz);
   expect(message.getExtension(Unittest.optionalImportEnumExtension),
       ImportEnum.IMPORT_BAZ);
 
@@ -1028,7 +1028,7 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[0],
       TestAllTypes_NestedEnum.BAR);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[0],
-      ForeignEnum.FOREIGN_BAR);
+      ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[0],
       ImportEnum.IMPORT_BAR);
 
@@ -1068,7 +1068,7 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[1],
       TestAllTypes_NestedEnum.FOO);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[1],
-      ForeignEnum.FOREIGN_FOO);
+      ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[1],
       ImportEnum.IMPORT_FOO);
 
@@ -1120,7 +1120,7 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
   expect(message.getExtension(Unittest.defaultNestedEnumExtension),
       TestAllTypes_NestedEnum.FOO);
   expect(message.getExtension(Unittest.defaultForeignEnumExtension),
-      ForeignEnum.FOREIGN_FOO);
+      ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.defaultImportEnumExtension),
       ImportEnum.IMPORT_FOO);
 
@@ -1181,7 +1181,7 @@ void assertRepeatedFieldsModified(TestAllTypes message) {
   expect(message.repeatedImportMessage[0].d, 220);
 
   expect(message.repeatedNestedEnum[0], TestAllTypes_NestedEnum.BAR);
-  expect(message.repeatedForeignEnum[0], ForeignEnum.FOREIGN_BAR);
+  expect(message.repeatedForeignEnum[0], ForeignEnum.foreignBar);
   expect(message.repeatedImportEnum[0], ImportEnum.IMPORT_BAR);
 
   expect(message.repeatedStringPiece[0], '224');
@@ -1210,7 +1210,7 @@ void assertRepeatedFieldsModified(TestAllTypes message) {
   expect(message.repeatedImportMessage[1].d, 520);
 
   expect(message.repeatedNestedEnum[1], TestAllTypes_NestedEnum.BAR);
-  expect(message.repeatedForeignEnum[1], ForeignEnum.FOREIGN_BAR);
+  expect(message.repeatedForeignEnum[1], ForeignEnum.foreignBar);
   expect(message.repeatedImportEnum[1], ImportEnum.IMPORT_BAR);
 
   expect(message.repeatedStringPiece[1], '524');
@@ -1247,7 +1247,7 @@ void assertUnpackedFieldsSet(TestUnpackedTypes message) {
   expect(message.unpackedFloat[0], 611.0);
   expect(message.unpackedDouble[0], 612.0);
   expect(message.unpackedBool[0], true);
-  expect(message.unpackedEnum[0], ForeignEnum.FOREIGN_BAR);
+  expect(message.unpackedEnum[0], ForeignEnum.foreignBar);
   expect(message.unpackedInt32[1], 701);
   expect(message.unpackedInt64[1], expect64(702));
   expect(message.unpackedUint32[1], 703);
@@ -1261,7 +1261,7 @@ void assertUnpackedFieldsSet(TestUnpackedTypes message) {
   expect(message.unpackedFloat[1], 711.0);
   expect(message.unpackedDouble[1], 712.0);
   expect(message.unpackedBool[1], false);
-  expect(message.unpackedEnum[1], ForeignEnum.FOREIGN_BAZ);
+  expect(message.unpackedEnum[1], ForeignEnum.foreignBaz);
 }
 
 TestAllExtensions getAllExtensionsSet() {
@@ -1340,7 +1340,7 @@ void modifyRepeatedExtensions(TestAllExtensions message) {
   message.getExtension(Unittest.repeatedNestedEnumExtension)[1] =
       TestAllTypes_NestedEnum.FOO;
   message.getExtension(Unittest.repeatedForeignEnumExtension)[1] =
-      ForeignEnum.FOREIGN_FOO;
+      ForeignEnum.foreignFoo;
   message.getExtension(Unittest.repeatedImportEnumExtension)[1] =
       ImportEnum.IMPORT_FOO;
 
@@ -1384,7 +1384,7 @@ void modifyRepeatedFields(TestAllTypes message) {
   message.repeatedImportMessage[1] = optionalImportMessage;
 
   message.repeatedNestedEnum[1] = TestAllTypes_NestedEnum.BAR;
-  message.repeatedForeignEnum[1] = ForeignEnum.FOREIGN_BAR;
+  message.repeatedForeignEnum[1] = ForeignEnum.foreignBar;
   message.repeatedImportEnum[1] = ImportEnum.IMPORT_BAR;
 
   message.repeatedStringPiece[1] = '524';
@@ -1431,7 +1431,7 @@ void setAllExtensions(TestAllExtensions message) {
   message.setExtension(
       Unittest.optionalNestedEnumExtension, TestAllTypes_NestedEnum.BAZ);
   message.setExtension(
-      Unittest.optionalForeignEnumExtension, ForeignEnum.FOREIGN_BAZ);
+      Unittest.optionalForeignEnumExtension, ForeignEnum.foreignBaz);
   message.setExtension(
       Unittest.optionalImportEnumExtension, ImportEnum.IMPORT_BAZ);
 
@@ -1475,7 +1475,7 @@ void setAllExtensions(TestAllExtensions message) {
   message.addExtension(
       Unittest.repeatedNestedEnumExtension, TestAllTypes_NestedEnum.BAR);
   message.addExtension(
-      Unittest.repeatedForeignEnumExtension, ForeignEnum.FOREIGN_BAR);
+      Unittest.repeatedForeignEnumExtension, ForeignEnum.foreignBar);
   message.addExtension(
       Unittest.repeatedImportEnumExtension, ImportEnum.IMPORT_BAR);
 
@@ -1518,7 +1518,7 @@ void setAllExtensions(TestAllExtensions message) {
   message.addExtension(
       Unittest.repeatedNestedEnumExtension, TestAllTypes_NestedEnum.BAZ);
   message.addExtension(
-      Unittest.repeatedForeignEnumExtension, ForeignEnum.FOREIGN_BAZ);
+      Unittest.repeatedForeignEnumExtension, ForeignEnum.foreignBaz);
   message.addExtension(
       Unittest.repeatedImportEnumExtension, ImportEnum.IMPORT_BAZ);
 
@@ -1546,7 +1546,7 @@ void setAllExtensions(TestAllExtensions message) {
   message.setExtension(
       Unittest.defaultNestedEnumExtension, TestAllTypes_NestedEnum.FOO);
   message.setExtension(
-      Unittest.defaultForeignEnumExtension, ForeignEnum.FOREIGN_FOO);
+      Unittest.defaultForeignEnumExtension, ForeignEnum.foreignFoo);
   message.setExtension(
       Unittest.defaultImportEnumExtension, ImportEnum.IMPORT_FOO);
 
@@ -1590,7 +1590,7 @@ void setAllFields(TestAllTypes message) {
   message.optionalImportMessage = optionalImportMessage;
 
   message.optionalNestedEnum = TestAllTypes_NestedEnum.BAZ;
-  message.optionalForeignEnum = ForeignEnum.FOREIGN_BAZ;
+  message.optionalForeignEnum = ForeignEnum.foreignBaz;
   message.optionalImportEnum = ImportEnum.IMPORT_BAZ;
 
   message.optionalStringPiece = '124';
@@ -1631,7 +1631,7 @@ void setAllFields(TestAllTypes message) {
   message.repeatedImportMessage.add(repeatedImportMessage);
 
   message.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAR);
-  message.repeatedForeignEnum.add(ForeignEnum.FOREIGN_BAR);
+  message.repeatedForeignEnum.add(ForeignEnum.foreignBar);
   message.repeatedImportEnum.add(ImportEnum.IMPORT_BAR);
 
   message.repeatedStringPiece.add('224');
@@ -1671,7 +1671,7 @@ void setAllFields(TestAllTypes message) {
   message.repeatedImportMessage.add(repeatedImportMessage);
 
   message.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAZ);
-  message.repeatedForeignEnum.add(ForeignEnum.FOREIGN_BAZ);
+  message.repeatedForeignEnum.add(ForeignEnum.foreignBaz);
   message.repeatedImportEnum.add(ImportEnum.IMPORT_BAZ);
 
   message.repeatedStringPiece.add('324');
@@ -1696,7 +1696,7 @@ void setAllFields(TestAllTypes message) {
   message.defaultBytes = '416'.codeUnits;
 
   message.defaultNestedEnum = TestAllTypes_NestedEnum.FOO;
-  message.defaultForeignEnum = ForeignEnum.FOREIGN_FOO;
+  message.defaultForeignEnum = ForeignEnum.foreignFoo;
   message.defaultImportEnum = ImportEnum.IMPORT_FOO;
 
   message.defaultStringPiece = '424';
@@ -1717,7 +1717,7 @@ void setPackedExtensions(TestPackedExtensions message) {
   message.addExtension(Unittest.packedFloatExtension, 611.0);
   message.addExtension(Unittest.packedDoubleExtension, 612.0);
   message.addExtension(Unittest.packedBoolExtension, true);
-  message.addExtension(Unittest.packedEnumExtension, ForeignEnum.FOREIGN_BAR);
+  message.addExtension(Unittest.packedEnumExtension, ForeignEnum.foreignBar);
   // Add a second one of each field.
   message.addExtension(Unittest.packedInt32Extension, 701);
   message.addExtension(Unittest.packedInt64Extension, make64(702));
@@ -1732,7 +1732,7 @@ void setPackedExtensions(TestPackedExtensions message) {
   message.addExtension(Unittest.packedFloatExtension, 711.0);
   message.addExtension(Unittest.packedDoubleExtension, 712.0);
   message.addExtension(Unittest.packedBoolExtension, false);
-  message.addExtension(Unittest.packedEnumExtension, ForeignEnum.FOREIGN_BAZ);
+  message.addExtension(Unittest.packedEnumExtension, ForeignEnum.foreignBaz);
 }
 
 // Set every field of [message] to a unique value. Must correspond with
@@ -1751,7 +1751,7 @@ void setPackedFields(TestPackedTypes message) {
   message.packedFloat.add(611.0);
   message.packedDouble.add(612.0);
   message.packedBool.add(true);
-  message.packedEnum.add(ForeignEnum.FOREIGN_BAR);
+  message.packedEnum.add(ForeignEnum.foreignBar);
   // Add a second one of each field.
   message.packedInt32.add(701);
   message.packedInt64.add(make64(702));
@@ -1766,7 +1766,7 @@ void setPackedFields(TestPackedTypes message) {
   message.packedFloat.add(711.0);
   message.packedDouble.add(712.0);
   message.packedBool.add(false);
-  message.packedEnum.add(ForeignEnum.FOREIGN_BAZ);
+  message.packedEnum.add(ForeignEnum.foreignBaz);
 }
 
 // Set every field of [message] to a unique value. Must correspond with
@@ -1785,7 +1785,7 @@ void setUnpackedFields(TestUnpackedTypes message) {
   message.unpackedFloat.add(611.0);
   message.unpackedDouble.add(612.0);
   message.unpackedBool.add(true);
-  message.unpackedEnum.add(ForeignEnum.FOREIGN_BAR);
+  message.unpackedEnum.add(ForeignEnum.foreignBar);
   // Add a second one of each field.
   message.unpackedInt32.add(701);
   message.unpackedInt64.add(make64(702));
@@ -1800,5 +1800,5 @@ void setUnpackedFields(TestUnpackedTypes message) {
   message.unpackedFloat.add(711.0);
   message.unpackedDouble.add(712.0);
   message.unpackedBool.add(false);
-  message.unpackedEnum.add(ForeignEnum.FOREIGN_BAZ);
+  message.unpackedEnum.add(ForeignEnum.foreignBaz);
 }

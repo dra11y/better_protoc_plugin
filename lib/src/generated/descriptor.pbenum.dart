@@ -12,37 +12,32 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-main() {
-  final myValue = FieldDescriptorProto_Label.LABEL_OPTIONAL;
-  $core.print('myValue = ${FieldDescriptorProto_Label is $core.Enum}');
-}
-
 enum FieldDescriptorProto_Type implements $pb.ProtobufEnum {
-  TYPE_DOUBLE(1, _omitEnumNames ? '' : 'TYPE_DOUBLE'),
-  TYPE_FLOAT(2, _omitEnumNames ? '' : 'TYPE_FLOAT'),
-  TYPE_INT64(3, _omitEnumNames ? '' : 'TYPE_INT64'),
-  TYPE_UINT64(4, _omitEnumNames ? '' : 'TYPE_UINT64'),
-  TYPE_INT32(5, _omitEnumNames ? '' : 'TYPE_INT32'),
-  TYPE_FIXED64(6, _omitEnumNames ? '' : 'TYPE_FIXED64'),
-  TYPE_FIXED32(7, _omitEnumNames ? '' : 'TYPE_FIXED32'),
-  TYPE_BOOL(8, _omitEnumNames ? '' : 'TYPE_BOOL'),
-  TYPE_STRING(9, _omitEnumNames ? '' : 'TYPE_STRING'),
-  TYPE_GROUP(10, _omitEnumNames ? '' : 'TYPE_GROUP'),
-  TYPE_MESSAGE(11, _omitEnumNames ? '' : 'TYPE_MESSAGE'),
-  TYPE_BYTES(12, _omitEnumNames ? '' : 'TYPE_BYTES'),
-  TYPE_UINT32(13, _omitEnumNames ? '' : 'TYPE_UINT32'),
-  TYPE_ENUM(14, _omitEnumNames ? '' : 'TYPE_ENUM'),
-  TYPE_SFIXED32(15, _omitEnumNames ? '' : 'TYPE_SFIXED32'),
-  TYPE_SFIXED64(16, _omitEnumNames ? '' : 'TYPE_SFIXED64'),
-  TYPE_SINT32(17, _omitEnumNames ? '' : 'TYPE_SINT32'),
-  TYPE_SINT64(18, _omitEnumNames ? '' : 'TYPE_SINT64');
+  typeDouble(1, _omitEnumNames ? '' : 'TYPE_DOUBLE'),
+  typeFloat(2, _omitEnumNames ? '' : 'TYPE_FLOAT'),
+  typeInt64(3, _omitEnumNames ? '' : 'TYPE_INT64'),
+  typeUint64(4, _omitEnumNames ? '' : 'TYPE_UINT64'),
+  typeInt32(5, _omitEnumNames ? '' : 'TYPE_INT32'),
+  typeFixed64(6, _omitEnumNames ? '' : 'TYPE_FIXED64'),
+  typeFixed32(7, _omitEnumNames ? '' : 'TYPE_FIXED32'),
+  typeBool(8, _omitEnumNames ? '' : 'TYPE_BOOL'),
+  typeString(9, _omitEnumNames ? '' : 'TYPE_STRING'),
+  typeGroup(10, _omitEnumNames ? '' : 'TYPE_GROUP'),
+  typeMessage(11, _omitEnumNames ? '' : 'TYPE_MESSAGE'),
+  typeBytes(12, _omitEnumNames ? '' : 'TYPE_BYTES'),
+  typeUint32(13, _omitEnumNames ? '' : 'TYPE_UINT32'),
+  typeEnum(14, _omitEnumNames ? '' : 'TYPE_ENUM'),
+  typeSfixed32(15, _omitEnumNames ? '' : 'TYPE_SFIXED32'),
+  typeSfixed64(16, _omitEnumNames ? '' : 'TYPE_SFIXED64'),
+  typeSint32(17, _omitEnumNames ? '' : 'TYPE_SINT32'),
+  typeSint64(18, _omitEnumNames ? '' : 'TYPE_SINT64');
 
   final $core.int value;
 
   @$core.override
   final $core.String name;
 
-  /// protobuf 3 spec:
+  /// protobuf.dart 3 spec:
   /// Returns this enum's [name] or the [value] if names are not represented.
   @$core.override
   $core.String toString() => name == '' ? value.toString() : name;
@@ -55,9 +50,9 @@ enum FieldDescriptorProto_Type implements $pb.ProtobufEnum {
 }
 
 enum FieldDescriptorProto_Label implements $pb.ProtobufEnum {
-  LABEL_OPTIONAL(1, _omitEnumNames ? '' : 'LABEL_OPTIONAL'),
-  LABEL_REQUIRED(2, _omitEnumNames ? '' : 'LABEL_REQUIRED'),
-  LABEL_REPEATED(3, _omitEnumNames ? '' : 'LABEL_REPEATED');
+  labelOptional(1, _omitEnumNames ? '' : 'LABEL_OPTIONAL'),
+  labelRequired(2, _omitEnumNames ? '' : 'LABEL_REQUIRED'),
+  labelRepeated(3, _omitEnumNames ? '' : 'LABEL_REPEATED');
 
   final $core.int value;
 
@@ -79,16 +74,16 @@ enum FieldDescriptorProto_Label implements $pb.ProtobufEnum {
 
 /// Generated classes can be optimized for speed or code size.
 enum FileOptions_OptimizeMode implements $pb.ProtobufEnum {
-  SPEED(1, _omitEnumNames ? '' : 'SPEED'),
-  CODE_SIZE(2, _omitEnumNames ? '' : 'CODE_SIZE'),
-  LITE_RUNTIME(3, _omitEnumNames ? '' : 'LITE_RUNTIME');
+  speed(1, _omitEnumNames ? '' : 'SPEED'),
+  codeSize(2, _omitEnumNames ? '' : 'CODE_SIZE'),
+  liteRuntime(3, _omitEnumNames ? '' : 'LITE_RUNTIME');
 
   final $core.int value;
 
   @$core.override
   final $core.String name;
 
-  /// protobuf 3 spec:
+  /// protobuf.dart 3 spec:
   /// Returns this enum's [name] or the [value] if names are not represented.
   @$core.override
   $core.String toString() => name == '' ? value.toString() : name;
@@ -101,16 +96,16 @@ enum FileOptions_OptimizeMode implements $pb.ProtobufEnum {
 }
 
 enum FieldOptions_CType implements $pb.ProtobufEnum {
-  STRING(0, _omitEnumNames ? '' : 'STRING'),
-  CORD(1, _omitEnumNames ? '' : 'CORD'),
-  STRING_PIECE(2, _omitEnumNames ? '' : 'STRING_PIECE');
+  string(0, _omitEnumNames ? '' : 'STRING'),
+  cord(1, _omitEnumNames ? '' : 'CORD'),
+  stringPiece(2, _omitEnumNames ? '' : 'STRING_PIECE');
 
   final $core.int value;
 
   @$core.override
   final $core.String name;
 
-  /// protobuf 3 spec:
+  /// protobuf.dart 3 spec:
   /// Returns this enum's [name] or the [value] if names are not represented.
   @$core.override
   $core.String toString() => name == '' ? value.toString() : name;
@@ -123,16 +118,16 @@ enum FieldOptions_CType implements $pb.ProtobufEnum {
 }
 
 enum FieldOptions_JSType implements $pb.ProtobufEnum {
-  JS_NORMAL(0, _omitEnumNames ? '' : 'JS_NORMAL'),
-  JS_STRING(1, _omitEnumNames ? '' : 'JS_STRING'),
-  JS_NUMBER(2, _omitEnumNames ? '' : 'JS_NUMBER');
+  jsNormal(0, _omitEnumNames ? '' : 'JS_NORMAL'),
+  jsString(1, _omitEnumNames ? '' : 'JS_STRING'),
+  jsNumber(2, _omitEnumNames ? '' : 'JS_NUMBER');
 
   final $core.int value;
 
   @$core.override
   final $core.String name;
 
-  /// protobuf 3 spec:
+  /// protobuf.dart 3 spec:
   /// Returns this enum's [name] or the [value] if names are not represented.
   @$core.override
   $core.String toString() => name == '' ? value.toString() : name;
@@ -148,16 +143,16 @@ enum FieldOptions_JSType implements $pb.ProtobufEnum {
 /// or neither? HTTP based RPC implementation may choose GET verb for safe
 /// methods, and PUT verb for idempotent methods instead of the default POST.
 enum MethodOptions_IdempotencyLevel implements $pb.ProtobufEnum {
-  IDEMPOTENCY_UNKNOWN(0, _omitEnumNames ? '' : 'IDEMPOTENCY_UNKNOWN'),
-  NO_SIDE_EFFECTS(1, _omitEnumNames ? '' : 'NO_SIDE_EFFECTS'),
-  IDEMPOTENT(2, _omitEnumNames ? '' : 'IDEMPOTENT');
+  idempotencyUnknown(0, _omitEnumNames ? '' : 'IDEMPOTENCY_UNKNOWN'),
+  noSideEffects(1, _omitEnumNames ? '' : 'NO_SIDE_EFFECTS'),
+  idempotent(2, _omitEnumNames ? '' : 'IDEMPOTENT');
 
   final $core.int value;
 
   @$core.override
   final $core.String name;
 
-  /// protobuf 3 spec:
+  /// protobuf.dart 3 spec:
   /// Returns this enum's [name] or the [value] if names are not represented.
   @$core.override
   $core.String toString() => name == '' ? value.toString() : name;

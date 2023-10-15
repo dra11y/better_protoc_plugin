@@ -763,12 +763,12 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
     ..a<$core.int>(3, _omitFieldNames ? '' : 'number', $pb.PbFieldType.O3)
     ..e<FieldDescriptorProto_Label>(
         4, _omitFieldNames ? '' : 'label', $pb.PbFieldType.OE,
-        defaultOrMaker: FieldDescriptorProto_Label.LABEL_OPTIONAL,
+        defaultOrMaker: FieldDescriptorProto_Label.labelOptional,
         valueOf: FieldDescriptorProto_Label.valueOf,
         enumValues: FieldDescriptorProto_Label.values)
     ..e<FieldDescriptorProto_Type>(
         5, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE,
-        defaultOrMaker: FieldDescriptorProto_Type.TYPE_DOUBLE,
+        defaultOrMaker: FieldDescriptorProto_Type.typeDouble,
         valueOf: FieldDescriptorProto_Type.valueOf,
         enumValues: FieldDescriptorProto_Type.values)
     ..aOS(6, _omitFieldNames ? '' : 'typeName')

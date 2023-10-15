@@ -1,0 +1,43 @@
+annotation: {
+  path: 5
+  path: 0
+  sourceFile: test
+  begin: 428
+  end: 437
+}
+annotation: {
+  path: 5
+  path: 0
+  path: 2
+  path: 0
+  sourceFile: test
+  begin: 470
+  end: 476
+}
+annotation: {
+  path: 5
+  path: 0
+  path: 2
+  path: 1
+  sourceFile: test
+  begin: 515
+  end: 519
+}
+annotation: {
+  path: 5
+  path: 0
+  path: 2
+  path: 2
+  sourceFile: test
+  begin: 556
+  end: 560
+}
+annotation: {
+  path: 5
+  path: 0
+  path: 2
+  path: 3
+  sourceFile: test
+  begin: 621
+  end: 629
+}

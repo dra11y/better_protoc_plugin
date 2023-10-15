@@ -14,15 +14,15 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// Sync with code_generator.h.
 enum CodeGeneratorResponse_Feature implements $pb.ProtobufEnum {
-  FEATURE_NONE(0, _omitEnumNames ? '' : 'FEATURE_NONE'),
-  FEATURE_PROTO3_OPTIONAL(1, _omitEnumNames ? '' : 'FEATURE_PROTO3_OPTIONAL');
+  featureNone(0, _omitEnumNames ? '' : 'FEATURE_NONE'),
+  featureProto3Optional(1, _omitEnumNames ? '' : 'FEATURE_PROTO3_OPTIONAL');
 
   final $core.int value;
 
   @$core.override
   final $core.String name;
 
-  /// protobuf 3 spec:
+  /// protobuf.dart 3 spec:
   /// Returns this enum's [name] or the [value] if names are not represented.
   @$core.override
   $core.String toString() => name == '' ? value.toString() : name;

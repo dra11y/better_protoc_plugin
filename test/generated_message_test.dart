@@ -76,11 +76,11 @@ void main() {
   test('testRepeatedAppend', () {
     final message = TestAllTypes()
       ..repeatedInt32.addAll([1, 2, 3, 4])
-      ..repeatedForeignEnum.addAll([ForeignEnum.FOREIGN_BAZ])
+      ..repeatedForeignEnum.addAll([ForeignEnum.foreignBaz])
       ..repeatedForeignMessage.addAll([ForeignMessage()..c = 12]);
 
     expect(message.repeatedInt32, [1, 2, 3, 4]);
-    expect(message.repeatedForeignEnum, [ForeignEnum.FOREIGN_BAZ]);
+    expect(message.repeatedForeignEnum, [ForeignEnum.foreignBaz]);
     expect(message.repeatedForeignMessage.length, 1);
     expect(message.repeatedForeignMessage[0].c, 12);
   });
@@ -814,7 +814,7 @@ void main() {
       optionalImportMessage:
           constructor_args_unittest_import.ImportMessage(d: 120),
       optionalNestedEnum: constructor_args_unittest.TestAllTypes_NestedEnum.BAZ,
-      optionalForeignEnum: constructor_args_unittest.ForeignEnum.FOREIGN_BAZ,
+      optionalForeignEnum: constructor_args_unittest.ForeignEnum.foreignBaz,
       optionalImportEnum:
           constructor_args_unittest_import.ImportEnum.IMPORT_BAZ,
       optionalStringPiece: '124',
@@ -855,8 +855,8 @@ void main() {
         constructor_args_unittest.TestAllTypes_NestedEnum.BAZ
       ],
       repeatedForeignEnum: [
-        constructor_args_unittest.ForeignEnum.FOREIGN_BAR,
-        constructor_args_unittest.ForeignEnum.FOREIGN_BAZ
+        constructor_args_unittest.ForeignEnum.foreignBar,
+        constructor_args_unittest.ForeignEnum.foreignBaz
       ],
       repeatedImportEnum: [
         constructor_args_unittest_import.ImportEnum.IMPORT_BAR,
@@ -880,7 +880,7 @@ void main() {
       defaultString: '415',
       defaultBytes: '416'.codeUnits,
       defaultNestedEnum: constructor_args_unittest.TestAllTypes_NestedEnum.FOO,
-      defaultForeignEnum: constructor_args_unittest.ForeignEnum.FOREIGN_FOO,
+      defaultForeignEnum: constructor_args_unittest.ForeignEnum.foreignFoo,
       defaultImportEnum: constructor_args_unittest_import.ImportEnum.IMPORT_FOO,
       defaultStringPiece: '424',
       defaultCord: '425',
