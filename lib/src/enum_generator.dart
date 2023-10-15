@@ -58,8 +58,10 @@ class EnumGenerator extends ProtobufContainer {
         _aliases.add(EnumAlias(value, canonicalValue));
         _originalAliasIndices.add(i);
       }
-      dartNames[value.name] = disambiguateName(
-          avoidInitialUnderscore(value.name), usedNames, enumSuffixes());
+      dartNames[value.name] =
+          makeEnumValueName(value.name, classname, usedNames, enumSuffixes());
+      // dartNames[value.name] = makeEnumValueName(disambiguateName(
+      //     avoidInitialUnderscore(value.name), usedNames, enumSuffixes()));
     }
   }
 

@@ -2,9 +2,11 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:protobuf/meta.dart';
+import 'package:recase/recase.dart';
 
 import 'src/generated/dart_options.pb.dart';
 import 'src/generated/descriptor.pb.dart';
@@ -80,6 +82,34 @@ class OneofNames {
 // For performance reasons, use code units instead of Regex.
 bool _startsWithDigit(String input) =>
     input.isNotEmpty && (input.codeUnitAt(0) ^ 0x30) <= 9;
+
+/// Converts an UPPER_SNAKE_CASED name to a proper
+/// Dart enum camelCasedName.
+String makeEnumValueName(
+  String value,
+  String? classname,
+  Set<String> usedNames,
+  Iterable<String> suffixes,
+) {
+  final underscoreAvoided = avoidInitialUnderscore(value);
+  int underscores = 0;
+  for (int i = underscoreAvoided.length - 1; i >= 0; i--) {
+    if (underscoreAvoided[i] != '_') {
+      break;
+    }
+    underscores++;
+  }
+  final prefix = classname?.camelCase;
+  final camelCased = underscoreAvoided.camelCase;
+  final removePrefix =
+      prefix != null && prefix != camelCased && camelCased.startsWith(prefix);
+  final prefixRemoved =
+      removePrefix ? camelCased.replaceFirst(prefix, '').camelCase : camelCased;
+  final underscored = prefixRemoved + '_' * underscores;
+  final disambiguated = disambiguateName(underscored, usedNames, suffixes);
+  // stderr.write('$value -> $disambiguated\n');
+  return disambiguated;
+}
 
 /// Move any initial underscores in [input] to the end.
 ///
