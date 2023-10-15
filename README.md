@@ -7,7 +7,7 @@
 
 This fork provides:
 - generation of real Dart enums instead of classes with static constants;
-- generation of camelCased (instead of UPPER_SNAKE_CASED) enum values, but keeping the enum value's `value` field as the original UPPER_SNAKE_CASED String value from the proto.
+- generation of camelCased (instead of UPPER_SNAKE_CASED) enum values, but keeping the `name` field as the original UPPER_SNAKE_CASED String name from the proto.
 
 ## Testing
 
