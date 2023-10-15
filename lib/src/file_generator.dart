@@ -640,7 +640,6 @@ class FileGenerator extends ProtobufContainer {
 //  Generated code. Do not modify.
 //  source: ${descriptor.name}
 //
-// @dart = 2.12
 ''');
     ignorelines.forEach(out.println);
     out.println('');
