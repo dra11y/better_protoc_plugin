@@ -1,5 +1,3 @@
-import 'dart:io';
-
 /// An instance of text to be re-cased.
 /// Forked and modified from recase 4.1.0
 class ReCase {

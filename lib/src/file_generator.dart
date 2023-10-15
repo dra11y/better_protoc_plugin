@@ -699,19 +699,7 @@ class ConditionalConstDefinition {
   }
 }
 
-// TODO(devoncarew): We should be able to shrink this down to just:
-//   annotate_overrides, camel_case_types, constant_identifier_names, and
-//   library_prefixes.
-
-const _fileIgnores = {
-  'annotate_overrides',
-  'camel_case_types',
-  'comment_references',
-  'constant_identifier_names',
-  'library_prefixes',
-  'non_constant_identifier_names',
-  'prefer_final_fields',
+// Removed a whole bunch of unnecessary ignore rules.
+const _fileIgnores = <String>{
   'unnecessary_import',
-  'unnecessary_this',
-  'unused_import',
 };
