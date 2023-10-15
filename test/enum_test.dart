@@ -4,7 +4,8 @@ import '../out/protos/google/protobuf/unittest.pb.dart';
 
 void main() {
   test('testEnumIsEnum', () {
-    expect(ForeignEnum is Enum, true,
+    // ignore: unnecessary_type_check
+    expect(ForeignEnum.FOREIGN_FOO is Enum, true,
         reason: 'Generated enum is not a real Dart Enum!');
   });
 
@@ -16,5 +17,10 @@ void main() {
   test('testEnumValueHasOriginalValue', () {
     expect(ForeignEnum.FOREIGN_BAR.value, 5,
         reason: 'Enum value is not the original proto value!');
+  });
+
+  test('testEnumToString', () {
+    expect(ForeignEnum.FOREIGN_BAR.toString(), 'FOREIGN_BAR',
+        reason: 'Enum value.toString() does not return its name!');
   });
 }

@@ -108,12 +108,10 @@ class EnumGenerator extends ProtobufContainer {
       out.println(comment);
     }
     out.addAnnotatedBlock(
-        'class $classname extends $protobufImportPrefix.ProtobufEnum {',
+        'enum $classname implements $protobufImportPrefix.ProtobufEnum {',
         '}\n', [
       NamedLocation(
-          name: classname!,
-          fieldPathSegment: fieldPath!,
-          start: 'class '.length)
+          name: classname!, fieldPathSegment: fieldPath!, start: 'enum '.length)
     ], () {
       // -----------------------------------------------------------------
       // Define enum types.
@@ -124,16 +122,15 @@ class EnumGenerator extends ProtobufContainer {
         out.addSuffix(
             omitEnumNames.constFieldName, omitEnumNames.constDefinition);
         final conditionalValName = omitEnumNames.createTernary(val.name);
+        final separator = i < _canonicalValues.length - 1 ? ',' : ';';
         out.printlnAnnotated(
-            'static const $classname $name = '
-            '$classname._(${val.number}, $conditionalValName);',
-            [
-              NamedLocation(
-                  name: name,
-                  fieldPathSegment: List.from(fieldPath!)
-                    ..addAll([_enumValueTag, _originalCanonicalIndices[i]]),
-                  start: 'static const $classname '.length)
-            ]);
+            '$name(${val.number}, $conditionalValName)$separator', [
+          NamedLocation(
+              name: name,
+              fieldPathSegment: List.from(fieldPath!)
+                ..addAll([_enumValueTag, _originalCanonicalIndices[i]]),
+              start: 0)
+        ]);
       }
       if (_aliases.isNotEmpty) {
         out.println();
@@ -154,14 +151,19 @@ class EnumGenerator extends ProtobufContainer {
       }
       out.println();
 
-      out.println('static const $coreImportPrefix.List<$classname> values ='
-          ' <$classname> [');
-      for (final val in _canonicalValues) {
-        final name = dartNames[val.name];
-        out.println('  $name,');
-      }
-      out.println('];');
+      out.println('final $coreImportPrefix.int value;');
       out.println();
+
+      out.println(
+          '@$coreImportPrefix.override final $coreImportPrefix.String name;');
+      out.println();
+
+      out.println('''
+  /// protobuf.dart 3 spec:
+  /// Returns this enum's [name] or the [value] if names are not represented.
+  @\$core.override
+  \$core.String toString() => name == '' ? value.toString() : name;
+      ''');
 
       out.println(
           'static final $coreImportPrefix.Map<$coreImportPrefix.int, $classname> _byValue ='
@@ -170,9 +172,7 @@ class EnumGenerator extends ProtobufContainer {
           ' _byValue[value];');
       out.println();
 
-      out.println(
-          'const $classname._($coreImportPrefix.int v, $coreImportPrefix.String n) '
-          ': super(v, n);');
+      out.println('const $classname(this.value, this.name);');
     });
   }
 
