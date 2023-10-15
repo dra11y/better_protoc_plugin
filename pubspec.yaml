@@ -1,4 +1,4 @@
-name: protoc_plugin
+name: better_protoc_plugin
 version: 22.0.0-dev
 description: A protobuf protoc compiler plugin used to generate Dart code.
 repository: https://github.com/google/protobuf.dart/tree/master/protoc_plugin

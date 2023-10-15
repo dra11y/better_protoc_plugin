@@ -11,15 +11,15 @@ import "dart_options.proto";
 option (dart_options.imports) = {
   mixins: [{
     name: "Mixin1"
-    import_from: "package:protoc_plugin/testing/mixins.dart"
+    import_from: "package:better_protoc_plugin/testing/mixins.dart"
   },
   {
     name: "Mixin2"
-    import_from: "package:protoc_plugin/testing/mixins.dart"
+    import_from: "package:better_protoc_plugin/testing/mixins.dart"
   },
   {
     name: "Mixin3"
-    import_from: "package:protoc_plugin/testing/mixins.dart"
+    import_from: "package:better_protoc_plugin/testing/mixins.dart"
     parent: "Mixin1"
   }];
 };

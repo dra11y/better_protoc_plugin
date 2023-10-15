@@ -1,4 +1,4 @@
-import 'package:protoc_plugin/testing/mixins.dart';
+import 'package:better_protoc_plugin/testing/mixins.dart';
 import 'package:test/test.dart';
 
 import '../out/protos/mixins.pb.dart' as pb;

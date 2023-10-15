@@ -11,7 +11,7 @@ import 'package:protobuf/meta.dart'
 // ignore_for_file: unused_import
 import 'package:protobuf/protobuf.dart' show GeneratedMessage, ProtobufEnum;
 import 'package:protobuf/src/protobuf/mixins/map_mixin.dart' show PbMapMixin;
-import 'package:protoc_plugin/mixins.dart' show findMixin;
+import 'package:better_protoc_plugin/mixins.dart' show findMixin;
 import 'package:test/test.dart';
 
 import 'mirror_util.dart' show findMemberNames;

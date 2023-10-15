@@ -1,4 +1,4 @@
-import 'package:protoc_plugin/src/shared.dart';
+import 'package:better_protoc_plugin/src/shared.dart';
 import 'package:test/test.dart';
 
 void main() {

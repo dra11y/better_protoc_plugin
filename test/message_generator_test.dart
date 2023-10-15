@@ -5,12 +5,12 @@
 import 'dart:collection';
 
 import 'package:collection/collection.dart';
-import 'package:protoc_plugin/indenting_writer.dart';
-import 'package:protoc_plugin/protoc.dart';
-import 'package:protoc_plugin/src/generated/descriptor.pb.dart';
-import 'package:protoc_plugin/src/generated/plugin.pb.dart';
-import 'package:protoc_plugin/src/linker.dart';
-import 'package:protoc_plugin/src/options.dart';
+import 'package:better_protoc_plugin/indenting_writer.dart';
+import 'package:better_protoc_plugin/protoc.dart';
+import 'package:better_protoc_plugin/src/generated/descriptor.pb.dart';
+import 'package:better_protoc_plugin/src/generated/plugin.pb.dart';
+import 'package:better_protoc_plugin/src/linker.dart';
+import 'package:better_protoc_plugin/src/options.dart';
 import 'package:test/test.dart';
 
 import 'golden_file.dart';
