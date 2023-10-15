@@ -1,5 +1,20 @@
-[![pub package](https://img.shields.io/pub/v/protoc_plugin.svg)](https://pub.dev/packages/protoc_plugin)
-[![package publisher](https://img.shields.io/pub/publisher/protoc_plugin.svg)](https://pub.dev/packages/protoc_plugin/publisher)
+[![pub package](https://img.shields.io/pub/v/better_protoc_plugin.svg)](https://pub.dev/packages/better_protoc_plugin)
+[![package publisher](https://img.shields.io/pub/publisher/better_protoc_plugin.svg)](https://pub.dev/packages/better_protoc_plugin/publisher)
+
+# better_protoc_plugin
+
+## Forked from [Google's protoc_plugin @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
+
+This fork provides:
+- generation of real Dart enums instead of classes with static constants;
+- generation of camelCased (instead of UPPER_SNAKE_CASED) enum values, but keeping the enum value's `value` field as the original UPPER_SNAKE_CASED String value from the proto.
+
+## Testing
+
+    $ dart pub get
+    $ make run-tests
+
+# Original protoc_plugin README:
 
 This repository provides a Dart plugin for the [protoc compiler][1]. It generates
 Dart files for working with data in protocol buffers format.
