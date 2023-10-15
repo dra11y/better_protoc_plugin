@@ -1,3 +1,12 @@
+## 1.0.0
+
+* use real Dart enums + unit test
+* enum values now use lowerCamelCase + unit test
+* upgrade to Dart 3 SDK
+* remove unnecessary ignore rules and @dart = 2.12 version directive
+
+## --- forked here ---
+
 ## 22.0.0-dev
 
 * Remove `PbEventMixin` mixin. ([#738])

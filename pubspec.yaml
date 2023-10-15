@@ -1,5 +1,5 @@
 name: better_protoc_plugin
-version: 22.0.0-dev
+version: 1.0.0
 description: A better protobuf protoc compiler plugin used to generate Dart code.
 repository: https://github.com/dra11y/better_protoc_plugin
 

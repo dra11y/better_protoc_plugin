@@ -3,7 +3,7 @@
 
 # better_protoc_plugin
 
-## Forked from [Google's protoc_plugin @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
+## Forked from [Google's protoc_plugin v22.0.0-dev @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
 
 This fork provides:
 - generation of real Dart enums instead of classes with static constants;
