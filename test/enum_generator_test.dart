@@ -32,7 +32,6 @@ void main() {
     final writer = IndentingWriter(filename: 'sample.proto');
     final fg = FileGenerator(FileDescriptorProto(), GenerationOptions());
     final eg = EnumGenerator.topLevel(ed, fg, <String>{}, 0);
-    print('eg.dartNames = ${eg.dartNames}');
     eg.generate(writer);
     expectMatchesGoldenFile(writer.toString(), 'test/goldens/enum');
     expectMatchesGoldenFile(
@@ -50,10 +49,11 @@ void main() {
       'cc': 'cc',
       'camelCase': 'camelCase',
       'UpperCamelCase': 'upperCamelCase',
-      'Abc_SNAKE_CASE': 'abcSnakeCase',
+      'ABC_SNAKE_CASE': 'snakeCase',
+      'Abc_SNAKE_LOWER': 'snakeLower',
       'Abc_prefixed_lower_snake': 'prefixedLowerSnake',
       'Abc_Abc': 'abc',
-      '__MiX_edC_aSE': 'mixEdcAse__',
+      '__MiX_edC_aSE': 'miXEdCASe__',
     };
 
     final ed = EnumDescriptorProto()

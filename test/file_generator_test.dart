@@ -44,8 +44,8 @@ FileDescriptorProto buildFileDescriptor(
           ..name = 'number'
           ..jsonName = 'number'
           ..number = 1
-          ..label = FieldDescriptorProto_Label.LABEL_REQUIRED
-          ..type = FieldDescriptorProto_Type.TYPE_STRING,
+          ..label = FieldDescriptorProto_Label.labelRequired
+          ..type = FieldDescriptorProto_Type.typeString,
         // optional int32 type = 2;
         // OR
         // optional PhoneType type = 2;
@@ -53,18 +53,18 @@ FileDescriptorProto buildFileDescriptor(
           ..name = 'type'
           ..jsonName = 'type'
           ..number = 2
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
+          ..label = FieldDescriptorProto_Label.labelOptional
           ..type = topLevelEnum
-              ? FieldDescriptorProto_Type.TYPE_ENUM
-              : FieldDescriptorProto_Type.TYPE_INT32
+              ? FieldDescriptorProto_Type.typeEnum
+              : FieldDescriptorProto_Type.typeInt32
           ..typeName = topLevelEnum ? '.PhoneType' : '',
         // optional string name = 3 [default = "$"];
         FieldDescriptorProto()
           ..name = 'name'
           ..jsonName = 'name'
           ..number = 3
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_STRING
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeString
           ..defaultValue = r'$'
       ]));
   }
@@ -81,8 +81,8 @@ FileDescriptorProto createInt64Proto() {
         ..name = 'value'
         ..jsonName = 'value'
         ..number = 1
-        ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-        ..type = FieldDescriptorProto_Type.TYPE_INT64,
+        ..label = FieldDescriptorProto_Label.labelOptional
+        ..type = FieldDescriptorProto_Type.typeInt64,
     ));
 
   return fd;
@@ -205,7 +205,7 @@ void main() {
             ..name = 'count'
             ..jsonName = 'count'
             ..number = 1
-            ..type = FieldDescriptorProto_Type.TYPE_INT64
+            ..type = FieldDescriptorProto_Type.typeInt64
         ]));
 
     final options = parseGenerationOptions(
@@ -365,8 +365,8 @@ void main() {
           ..name = 'm'
           ..jsonName = 'm'
           ..number = 1
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_MESSAGE
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeMessage
           ..typeName = '.p1.M',
       ]);
     final fd1 = FileDescriptorProto()
@@ -383,8 +383,8 @@ void main() {
           ..name = 'x'
           ..jsonName = 'x'
           ..number = 1
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_MESSAGE
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeMessage
           ..typeName = '.p2.M',
       ]);
     final fd2 = FileDescriptorProto()
@@ -401,24 +401,24 @@ void main() {
           ..name = 'm'
           ..jsonName = 'm'
           ..number = 1
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_MESSAGE
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeMessage
           ..typeName = '.M',
         // optional p1.M m1 = 2;
         FieldDescriptorProto()
           ..name = 'm1'
           ..jsonName = 'm1'
           ..number = 2
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_MESSAGE
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeMessage
           ..typeName = '.p1.M',
         // optional p2.M m2 = 3;
         FieldDescriptorProto()
           ..name = 'm2'
           ..jsonName = 'm2'
           ..number = 3
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_MESSAGE
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeMessage
           ..typeName = '.p2.M',
       ]);
     final fd = FileDescriptorProto()

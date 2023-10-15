@@ -215,23 +215,23 @@ void main() {
       ..addField(
           singularFieldNum,
           UnknownFieldSetField()
-            ..addVarint(make64(TestAllTypes_NestedEnum.BAR.value))
+            ..addVarint(make64(TestAllTypes_NestedEnum.bar.value))
             ..addVarint(make64(5)))
       ..addField(
           repeatedFieldNum,
           UnknownFieldSetField()
-            ..addVarint(make64(TestAllTypes_NestedEnum.FOO.value))
+            ..addVarint(make64(TestAllTypes_NestedEnum.foo.value))
             ..addVarint(make64(4))
-            ..addVarint(make64(TestAllTypes_NestedEnum.BAZ.value))
+            ..addVarint(make64(TestAllTypes_NestedEnum.baz.value))
             ..addVarint(make64(6)));
 
     final writer = CodedBufferWriter();
     fieldSet.writeToCodedBufferWriter(writer);
     {
       final message = TestAllTypes.fromBuffer(writer.toBuffer());
-      expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.BAR);
+      expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.bar);
       expect(message.repeatedNestedEnum,
-          [TestAllTypes_NestedEnum.FOO, TestAllTypes_NestedEnum.BAZ]);
+          [TestAllTypes_NestedEnum.foo, TestAllTypes_NestedEnum.baz]);
       final singularVarints =
           message.unknownFields.getField(singularFieldNum)!.varints;
       expect(singularVarints.length, 1);
@@ -246,10 +246,10 @@ void main() {
       final message = TestAllExtensions.fromBuffer(
           writer.toBuffer(), getExtensionRegistry());
       expect(message.getExtension(Unittest.optionalNestedEnumExtension),
-          TestAllTypes_NestedEnum.BAR);
+          TestAllTypes_NestedEnum.bar);
 
       expect(message.getExtension(Unittest.repeatedNestedEnumExtension),
-          [TestAllTypes_NestedEnum.FOO, TestAllTypes_NestedEnum.BAZ]);
+          [TestAllTypes_NestedEnum.foo, TestAllTypes_NestedEnum.baz]);
       final singularVarints =
           message.unknownFields.getField(singularFieldNum)!.varints;
       expect(singularVarints.length, 1);

@@ -1729,7 +1729,7 @@ class FileOptions extends $pb.GeneratedMessage {
     ..aOS(8, _omitFieldNames ? '' : 'javaOuterClassname')
     ..e<FileOptions_OptimizeMode>(
         9, _omitFieldNames ? '' : 'optimizeFor', $pb.PbFieldType.OE,
-        defaultOrMaker: FileOptions_OptimizeMode.SPEED,
+        defaultOrMaker: FileOptions_OptimizeMode.speed,
         valueOf: FileOptions_OptimizeMode.valueOf,
         enumValues: FileOptions_OptimizeMode.values)
     ..aOB(10, _omitFieldNames ? '' : 'javaMultipleFiles')
@@ -2308,7 +2308,7 @@ class FieldOptions extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..e<FieldOptions_CType>(
         1, _omitFieldNames ? '' : 'ctype', $pb.PbFieldType.OE,
-        defaultOrMaker: FieldOptions_CType.STRING,
+        defaultOrMaker: FieldOptions_CType.string,
         valueOf: FieldOptions_CType.valueOf,
         enumValues: FieldOptions_CType.values)
     ..aOB(2, _omitFieldNames ? '' : 'packed')
@@ -2316,7 +2316,7 @@ class FieldOptions extends $pb.GeneratedMessage {
     ..aOB(5, _omitFieldNames ? '' : 'lazy')
     ..e<FieldOptions_JSType>(
         6, _omitFieldNames ? '' : 'jstype', $pb.PbFieldType.OE,
-        defaultOrMaker: FieldOptions_JSType.JS_NORMAL,
+        defaultOrMaker: FieldOptions_JSType.jsNormal,
         valueOf: FieldOptions_JSType.valueOf,
         enumValues: FieldOptions_JSType.values)
     ..aOB(10, _omitFieldNames ? '' : 'weak')
@@ -2817,7 +2817,7 @@ class MethodOptions extends $pb.GeneratedMessage {
     ..aOB(33, _omitFieldNames ? '' : 'deprecated')
     ..e<MethodOptions_IdempotencyLevel>(
         34, _omitFieldNames ? '' : 'idempotencyLevel', $pb.PbFieldType.OE,
-        defaultOrMaker: MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
+        defaultOrMaker: MethodOptions_IdempotencyLevel.idempotencyUnknown,
         valueOf: MethodOptions_IdempotencyLevel.valueOf,
         enumValues: MethodOptions_IdempotencyLevel.values)
     ..pc<UninterpretedOption>(

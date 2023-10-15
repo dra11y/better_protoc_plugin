@@ -21,9 +21,9 @@ void main() {
       ..int32ToBytesField[1] = utf8.encode('11')
       ..int32ToBytesField[2] = utf8.encode('22')
       ..int32ToBytesField[3] = utf8.encode('33')
-      ..int32ToEnumField[1] = TestMap_EnumValue.DEFAULT
-      ..int32ToEnumField[2] = TestMap_EnumValue.BAR
-      ..int32ToEnumField[3] = TestMap_EnumValue.BAZ
+      ..int32ToEnumField[1] = TestMap_EnumValue.default_
+      ..int32ToEnumField[2] = TestMap_EnumValue.bar
+      ..int32ToEnumField[3] = TestMap_EnumValue.baz
       ..int32ToMessageField[1] = (TestMap_MessageValue()..value = 11)
       ..int32ToMessageField[2] = (TestMap_MessageValue()..value = 22)
       ..int32ToMessageField[3] = (TestMap_MessageValue()..value = 33)
@@ -43,9 +43,9 @@ void main() {
       ..int32ToBytesField[1] = utf8.encode('111')
       ..int32ToBytesField.remove(2)
       ..int32ToBytesField[4] = utf8.encode('44')
-      ..int32ToEnumField[1] = TestMap_EnumValue.BAR
+      ..int32ToEnumField[1] = TestMap_EnumValue.bar
       ..int32ToEnumField.remove(2)
-      ..int32ToEnumField[4] = TestMap_EnumValue.ZOP
+      ..int32ToEnumField[4] = TestMap_EnumValue.zop
       ..int32ToMessageField[1] = (TestMap_MessageValue()..value = 111)
       ..int32ToMessageField.remove(2)
       ..int32ToMessageField[4] = (TestMap_MessageValue()..value = 44)
@@ -76,9 +76,9 @@ void main() {
     expect(testMap.int32ToBytesField[2], utf8.encode('22'));
     expect(testMap.int32ToBytesField[3], utf8.encode('33'));
 
-    expect(testMap.int32ToEnumField[1], TestMap_EnumValue.DEFAULT);
-    expect(testMap.int32ToEnumField[2], TestMap_EnumValue.BAR);
-    expect(testMap.int32ToEnumField[3], TestMap_EnumValue.BAZ);
+    expect(testMap.int32ToEnumField[1], TestMap_EnumValue.default_);
+    expect(testMap.int32ToEnumField[2], TestMap_EnumValue.bar);
+    expect(testMap.int32ToEnumField[3], TestMap_EnumValue.baz);
 
     expect(testMap.int32ToMessageField[1]!.value, 11);
     expect(testMap.int32ToMessageField[2]!.value, 22);
@@ -106,9 +106,9 @@ void main() {
     expect(testMap.int32ToBytesField[4], utf8.encode('44'));
 
     expect(testMap.int32ToEnumField.length, 3);
-    expect(testMap.int32ToEnumField[1], TestMap_EnumValue.BAR);
-    expect(testMap.int32ToEnumField[3], TestMap_EnumValue.BAZ);
-    expect(testMap.int32ToEnumField[4], TestMap_EnumValue.ZOP);
+    expect(testMap.int32ToEnumField[1], TestMap_EnumValue.bar);
+    expect(testMap.int32ToEnumField[3], TestMap_EnumValue.baz);
+    expect(testMap.int32ToEnumField[4], TestMap_EnumValue.zop);
 
     expect(testMap.int32ToMessageField.length, 3);
     expect(testMap.int32ToMessageField[1]!.value, 111);
@@ -391,7 +391,7 @@ void main() {
       ];
       final message = TestMap.fromBuffer(messageBytes);
       expect(
-          message, TestMap()..int32ToEnumField[0] = TestMap_EnumValue.DEFAULT);
+          message, TestMap()..int32ToEnumField[0] = TestMap_EnumValue.default_);
     }
   });
 
@@ -418,7 +418,7 @@ void main() {
       ];
       final message = TestMap.fromBuffer(messageBytes);
       expect(
-          message, TestMap()..int32ToEnumField[1] = TestMap_EnumValue.DEFAULT);
+          message, TestMap()..int32ToEnumField[1] = TestMap_EnumValue.default_);
     }
   });
 
@@ -444,7 +444,7 @@ void main() {
         1, // enum value = 1
       ];
       final message = TestMap.fromBuffer(messageBytes);
-      expect(message, TestMap()..int32ToEnumField[0] = TestMap_EnumValue.BAR);
+      expect(message, TestMap()..int32ToEnumField[0] = TestMap_EnumValue.bar);
     }
   });
 

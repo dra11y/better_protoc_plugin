@@ -86,11 +86,11 @@ void assertAllExtensionsSet(TestAllExtensions message) {
   expect(message.getExtension(Unittest.optionalImportMessageExtension).d, 120);
 
   expect(message.getExtension(Unittest.optionalNestedEnumExtension),
-      TestAllTypes_NestedEnum.BAZ);
+      TestAllTypes_NestedEnum.baz);
   expect(message.getExtension(Unittest.optionalForeignEnumExtension),
       ForeignEnum.foreignBaz);
   expect(message.getExtension(Unittest.optionalImportEnumExtension),
-      ImportEnum.IMPORT_BAZ);
+      ImportEnum.importBaz);
 
   expect(message.getExtension(Unittest.optionalStringPieceExtension), '124');
   expect(message.getExtension(Unittest.optionalCordExtension), '125');
@@ -158,11 +158,11 @@ void assertAllExtensionsSet(TestAllExtensions message) {
       message.getExtension(Unittest.repeatedImportMessageExtension)[0].d, 220);
 
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[0],
-      TestAllTypes_NestedEnum.BAR);
+      TestAllTypes_NestedEnum.bar);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[0],
       ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[0],
-      ImportEnum.IMPORT_BAR);
+      ImportEnum.importBar);
 
   expect(message.getExtension(Unittest.repeatedStringPieceExtension)[0], '224');
   expect(message.getExtension(Unittest.repeatedCordExtension)[0], '225');
@@ -198,11 +198,11 @@ void assertAllExtensionsSet(TestAllExtensions message) {
       message.getExtension(Unittest.repeatedImportMessageExtension)[1].d, 320);
 
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[1],
-      TestAllTypes_NestedEnum.BAZ);
+      TestAllTypes_NestedEnum.baz);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[1],
       ForeignEnum.foreignBaz);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[1],
-      ImportEnum.IMPORT_BAZ);
+      ImportEnum.importBaz);
 
   expect(message.getExtension(Unittest.repeatedStringPieceExtension)[1], '324');
   expect(message.getExtension(Unittest.repeatedCordExtension)[1], '325');
@@ -249,11 +249,11 @@ void assertAllExtensionsSet(TestAllExtensions message) {
   expect(message.getExtension(Unittest.defaultBytesExtension), '416'.codeUnits);
 
   expect(message.getExtension(Unittest.defaultNestedEnumExtension),
-      TestAllTypes_NestedEnum.FOO);
+      TestAllTypes_NestedEnum.foo);
   expect(message.getExtension(Unittest.defaultForeignEnumExtension),
       ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.defaultImportEnumExtension),
-      ImportEnum.IMPORT_FOO);
+      ImportEnum.importFoo);
 
   expect(message.getExtension(Unittest.defaultStringPieceExtension), '424');
   expect(message.getExtension(Unittest.defaultCordExtension), '425');
@@ -314,9 +314,9 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.optionalForeignMessage.c, 119);
   expect(message.optionalImportMessage.d, 120);
 
-  expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.BAZ);
+  expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.baz);
   expect(message.optionalForeignEnum, ForeignEnum.foreignBaz);
-  expect(message.optionalImportEnum, ImportEnum.IMPORT_BAZ);
+  expect(message.optionalImportEnum, ImportEnum.importBaz);
 
   expect(message.optionalStringPiece, '124');
   expect(message.optionalCord, '125');
@@ -371,9 +371,9 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.repeatedForeignMessage[0].c, 219);
   expect(message.repeatedImportMessage[0].d, 220);
 
-  expect(message.repeatedNestedEnum[0], TestAllTypes_NestedEnum.BAR);
+  expect(message.repeatedNestedEnum[0], TestAllTypes_NestedEnum.bar);
   expect(message.repeatedForeignEnum[0], ForeignEnum.foreignBar);
-  expect(message.repeatedImportEnum[0], ImportEnum.IMPORT_BAR);
+  expect(message.repeatedImportEnum[0], ImportEnum.importBar);
 
   expect(message.repeatedStringPiece[0], '224');
   expect(message.repeatedCord[0], '225');
@@ -399,9 +399,9 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.repeatedForeignMessage[1].c, 319);
   expect(message.repeatedImportMessage[1].d, 320);
 
-  expect(message.repeatedNestedEnum[1], TestAllTypes_NestedEnum.BAZ);
+  expect(message.repeatedNestedEnum[1], TestAllTypes_NestedEnum.baz);
   expect(message.repeatedForeignEnum[1], ForeignEnum.foreignBaz);
-  expect(message.repeatedImportEnum[1], ImportEnum.IMPORT_BAZ);
+  expect(message.repeatedImportEnum[1], ImportEnum.importBaz);
 
   expect(message.repeatedStringPiece[1], '324');
   expect(message.repeatedCord[1], '325');
@@ -447,9 +447,9 @@ void assertAllFieldsSet(TestAllTypes message) {
   expect(message.defaultString, '415');
   expect(message.defaultBytes, '416'.codeUnits);
 
-  expect(message.defaultNestedEnum, TestAllTypes_NestedEnum.FOO);
+  expect(message.defaultNestedEnum, TestAllTypes_NestedEnum.foo);
   expect(message.defaultForeignEnum, ForeignEnum.foreignFoo);
-  expect(message.defaultImportEnum, ImportEnum.IMPORT_FOO);
+  expect(message.defaultImportEnum, ImportEnum.importFoo);
 
   expect(message.defaultStringPiece, '424');
   expect(message.defaultCord, '425');
@@ -514,9 +514,9 @@ void assertClear(TestAllTypes message) {
   expect(message.optionalImportMessage.d, 0);
 
   // Enums without defaults are set to the first value in the enum.
-  expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.FOO);
+  expect(message.optionalNestedEnum, TestAllTypes_NestedEnum.foo);
   expect(message.optionalForeignEnum, ForeignEnum.foreignFoo);
-  expect(message.optionalImportEnum, ImportEnum.IMPORT_FOO);
+  expect(message.optionalImportEnum, ImportEnum.importFoo);
 
   expect(message.optionalStringPiece, '');
   expect(message.optionalCord, '');
@@ -590,9 +590,9 @@ void assertClear(TestAllTypes message) {
   expect(message.defaultString, 'hello');
   expect(message.defaultBytes, 'world'.codeUnits);
 
-  expect(message.defaultNestedEnum, TestAllTypes_NestedEnum.BAR);
+  expect(message.defaultNestedEnum, TestAllTypes_NestedEnum.bar);
   expect(message.defaultForeignEnum, ForeignEnum.foreignBar);
-  expect(message.defaultImportEnum, ImportEnum.IMPORT_BAR);
+  expect(message.defaultImportEnum, ImportEnum.importBar);
 
   expect(message.defaultStringPiece, 'abc');
   expect(message.defaultCord, '123');
@@ -664,11 +664,11 @@ void assertExtensionsClear(TestAllExtensions message) {
 
   // Enums without defaults are set to the first value in the enum.
   expect(message.getExtension(Unittest.optionalNestedEnumExtension),
-      TestAllTypes_NestedEnum.FOO);
+      TestAllTypes_NestedEnum.foo);
   expect(message.getExtension(Unittest.optionalForeignEnumExtension),
       ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.optionalImportEnumExtension),
-      ImportEnum.IMPORT_FOO);
+      ImportEnum.importFoo);
 
   expect(message.getExtension(Unittest.optionalStringPieceExtension), '');
   expect(message.getExtension(Unittest.optionalCordExtension), '');
@@ -779,11 +779,11 @@ void assertExtensionsClear(TestAllExtensions message) {
       message.getExtension(Unittest.defaultBytesExtension), 'world'.codeUnits);
 
   expect(message.getExtension(Unittest.defaultNestedEnumExtension),
-      TestAllTypes_NestedEnum.BAR);
+      TestAllTypes_NestedEnum.bar);
   expect(message.getExtension(Unittest.defaultForeignEnumExtension),
       ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.defaultImportEnumExtension),
-      ImportEnum.IMPORT_BAR);
+      ImportEnum.importBar);
 
   expect(message.getExtension(Unittest.defaultStringPieceExtension), 'abc');
   expect(message.getExtension(Unittest.defaultCordExtension), '123');
@@ -954,11 +954,11 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
   expect(message.getExtension(Unittest.optionalImportMessageExtension).d, 120);
 
   expect(message.getExtension(Unittest.optionalNestedEnumExtension),
-      TestAllTypes_NestedEnum.BAZ);
+      TestAllTypes_NestedEnum.baz);
   expect(message.getExtension(Unittest.optionalForeignEnumExtension),
       ForeignEnum.foreignBaz);
   expect(message.getExtension(Unittest.optionalImportEnumExtension),
-      ImportEnum.IMPORT_BAZ);
+      ImportEnum.importBaz);
 
   expect(message.getExtension(Unittest.optionalStringPieceExtension), '124');
   expect(message.getExtension(Unittest.optionalCordExtension), '125');
@@ -1026,11 +1026,11 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
       message.getExtension(Unittest.repeatedImportMessageExtension)[0].d, 220);
 
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[0],
-      TestAllTypes_NestedEnum.BAR);
+      TestAllTypes_NestedEnum.bar);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[0],
       ForeignEnum.foreignBar);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[0],
-      ImportEnum.IMPORT_BAR);
+      ImportEnum.importBar);
 
   expect(message.getExtension(Unittest.repeatedStringPieceExtension)[0], '224');
   expect(message.getExtension(Unittest.repeatedCordExtension)[0], '225');
@@ -1066,11 +1066,11 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
       message.getExtension(Unittest.repeatedImportMessageExtension)[1].d, 520);
 
   expect(message.getExtension(Unittest.repeatedNestedEnumExtension)[1],
-      TestAllTypes_NestedEnum.FOO);
+      TestAllTypes_NestedEnum.foo);
   expect(message.getExtension(Unittest.repeatedForeignEnumExtension)[1],
       ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.repeatedImportEnumExtension)[1],
-      ImportEnum.IMPORT_FOO);
+      ImportEnum.importFoo);
 
   expect(message.getExtension(Unittest.repeatedStringPieceExtension)[1], '524');
   expect(message.getExtension(Unittest.repeatedCordExtension)[1], '525');
@@ -1118,11 +1118,11 @@ void assertRepeatedExtensionsModified(TestAllExtensions message) {
   expect(message.getExtension(Unittest.defaultBytesExtension), '416'.codeUnits);
 
   expect(message.getExtension(Unittest.defaultNestedEnumExtension),
-      TestAllTypes_NestedEnum.FOO);
+      TestAllTypes_NestedEnum.foo);
   expect(message.getExtension(Unittest.defaultForeignEnumExtension),
       ForeignEnum.foreignFoo);
   expect(message.getExtension(Unittest.defaultImportEnumExtension),
-      ImportEnum.IMPORT_FOO);
+      ImportEnum.importFoo);
 
   expect(message.getExtension(Unittest.defaultStringPieceExtension), '424');
   expect(message.getExtension(Unittest.defaultCordExtension), '425');
@@ -1180,9 +1180,9 @@ void assertRepeatedFieldsModified(TestAllTypes message) {
   expect(message.repeatedForeignMessage[0].c, 219);
   expect(message.repeatedImportMessage[0].d, 220);
 
-  expect(message.repeatedNestedEnum[0], TestAllTypes_NestedEnum.BAR);
+  expect(message.repeatedNestedEnum[0], TestAllTypes_NestedEnum.bar);
   expect(message.repeatedForeignEnum[0], ForeignEnum.foreignBar);
-  expect(message.repeatedImportEnum[0], ImportEnum.IMPORT_BAR);
+  expect(message.repeatedImportEnum[0], ImportEnum.importBar);
 
   expect(message.repeatedStringPiece[0], '224');
   expect(message.repeatedCord[0], '225');
@@ -1209,9 +1209,9 @@ void assertRepeatedFieldsModified(TestAllTypes message) {
   expect(message.repeatedForeignMessage[1].c, 519);
   expect(message.repeatedImportMessage[1].d, 520);
 
-  expect(message.repeatedNestedEnum[1], TestAllTypes_NestedEnum.BAR);
+  expect(message.repeatedNestedEnum[1], TestAllTypes_NestedEnum.bar);
   expect(message.repeatedForeignEnum[1], ForeignEnum.foreignBar);
-  expect(message.repeatedImportEnum[1], ImportEnum.IMPORT_BAR);
+  expect(message.repeatedImportEnum[1], ImportEnum.importBar);
 
   expect(message.repeatedStringPiece[1], '524');
   expect(message.repeatedCord[1], '525');
@@ -1338,11 +1338,11 @@ void modifyRepeatedExtensions(TestAllExtensions message) {
   message.getExtension(Unittest.repeatedImportMessageExtension)[1] = msg;
 
   message.getExtension(Unittest.repeatedNestedEnumExtension)[1] =
-      TestAllTypes_NestedEnum.FOO;
+      TestAllTypes_NestedEnum.foo;
   message.getExtension(Unittest.repeatedForeignEnumExtension)[1] =
       ForeignEnum.foreignFoo;
   message.getExtension(Unittest.repeatedImportEnumExtension)[1] =
-      ImportEnum.IMPORT_FOO;
+      ImportEnum.importFoo;
 
   message.getExtension(Unittest.repeatedStringPieceExtension)[1] = '524';
   message.getExtension(Unittest.repeatedCordExtension)[1] = '525';
@@ -1383,9 +1383,9 @@ void modifyRepeatedFields(TestAllTypes message) {
   optionalImportMessage.d = 520;
   message.repeatedImportMessage[1] = optionalImportMessage;
 
-  message.repeatedNestedEnum[1] = TestAllTypes_NestedEnum.BAR;
+  message.repeatedNestedEnum[1] = TestAllTypes_NestedEnum.bar;
   message.repeatedForeignEnum[1] = ForeignEnum.foreignBar;
-  message.repeatedImportEnum[1] = ImportEnum.IMPORT_BAR;
+  message.repeatedImportEnum[1] = ImportEnum.importBar;
 
   message.repeatedStringPiece[1] = '524';
   message.repeatedCord[1] = '525';
@@ -1429,11 +1429,11 @@ void setAllExtensions(TestAllExtensions message) {
   message.setExtension(Unittest.optionalImportMessageExtension, msg4);
 
   message.setExtension(
-      Unittest.optionalNestedEnumExtension, TestAllTypes_NestedEnum.BAZ);
+      Unittest.optionalNestedEnumExtension, TestAllTypes_NestedEnum.baz);
   message.setExtension(
       Unittest.optionalForeignEnumExtension, ForeignEnum.foreignBaz);
   message.setExtension(
-      Unittest.optionalImportEnumExtension, ImportEnum.IMPORT_BAZ);
+      Unittest.optionalImportEnumExtension, ImportEnum.importBaz);
 
   message.setExtension(Unittest.optionalStringPieceExtension, '124');
   message.setExtension(Unittest.optionalCordExtension, '125');
@@ -1473,11 +1473,11 @@ void setAllExtensions(TestAllExtensions message) {
   message.addExtension(Unittest.repeatedImportMessageExtension, msg8);
 
   message.addExtension(
-      Unittest.repeatedNestedEnumExtension, TestAllTypes_NestedEnum.BAR);
+      Unittest.repeatedNestedEnumExtension, TestAllTypes_NestedEnum.bar);
   message.addExtension(
       Unittest.repeatedForeignEnumExtension, ForeignEnum.foreignBar);
   message.addExtension(
-      Unittest.repeatedImportEnumExtension, ImportEnum.IMPORT_BAR);
+      Unittest.repeatedImportEnumExtension, ImportEnum.importBar);
 
   message.addExtension(Unittest.repeatedStringPieceExtension, '224');
   message.addExtension(Unittest.repeatedCordExtension, '225');
@@ -1516,11 +1516,11 @@ void setAllExtensions(TestAllExtensions message) {
   message.addExtension(Unittest.repeatedImportMessageExtension, msg12);
 
   message.addExtension(
-      Unittest.repeatedNestedEnumExtension, TestAllTypes_NestedEnum.BAZ);
+      Unittest.repeatedNestedEnumExtension, TestAllTypes_NestedEnum.baz);
   message.addExtension(
       Unittest.repeatedForeignEnumExtension, ForeignEnum.foreignBaz);
   message.addExtension(
-      Unittest.repeatedImportEnumExtension, ImportEnum.IMPORT_BAZ);
+      Unittest.repeatedImportEnumExtension, ImportEnum.importBaz);
 
   message.addExtension(Unittest.repeatedStringPieceExtension, '324');
   message.addExtension(Unittest.repeatedCordExtension, '325');
@@ -1544,11 +1544,11 @@ void setAllExtensions(TestAllExtensions message) {
   message.setExtension(Unittest.defaultBytesExtension, '416'.codeUnits);
 
   message.setExtension(
-      Unittest.defaultNestedEnumExtension, TestAllTypes_NestedEnum.FOO);
+      Unittest.defaultNestedEnumExtension, TestAllTypes_NestedEnum.foo);
   message.setExtension(
       Unittest.defaultForeignEnumExtension, ForeignEnum.foreignFoo);
   message.setExtension(
-      Unittest.defaultImportEnumExtension, ImportEnum.IMPORT_FOO);
+      Unittest.defaultImportEnumExtension, ImportEnum.importFoo);
 
   message.setExtension(Unittest.defaultStringPieceExtension, '424');
   message.setExtension(Unittest.defaultCordExtension, '425');
@@ -1589,9 +1589,9 @@ void setAllFields(TestAllTypes message) {
   optionalImportMessage.d = 120;
   message.optionalImportMessage = optionalImportMessage;
 
-  message.optionalNestedEnum = TestAllTypes_NestedEnum.BAZ;
+  message.optionalNestedEnum = TestAllTypes_NestedEnum.baz;
   message.optionalForeignEnum = ForeignEnum.foreignBaz;
-  message.optionalImportEnum = ImportEnum.IMPORT_BAZ;
+  message.optionalImportEnum = ImportEnum.importBaz;
 
   message.optionalStringPiece = '124';
   message.optionalCord = '125';
@@ -1630,9 +1630,9 @@ void setAllFields(TestAllTypes message) {
   repeatedImportMessage.d = 220;
   message.repeatedImportMessage.add(repeatedImportMessage);
 
-  message.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAR);
+  message.repeatedNestedEnum.add(TestAllTypes_NestedEnum.bar);
   message.repeatedForeignEnum.add(ForeignEnum.foreignBar);
-  message.repeatedImportEnum.add(ImportEnum.IMPORT_BAR);
+  message.repeatedImportEnum.add(ImportEnum.importBar);
 
   message.repeatedStringPiece.add('224');
   message.repeatedCord.add('225');
@@ -1670,9 +1670,9 @@ void setAllFields(TestAllTypes message) {
   repeatedImportMessage.d = 320;
   message.repeatedImportMessage.add(repeatedImportMessage);
 
-  message.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAZ);
+  message.repeatedNestedEnum.add(TestAllTypes_NestedEnum.baz);
   message.repeatedForeignEnum.add(ForeignEnum.foreignBaz);
-  message.repeatedImportEnum.add(ImportEnum.IMPORT_BAZ);
+  message.repeatedImportEnum.add(ImportEnum.importBaz);
 
   message.repeatedStringPiece.add('324');
   message.repeatedCord.add('325');
@@ -1695,9 +1695,9 @@ void setAllFields(TestAllTypes message) {
   message.defaultString = '415';
   message.defaultBytes = '416'.codeUnits;
 
-  message.defaultNestedEnum = TestAllTypes_NestedEnum.FOO;
+  message.defaultNestedEnum = TestAllTypes_NestedEnum.foo;
   message.defaultForeignEnum = ForeignEnum.foreignFoo;
-  message.defaultImportEnum = ImportEnum.IMPORT_FOO;
+  message.defaultImportEnum = ImportEnum.importFoo;
 
   message.defaultStringPiece = '424';
   message.defaultCord = '425';

@@ -167,7 +167,7 @@ void main() {
     // For a repeated enum, the type check is exact.
     expect(() {
       message.addExtension(
-          Unittest.repeatedForeignEnumExtension, TestAllTypes_NestedEnum.FOO);
+          Unittest.repeatedForeignEnumExtension, TestAllTypes_NestedEnum.foo);
     }, throwsATypeError);
   });
 
@@ -187,7 +187,7 @@ void main() {
 
   test('can extend message with enum', () {
     final msg = Extendable();
-    msg.setExtension(Enum_extension.animal, Animal.CAT);
+    msg.setExtension(Enum_extension.animal, Animal.cat);
   });
 
   test('extension class was renamed to avoid conflict with message', () {
@@ -206,7 +206,7 @@ void main() {
       ..setExtension(Unittest.optionalNestedMessageExtension,
           TestAllTypes_NestedMessage()..i = 42)
       ..setExtension(
-          Unittest.optionalNestedEnumExtension, TestAllTypes_NestedEnum.BAR);
+          Unittest.optionalNestedEnumExtension, TestAllTypes_NestedEnum.bar);
 
     final expected = '[optionalInt32Extension]: 1\n'
         '[optionalNestedMessageExtension]: {\n'

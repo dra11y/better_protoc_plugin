@@ -60,10 +60,10 @@ class ProtobufField {
   bool get isDeprecated => descriptor.options.deprecated;
 
   bool get isRequired =>
-      descriptor.label == FieldDescriptorProto_Label.LABEL_REQUIRED;
+      descriptor.label == FieldDescriptorProto_Label.labelRequired;
 
   bool get isRepeated =>
-      descriptor.label == FieldDescriptorProto_Label.LABEL_REPEATED;
+      descriptor.label == FieldDescriptorProto_Label.labelRepeated;
 
   /// Whether a numeric field is repeated and must be encoded with packed
   /// encoding.
@@ -314,15 +314,15 @@ class ProtobufField {
   String getDefaultExpr() {
     if (isRepeated) return 'null';
     switch (descriptor.type) {
-      case FieldDescriptorProto_Type.TYPE_BOOL:
+      case FieldDescriptorProto_Type.typeBool:
         return _getDefaultAsBoolExpr('false')!;
-      case FieldDescriptorProto_Type.TYPE_INT32:
-      case FieldDescriptorProto_Type.TYPE_UINT32:
-      case FieldDescriptorProto_Type.TYPE_SINT32:
-      case FieldDescriptorProto_Type.TYPE_FIXED32:
-      case FieldDescriptorProto_Type.TYPE_SFIXED32:
+      case FieldDescriptorProto_Type.typeInt32:
+      case FieldDescriptorProto_Type.typeUint32:
+      case FieldDescriptorProto_Type.typeSint32:
+      case FieldDescriptorProto_Type.typeFixed32:
+      case FieldDescriptorProto_Type.typeSfixed32:
         return _getDefaultAsInt32Expr('0')!;
-      case FieldDescriptorProto_Type.TYPE_STRING:
+      case FieldDescriptorProto_Type.typeString:
         return _getDefaultAsStringExpr("''")!;
       default:
         return 'null';
@@ -333,10 +333,10 @@ class ProtobufField {
   String? generateDefaultFunction() {
     assert(!isRepeated);
     switch (descriptor.type) {
-      case FieldDescriptorProto_Type.TYPE_BOOL:
+      case FieldDescriptorProto_Type.typeBool:
         return _getDefaultAsBoolExpr(null);
-      case FieldDescriptorProto_Type.TYPE_FLOAT:
-      case FieldDescriptorProto_Type.TYPE_DOUBLE:
+      case FieldDescriptorProto_Type.typeFloat:
+      case FieldDescriptorProto_Type.typeDouble:
         if (!descriptor.hasDefaultValue()) {
           return null;
         } else if ('0.0' == descriptor.defaultValue ||
@@ -357,24 +357,24 @@ class ProtobufField {
           return descriptor.defaultValue;
         }
         throw _invalidDefaultValue;
-      case FieldDescriptorProto_Type.TYPE_INT32:
-      case FieldDescriptorProto_Type.TYPE_UINT32:
-      case FieldDescriptorProto_Type.TYPE_SINT32:
-      case FieldDescriptorProto_Type.TYPE_FIXED32:
-      case FieldDescriptorProto_Type.TYPE_SFIXED32:
+      case FieldDescriptorProto_Type.typeInt32:
+      case FieldDescriptorProto_Type.typeUint32:
+      case FieldDescriptorProto_Type.typeSint32:
+      case FieldDescriptorProto_Type.typeFixed32:
+      case FieldDescriptorProto_Type.typeSfixed32:
         return _getDefaultAsInt32Expr(null);
-      case FieldDescriptorProto_Type.TYPE_INT64:
-      case FieldDescriptorProto_Type.TYPE_UINT64:
-      case FieldDescriptorProto_Type.TYPE_SINT64:
-      case FieldDescriptorProto_Type.TYPE_FIXED64:
-      case FieldDescriptorProto_Type.TYPE_SFIXED64:
+      case FieldDescriptorProto_Type.typeInt64:
+      case FieldDescriptorProto_Type.typeUint64:
+      case FieldDescriptorProto_Type.typeSint64:
+      case FieldDescriptorProto_Type.typeFixed64:
+      case FieldDescriptorProto_Type.typeSfixed64:
         var value = '0';
         if (descriptor.hasDefaultValue()) value = descriptor.defaultValue;
         if (value == '0') return '$_fixnumImportPrefix.Int64.ZERO';
         return "$protobufImportPrefix.parseLongInt('$value')";
-      case FieldDescriptorProto_Type.TYPE_STRING:
+      case FieldDescriptorProto_Type.typeString:
         return _getDefaultAsStringExpr(null);
-      case FieldDescriptorProto_Type.TYPE_BYTES:
+      case FieldDescriptorProto_Type.typeBytes:
         if (!descriptor.hasDefaultValue() || descriptor.defaultValue.isEmpty) {
           return null;
         }
@@ -382,15 +382,15 @@ class ProtobufField {
             .map((b) => '0x${b.toRadixString(16)}')
             .join(',');
         return '() => <$coreImportPrefix.int>[$byteList]';
-      case FieldDescriptorProto_Type.TYPE_GROUP:
-      case FieldDescriptorProto_Type.TYPE_MESSAGE:
+      case FieldDescriptorProto_Type.typeGroup:
+      case FieldDescriptorProto_Type.typeMessage:
         return '${baseType.getDartType(parent.fileGen!)}.getDefault';
-      case FieldDescriptorProto_Type.TYPE_ENUM:
+      case FieldDescriptorProto_Type.typeEnum:
         final className = baseType.getDartType(parent.fileGen!);
         final gen = baseType.generator as EnumGenerator;
         if (descriptor.hasDefaultValue() &&
             descriptor.defaultValue.isNotEmpty) {
-          return '$className.${descriptor.defaultValue}';
+          return '$className.${gen.dartNames[descriptor.defaultValue]}';
         } else if (gen._canonicalValues.isNotEmpty) {
           return '$className.${gen.dartNames[gen._canonicalValues[0].name]}';
         }

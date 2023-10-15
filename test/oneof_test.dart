@@ -34,7 +34,7 @@ void main() {
     expect(foo.hasIndex(), false);
     expect(foo.index, Bar());
     expect(foo.hasValues(), false);
-    expect(foo.values, EnumType.DEFAULT);
+    expect(foo.values, EnumType.default_);
 
     foo.fourth = [1, 2];
     expect(foo.whichOneofField(), Foo_OneofField.fourth);
@@ -49,7 +49,7 @@ void main() {
     expect(foo.hasIndex(), false);
     expect(foo.index, Bar());
     expect(foo.hasValues(), false);
-    expect(foo.values, EnumType.DEFAULT);
+    expect(foo.values, EnumType.default_);
 
     foo.index = Bar()..i = 1;
     expect(foo.whichOneofField(), Foo_OneofField.index_);
@@ -64,9 +64,9 @@ void main() {
     expect(foo.hasIndex(), true);
     expect(foo.index, Bar()..i = 1);
     expect(foo.hasValues(), false);
-    expect(foo.values, EnumType.DEFAULT);
+    expect(foo.values, EnumType.default_);
 
-    foo.values = EnumType.A;
+    foo.values = EnumType.a;
     expect(foo.whichOneofField(), Foo_OneofField.values_);
     expect(foo.hasFirst(), false);
     expect(foo.first, '');
@@ -79,7 +79,7 @@ void main() {
     expect(foo.hasIndex(), false);
     expect(foo.index, Bar());
     expect(foo.hasValues(), true);
-    expect(foo.values, EnumType.A);
+    expect(foo.values, EnumType.a);
   });
 
   test('set and clear oneof', () {
@@ -199,7 +199,7 @@ void expectSecondSet(Foo foo) {
   expect(foo.hasIndex(), false);
   expect(foo.index, Bar());
   expect(foo.hasValues(), false);
-  expect(foo.values, EnumType.DEFAULT);
+  expect(foo.values, EnumType.default_);
 }
 
 void expectFirstSet(Foo foo) {
@@ -215,7 +215,7 @@ void expectFirstSet(Foo foo) {
   expect(foo.hasIndex(), false);
   expect(foo.index, Bar());
   expect(foo.hasValues(), false);
-  expect(foo.values, EnumType.DEFAULT);
+  expect(foo.values, EnumType.default_);
 }
 
 void expectOneofNotSet(Foo foo) {
@@ -231,7 +231,7 @@ void expectOneofNotSet(Foo foo) {
   expect(foo.hasIndex(), false);
   expect(foo.index, Bar());
   expect(foo.hasValues(), false);
-  expect(foo.values, EnumType.DEFAULT);
+  expect(foo.values, EnumType.default_);
 
   expect(foo.whichColors(), Foo_Colors.notSet);
   expect(foo.hasRed(), false);

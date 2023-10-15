@@ -199,14 +199,14 @@ void main() {
     // optional NestedEnum optional_nested_enum = 21;
     final message = TestAllTypes.fromJson('{"21": 4}');
     // 4 is an unknown value.
-    expect(message.optionalNestedEnum, equals(TestAllTypes_NestedEnum.FOO));
+    expect(message.optionalNestedEnum, equals(TestAllTypes_NestedEnum.foo));
   });
 
   test('testUnknownEnumValueInRepeatedField', () {
     // repeated NestedEnum repeated_nested_enum = 51;
     var message = TestAllTypes.fromJson('{"51": [4]}');
     // 4 is an unknown value, which should default to the enum's default value.
-    expect(message.repeatedNestedEnum, equals([TestAllTypes_NestedEnum.FOO]));
+    expect(message.repeatedNestedEnum, equals([TestAllTypes_NestedEnum.foo]));
 
     // 1 (FOO) and 2 (BAR) are known values. All unknowns should fill in to
     // the default enum value (FOO).
@@ -214,12 +214,12 @@ void main() {
     expect(
         message.repeatedNestedEnum,
         equals([
-          TestAllTypes_NestedEnum.FOO,
-          TestAllTypes_NestedEnum.FOO,
-          TestAllTypes_NestedEnum.BAR,
-          TestAllTypes_NestedEnum.FOO,
-          TestAllTypes_NestedEnum.FOO,
-          TestAllTypes_NestedEnum.FOO
+          TestAllTypes_NestedEnum.foo,
+          TestAllTypes_NestedEnum.foo,
+          TestAllTypes_NestedEnum.bar,
+          TestAllTypes_NestedEnum.foo,
+          TestAllTypes_NestedEnum.foo,
+          TestAllTypes_NestedEnum.foo
         ]));
   });
 
@@ -227,6 +227,6 @@ void main() {
     final key = 'new_field';
     // Only 0 and 1 are known enum values.
     final message = MapEnumValue()..mergeFromJson('{"1":[{"1":"$key","2":2}]}');
-    expect(message.values[key], equals(MapEnumValue_NestedEnum.UNKNOWN));
+    expect(message.values[key], equals(MapEnumValue_NestedEnum.unknown));
   });
 }

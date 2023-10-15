@@ -237,8 +237,8 @@ FieldDescriptorProto stringField(String name, int number, String dartName) {
   return FieldDescriptorProto()
     ..name = name
     ..number = number
-    ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-    ..type = FieldDescriptorProto_Type.TYPE_STRING
+    ..label = FieldDescriptorProto_Label.labelOptional
+    ..type = FieldDescriptorProto_Type.typeString
     ..options = (FieldOptions()..setExtension(Dart_options.dartName, dartName));
 }
 
@@ -246,8 +246,8 @@ FieldDescriptorProto stringFieldOneof(String name, int number, int oneofIndex) {
   return FieldDescriptorProto()
     ..name = name
     ..number = number
-    ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-    ..type = FieldDescriptorProto_Type.TYPE_STRING
+    ..label = FieldDescriptorProto_Label.labelOptional
+    ..type = FieldDescriptorProto_Type.typeString
     ..oneofIndex = oneofIndex;
 }
 

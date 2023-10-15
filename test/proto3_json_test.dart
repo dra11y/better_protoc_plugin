@@ -175,7 +175,7 @@ void main() {
         ..int32ToStringField[0] = 'foo'
         ..int32ToStringField[1] = 'bar'
         ..int32ToBytesField[-1] = [1, 2, 3]
-        ..int32ToEnumField[1] = TestMap_EnumValue.BAZ
+        ..int32ToEnumField[1] = TestMap_EnumValue.baz
         ..int32ToMessageField[21] = (TestMap_MessageValue()
           ..value = 2
           ..secondValue = 3)
@@ -312,7 +312,7 @@ void main() {
 
     test('struct', () {
       final s = Struct()
-        ..fields['null'] = (Value()..nullValue = NullValue.NULL_VALUE)
+        ..fields['null'] = (Value()..nullValue = NullValue.nullValue)
         ..fields['number'] = (Value()..numberValue = 22.3)
         ..fields['string'] = (Value()..stringValue = 'foo')
         ..fields['bool'] = (Value()..boolValue = false)
@@ -500,7 +500,7 @@ void main() {
           parseFailure(['optional_foreign_message']));
     });
     test('permissive enums', () {
-      final sparseB = SparseEnumMessage()..sparseEnum = TestSparseEnum.SPARSE_B;
+      final sparseB = SparseEnumMessage()..sparseEnum = TestSparseEnum.sparseB;
       expect(
           SparseEnumMessage()..mergeFromProto3Json({'sparseEnum': 'SPARSE_B'}),
           sparseB);
@@ -549,7 +549,7 @@ void main() {
       expect(() => AMessage()..mergeFromProto3Json({'a': '_y'}),
           parseFailure(['a']));
       expect(
-          AMessage()..mergeFromProto3Json({'a': '_Y'}), AMessage()..a = A.Y_);
+          AMessage()..mergeFromProto3Json({'a': '_Y'}), AMessage()..a = A.y_);
 
       expect(() => AMessage()..mergeFromProto3Json({'a': 'z'}),
           parseFailure(['a']));
@@ -558,7 +558,7 @@ void main() {
       expect(() => AMessage()..mergeFromProto3Json({'a': 'z_'}),
           parseFailure(['a']));
       expect(
-          AMessage()..mergeFromProto3Json({'a': 'Z_'}), AMessage()..a = A.Z_);
+          AMessage()..mergeFromProto3Json({'a': 'Z_'}), AMessage()..a = A.z_);
       expect(() => AMessage()..mergeFromProto3Json({'a': '_z'}),
           parseFailure(['a']));
       expect(() => AMessage()..mergeFromProto3Json({'a': '_Z'}),
@@ -567,14 +567,14 @@ void main() {
       expect(() => AMessage()..mergeFromProto3Json({'a': 'a_a'}),
           parseFailure(['a']));
       expect(
-          AMessage()..mergeFromProto3Json({'a': 'A_A'}), AMessage()..a = A.A_A);
+          AMessage()..mergeFromProto3Json({'a': 'A_A'}), AMessage()..a = A.a);
       expect(() => AMessage()..mergeFromProto3Json({'a': 'aA'}),
           parseFailure(['a']));
       expect(() => AMessage()..mergeFromProto3Json({'a': 'AA'}),
           parseFailure(['a']));
 
       expect(
-          AMessage()..mergeFromProto3Json({'a': 'b_b'}), AMessage()..a = A.b_b);
+          AMessage()..mergeFromProto3Json({'a': 'b_b'}), AMessage()..a = A.bB);
       expect(() => AMessage()..mergeFromProto3Json({'a': 'B_B'}),
           parseFailure(['a']));
       expect(() => AMessage()..mergeFromProto3Json({'a': 'bB'}),
@@ -605,64 +605,64 @@ void main() {
           AMessage()..a = A.x_);
 
       expect(AMessage()..mergeFromProto3Json({'a': 'y'}, permissiveEnums: true),
-          AMessage()..a = A.Y_);
+          AMessage()..a = A.y_);
       expect(AMessage()..mergeFromProto3Json({'a': 'Y'}, permissiveEnums: true),
-          AMessage()..a = A.Y_);
+          AMessage()..a = A.y_);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'y_'}, permissiveEnums: true),
-          AMessage()..a = A.Y_);
+          AMessage()..a = A.y_);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'Y_'}, permissiveEnums: true),
-          AMessage()..a = A.Y_);
+          AMessage()..a = A.y_);
       expect(
           AMessage()..mergeFromProto3Json({'a': '_y'}, permissiveEnums: true),
-          AMessage()..a = A.Y_);
+          AMessage()..a = A.y_);
       expect(
           AMessage()..mergeFromProto3Json({'a': '_Y'}, permissiveEnums: true),
-          AMessage()..a = A.Y_);
+          AMessage()..a = A.y_);
 
       expect(AMessage()..mergeFromProto3Json({'a': 'z'}, permissiveEnums: true),
-          AMessage()..a = A.Z_);
+          AMessage()..a = A.z_);
       expect(AMessage()..mergeFromProto3Json({'a': 'Z'}, permissiveEnums: true),
-          AMessage()..a = A.Z_);
+          AMessage()..a = A.z_);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'z_'}, permissiveEnums: true),
-          AMessage()..a = A.Z_);
+          AMessage()..a = A.z_);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'Z_'}, permissiveEnums: true),
-          AMessage()..a = A.Z_);
+          AMessage()..a = A.z_);
       expect(
           AMessage()..mergeFromProto3Json({'a': '_z'}, permissiveEnums: true),
-          AMessage()..a = A.Z_);
+          AMessage()..a = A.z_);
       expect(
           AMessage()..mergeFromProto3Json({'a': '_Z'}, permissiveEnums: true),
-          AMessage()..a = A.Z_);
+          AMessage()..a = A.z_);
 
       expect(
           AMessage()..mergeFromProto3Json({'a': 'a_a'}, permissiveEnums: true),
-          AMessage()..a = A.A_A);
+          AMessage()..a = A.a);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'A_A'}, permissiveEnums: true),
-          AMessage()..a = A.A_A);
+          AMessage()..a = A.a);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'aA'}, permissiveEnums: true),
-          AMessage()..a = A.A_A);
+          AMessage()..a = A.a);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'AA'}, permissiveEnums: true),
-          AMessage()..a = A.A_A);
+          AMessage()..a = A.a);
 
       expect(
           AMessage()..mergeFromProto3Json({'a': 'b_b'}, permissiveEnums: true),
-          AMessage()..a = A.b_b);
+          AMessage()..a = A.bB);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'B_B'}, permissiveEnums: true),
-          AMessage()..a = A.b_b);
+          AMessage()..a = A.bB);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'bB'}, permissiveEnums: true),
-          AMessage()..a = A.b_b);
+          AMessage()..a = A.bB);
       expect(
           AMessage()..mergeFromProto3Json({'a': 'BB'}, permissiveEnums: true),
-          AMessage()..a = A.b_b);
+          AMessage()..a = A.bB);
 
       expect(
           AMessage()
@@ -730,7 +730,7 @@ void main() {
         ..int32ToStringField[0] = 'foo'
         ..int32ToStringField[1] = 'bar'
         ..int32ToBytesField[-1] = [1, 2, 3]
-        ..int32ToEnumField[1] = TestMap_EnumValue.BAZ
+        ..int32ToEnumField[1] = TestMap_EnumValue.baz
         ..int32ToMessageField[21] = (TestMap_MessageValue()
           ..value = 2
           ..secondValue = 3)
@@ -1197,7 +1197,7 @@ void main() {
       };
 
       final s = Struct()
-        ..fields['null'] = (Value()..nullValue = NullValue.NULL_VALUE)
+        ..fields['null'] = (Value()..nullValue = NullValue.nullValue)
         ..fields['number'] = (Value()..numberValue = 22.3)
         ..fields['string'] = (Value()..stringValue = 'foo')
         ..fields['bool'] = (Value()..boolValue = false)

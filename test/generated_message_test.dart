@@ -28,7 +28,7 @@ void main() {
   test('testProtosShareRepeatedArraysIfDidntChange', () {
     final value1 = TestAllTypes()
       ..repeatedInt32.add(100)
-      ..repeatedImportEnum.add(ImportEnum.IMPORT_BAR)
+      ..repeatedImportEnum.add(ImportEnum.importBar)
       ..repeatedForeignMessage.add(ForeignMessage());
 
     final value2 = value1.deepCopy();
@@ -174,8 +174,8 @@ void main() {
     final message = MessageWithNoOuter()
       ..nested = (MessageWithNoOuter_NestedMessage()..i = 1)
       ..foreign.add(TestAllTypes()..optionalInt32 = 1)
-      ..nestedEnum = MessageWithNoOuter_NestedEnum.BAZ
-      ..foreignEnum = EnumWithNoOuter.BAR;
+      ..nestedEnum = MessageWithNoOuter_NestedEnum.baz
+      ..foreignEnum = EnumWithNoOuter.bar;
 
     expect(MessageWithNoOuter.fromBuffer(message.writeToBuffer()), message);
 
@@ -184,7 +184,7 @@ void main() {
     //        MultipleFilesTestProto.getDescriptor());
 
     final tagNumber = message.getTagNumber('foreignEnum')!;
-    expect(message.getField(tagNumber), EnumWithNoOuter.BAR);
+    expect(message.getField(tagNumber), EnumWithNoOuter.bar);
 
     // Not currently supported in Dart protobuf.
     // expect(ServiceWithNoOuter.getDescriptor().getFile()
@@ -291,13 +291,13 @@ void main() {
 
   test('testEnumValues', () {
     expect(TestAllTypes_NestedEnum.values, [
-      TestAllTypes_NestedEnum.FOO,
-      TestAllTypes_NestedEnum.BAR,
-      TestAllTypes_NestedEnum.BAZ
+      TestAllTypes_NestedEnum.foo,
+      TestAllTypes_NestedEnum.bar,
+      TestAllTypes_NestedEnum.baz
     ]);
-    expect(TestAllTypes_NestedEnum.FOO.value, 1);
-    expect(TestAllTypes_NestedEnum.BAR.value, 2);
-    expect(TestAllTypes_NestedEnum.BAZ.value, 3);
+    expect(TestAllTypes_NestedEnum.foo.value, 1);
+    expect(TestAllTypes_NestedEnum.bar.value, 2);
+    expect(TestAllTypes_NestedEnum.baz.value, 3);
   });
 
   test('testWriteWholeMessage', () {
@@ -368,11 +368,11 @@ void main() {
   });
 
   test('testWriteMessageWithNegativeEnumValue', () {
-    final message = SparseEnumMessage()..sparseEnum = TestSparseEnum.SPARSE_E;
+    final message = SparseEnumMessage()..sparseEnum = TestSparseEnum.sparseE;
     expect(message.sparseEnum.value < 0, isTrue,
         reason: 'enum.value should be -53452');
     final message2 = SparseEnumMessage.fromBuffer(message.writeToBuffer());
-    expect(message2.sparseEnum, TestSparseEnum.SPARSE_E,
+    expect(message2.sparseEnum, TestSparseEnum.sparseE,
         reason: 'should resolve back to SPARSE_E');
   });
 
@@ -813,10 +813,9 @@ void main() {
       optionalForeignMessage: constructor_args_unittest.ForeignMessage(c: 119),
       optionalImportMessage:
           constructor_args_unittest_import.ImportMessage(d: 120),
-      optionalNestedEnum: constructor_args_unittest.TestAllTypes_NestedEnum.BAZ,
+      optionalNestedEnum: constructor_args_unittest.TestAllTypes_NestedEnum.baz,
       optionalForeignEnum: constructor_args_unittest.ForeignEnum.foreignBaz,
-      optionalImportEnum:
-          constructor_args_unittest_import.ImportEnum.IMPORT_BAZ,
+      optionalImportEnum: constructor_args_unittest_import.ImportEnum.importBaz,
       optionalStringPiece: '124',
       optionalCord: '125',
       repeatedInt32: [201, 301],
@@ -851,16 +850,16 @@ void main() {
         constructor_args_unittest_import.ImportMessage(d: 320)
       ],
       repeatedNestedEnum: [
-        constructor_args_unittest.TestAllTypes_NestedEnum.BAR,
-        constructor_args_unittest.TestAllTypes_NestedEnum.BAZ
+        constructor_args_unittest.TestAllTypes_NestedEnum.bar,
+        constructor_args_unittest.TestAllTypes_NestedEnum.baz
       ],
       repeatedForeignEnum: [
         constructor_args_unittest.ForeignEnum.foreignBar,
         constructor_args_unittest.ForeignEnum.foreignBaz
       ],
       repeatedImportEnum: [
-        constructor_args_unittest_import.ImportEnum.IMPORT_BAR,
-        constructor_args_unittest_import.ImportEnum.IMPORT_BAZ
+        constructor_args_unittest_import.ImportEnum.importBar,
+        constructor_args_unittest_import.ImportEnum.importBaz
       ],
       repeatedStringPiece: ['224', '324'],
       repeatedCord: ['225', '325'],
@@ -879,9 +878,9 @@ void main() {
       defaultBool: false,
       defaultString: '415',
       defaultBytes: '416'.codeUnits,
-      defaultNestedEnum: constructor_args_unittest.TestAllTypes_NestedEnum.FOO,
+      defaultNestedEnum: constructor_args_unittest.TestAllTypes_NestedEnum.foo,
       defaultForeignEnum: constructor_args_unittest.ForeignEnum.foreignFoo,
-      defaultImportEnum: constructor_args_unittest_import.ImportEnum.IMPORT_FOO,
+      defaultImportEnum: constructor_args_unittest_import.ImportEnum.importFoo,
       defaultStringPiece: '424',
       defaultCord: '425',
     );

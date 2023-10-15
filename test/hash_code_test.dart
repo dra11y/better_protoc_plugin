@@ -51,14 +51,14 @@ void main() {
   });
 
   test('testHashCodeOptionalEnum', () {
-    final m1 = TestAllTypes()..optionalNestedEnum = TestAllTypes_NestedEnum.BAR;
-    final m2 = TestAllTypes()..optionalNestedEnum = TestAllTypes_NestedEnum.BAR;
+    final m1 = TestAllTypes()..optionalNestedEnum = TestAllTypes_NestedEnum.bar;
+    final m2 = TestAllTypes()..optionalNestedEnum = TestAllTypes_NestedEnum.bar;
     expect(m1.hashCode, m2.hashCode);
 
-    m1.optionalNestedEnum = TestAllTypes_NestedEnum.BAZ;
+    m1.optionalNestedEnum = TestAllTypes_NestedEnum.baz;
     expect(m1.hashCode, isNot(m2.hashCode));
 
-    m2.optionalNestedEnum = TestAllTypes_NestedEnum.BAZ;
+    m2.optionalNestedEnum = TestAllTypes_NestedEnum.baz;
     expect(m1.hashCode, m2.hashCode);
   });
 
@@ -113,14 +113,14 @@ void main() {
   test('testHashCodeRepeatedEnum', () {
     final m1 = TestAllTypes();
     final m2 = TestAllTypes();
-    m1.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAR);
-    m2.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAR);
+    m1.repeatedNestedEnum.add(TestAllTypes_NestedEnum.bar);
+    m2.repeatedNestedEnum.add(TestAllTypes_NestedEnum.bar);
     expect(m1.hashCode, m2.hashCode);
 
-    m1.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAZ);
+    m1.repeatedNestedEnum.add(TestAllTypes_NestedEnum.baz);
     expect(m1.hashCode, isNot(m2.hashCode));
 
-    m2.repeatedNestedEnum.add(TestAllTypes_NestedEnum.BAZ);
+    m2.repeatedNestedEnum.add(TestAllTypes_NestedEnum.baz);
     expect(m1.hashCode, m2.hashCode);
   });
 
@@ -137,12 +137,12 @@ void main() {
       ..optionalInt32 = 42
       ..optionalInt64 = Int64(42)
       ..optionalString = 'Dart'
-      ..optionalNestedEnum = TestAllTypes_NestedEnum.BAR;
+      ..optionalNestedEnum = TestAllTypes_NestedEnum.bar;
     final m2 = TestAllTypes()
       ..optionalInt32 = 42
       ..optionalInt64 = Int64(42)
       ..optionalString = 'Dart'
-      ..optionalNestedEnum = TestAllTypes_NestedEnum.BAR;
+      ..optionalNestedEnum = TestAllTypes_NestedEnum.bar;
     expect(m1.hashCode, m2.hashCode);
 
     m1.repeatedInt32
@@ -164,11 +164,11 @@ void main() {
       ..add('Dart')
       ..add('JavaScript');
     m1.repeatedNestedEnum
-      ..add(TestAllTypes_NestedEnum.BAR)
-      ..add(TestAllTypes_NestedEnum.BAZ);
+      ..add(TestAllTypes_NestedEnum.bar)
+      ..add(TestAllTypes_NestedEnum.baz);
     m2.repeatedNestedEnum
-      ..add(TestAllTypes_NestedEnum.BAR)
-      ..add(TestAllTypes_NestedEnum.BAZ);
+      ..add(TestAllTypes_NestedEnum.bar)
+      ..add(TestAllTypes_NestedEnum.baz);
     expect(m1.hashCode, m2.hashCode);
 
     m1.unknownFields.mergeVarintField(12345, Int64(123));

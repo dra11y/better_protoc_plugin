@@ -45,29 +45,29 @@ void main() {
           ..name = 'type'
           ..jsonName = 'type'
           ..number = 2
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_ENUM
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeEnum
           ..typeName = '.PhoneNumber.PhoneType',
         // required string number = 1;
         FieldDescriptorProto()
           ..name = 'number'
           ..jsonName = 'number'
           ..number = 1
-          ..label = FieldDescriptorProto_Label.LABEL_REQUIRED
-          ..type = FieldDescriptorProto_Type.TYPE_STRING,
+          ..label = FieldDescriptorProto_Label.labelRequired
+          ..type = FieldDescriptorProto_Type.typeString,
         FieldDescriptorProto()
           ..name = 'name'
           ..jsonName = 'name'
           ..number = 3
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_STRING
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeString
           ..defaultValue = r'$',
         FieldDescriptorProto()
           ..name = 'deprecated_field'
           ..jsonName = 'deprecatedField'
           ..number = 4
-          ..label = FieldDescriptorProto_Label.LABEL_OPTIONAL
-          ..type = FieldDescriptorProto_Type.TYPE_STRING
+          ..label = FieldDescriptorProto_Label.labelOptional
+          ..type = FieldDescriptorProto_Type.typeString
           ..options = (FieldOptions()..deprecated = true),
       ])
       ..enumType.add(ed);

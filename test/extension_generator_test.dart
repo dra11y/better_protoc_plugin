@@ -18,8 +18,8 @@ void main() {
       ..name = 'client_info'
       ..jsonName = 'clientInfo'
       ..number = 261486461
-      ..label = pb.FieldDescriptorProto_Label.LABEL_OPTIONAL
-      ..type = pb.FieldDescriptorProto_Type.TYPE_STRING
+      ..label = pb.FieldDescriptorProto_Label.labelOptional
+      ..type = pb.FieldDescriptorProto_Type.typeString
       ..extendee = '.Card';
     final messageDescriptor = pb.DescriptorProto()
       ..name = 'Card'

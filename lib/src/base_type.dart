@@ -26,11 +26,11 @@ class BaseType {
   const BaseType._raw(this.descriptor, this.typeConstantSuffix, this.unprefixed,
       this.setter, this.generator);
 
-  bool get isGroup => descriptor == FieldDescriptorProto_Type.TYPE_GROUP;
-  bool get isMessage => descriptor == FieldDescriptorProto_Type.TYPE_MESSAGE;
-  bool get isEnum => descriptor == FieldDescriptorProto_Type.TYPE_ENUM;
-  bool get isString => descriptor == FieldDescriptorProto_Type.TYPE_STRING;
-  bool get isBytes => descriptor == FieldDescriptorProto_Type.TYPE_BYTES;
+  bool get isGroup => descriptor == FieldDescriptorProto_Type.typeGroup;
+  bool get isMessage => descriptor == FieldDescriptorProto_Type.typeMessage;
+  bool get isEnum => descriptor == FieldDescriptorProto_Type.typeEnum;
+  bool get isString => descriptor == FieldDescriptorProto_Type.typeString;
+  bool get isBytes => descriptor == FieldDescriptorProto_Type.typeBytes;
   bool get isPackable => (generator == null && !isString && !isBytes) || isEnum;
 
   /// The package where this type is declared.
@@ -63,63 +63,63 @@ class BaseType {
     String constSuffix;
 
     switch (field.type) {
-      case FieldDescriptorProto_Type.TYPE_BOOL:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_BOOL, 'B',
+      case FieldDescriptorProto_Type.typeBool:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeBool, 'B',
             '$coreImportPrefix.bool', r'$_setBool', null);
-      case FieldDescriptorProto_Type.TYPE_FLOAT:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_FLOAT, 'F',
+      case FieldDescriptorProto_Type.typeFloat:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeFloat, 'F',
             '$coreImportPrefix.double', r'$_setFloat', null);
-      case FieldDescriptorProto_Type.TYPE_DOUBLE:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_DOUBLE, 'D',
+      case FieldDescriptorProto_Type.typeDouble:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeDouble, 'D',
             '$coreImportPrefix.double', r'$_setDouble', null);
-      case FieldDescriptorProto_Type.TYPE_INT32:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_INT32, '3',
+      case FieldDescriptorProto_Type.typeInt32:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeInt32, '3',
             '$coreImportPrefix.int', r'$_setSignedInt32', null);
-      case FieldDescriptorProto_Type.TYPE_UINT32:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_UINT32, 'U3',
+      case FieldDescriptorProto_Type.typeUint32:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeUint32, 'U3',
             '$coreImportPrefix.int', r'$_setUnsignedInt32', null);
-      case FieldDescriptorProto_Type.TYPE_SINT32:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_SINT32, 'S3',
+      case FieldDescriptorProto_Type.typeSint32:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeSint32, 'S3',
             '$coreImportPrefix.int', r'$_setSignedInt32', null);
-      case FieldDescriptorProto_Type.TYPE_FIXED32:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_FIXED32, 'F3',
+      case FieldDescriptorProto_Type.typeFixed32:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeFixed32, 'F3',
             '$coreImportPrefix.int', r'$_setUnsignedInt32', null);
-      case FieldDescriptorProto_Type.TYPE_SFIXED32:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_SFIXED32,
+      case FieldDescriptorProto_Type.typeSfixed32:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeSfixed32,
             'SF3', '$coreImportPrefix.int', r'$_setSignedInt32', null);
-      case FieldDescriptorProto_Type.TYPE_INT64:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_INT64, '6',
+      case FieldDescriptorProto_Type.typeInt64:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeInt64, '6',
             '$_fixnumImportPrefix.Int64', r'$_setInt64', null);
-      case FieldDescriptorProto_Type.TYPE_UINT64:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_UINT64, 'U6',
+      case FieldDescriptorProto_Type.typeUint64:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeUint64, 'U6',
             '$_fixnumImportPrefix.Int64', r'$_setInt64', null);
-      case FieldDescriptorProto_Type.TYPE_SINT64:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_SINT64, 'S6',
+      case FieldDescriptorProto_Type.typeSint64:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeSint64, 'S6',
             '$_fixnumImportPrefix.Int64', r'$_setInt64', null);
-      case FieldDescriptorProto_Type.TYPE_FIXED64:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_FIXED64, 'F6',
+      case FieldDescriptorProto_Type.typeFixed64:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeFixed64, 'F6',
             '$_fixnumImportPrefix.Int64', r'$_setInt64', null);
-      case FieldDescriptorProto_Type.TYPE_SFIXED64:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_SFIXED64,
+      case FieldDescriptorProto_Type.typeSfixed64:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeSfixed64,
             'SF6', '$_fixnumImportPrefix.Int64', r'$_setInt64', null);
-      case FieldDescriptorProto_Type.TYPE_STRING:
-        return const BaseType._raw(FieldDescriptorProto_Type.TYPE_STRING, 'S',
+      case FieldDescriptorProto_Type.typeString:
+        return const BaseType._raw(FieldDescriptorProto_Type.typeString, 'S',
             '$coreImportPrefix.String', r'$_setString', null);
-      case FieldDescriptorProto_Type.TYPE_BYTES:
+      case FieldDescriptorProto_Type.typeBytes:
         return const BaseType._raw(
-            FieldDescriptorProto_Type.TYPE_BYTES,
+            FieldDescriptorProto_Type.typeBytes,
             'Y',
             '$coreImportPrefix.List<$coreImportPrefix.int>',
             r'$_setBytes',
             null);
 
-      case FieldDescriptorProto_Type.TYPE_GROUP:
+      case FieldDescriptorProto_Type.typeGroup:
         constSuffix = 'G';
         break;
-      case FieldDescriptorProto_Type.TYPE_MESSAGE:
+      case FieldDescriptorProto_Type.typeMessage:
         constSuffix = 'M';
         break;
-      case FieldDescriptorProto_Type.TYPE_ENUM:
+      case FieldDescriptorProto_Type.typeEnum:
         constSuffix = 'E';
         break;
 
