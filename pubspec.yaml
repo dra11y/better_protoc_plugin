@@ -1,10 +1,10 @@
 name: better_protoc_plugin
 version: 22.0.0-dev
-description: A protobuf protoc compiler plugin used to generate Dart code.
+description: A better protobuf protoc compiler plugin used to generate Dart code.
 repository: https://github.com/google/protobuf.dart/tree/master/protoc_plugin
 
 environment:
-  sdk: '>=2.19.0 <4.0.0'
+  sdk: '>=3.1.3 <4.0.0'
 
 dependencies:
   fixnum: ^1.0.0
@@ -13,7 +13,7 @@ dependencies:
 
 dev_dependencies:
   collection: ^1.15.0
-  dart_flutter_team_lints: ^1.0.0
+  dart_flutter_team_lints: ^2.1.0
   matcher: ^0.12.10
   test: ^1.16.0
 
