@@ -110,6 +110,8 @@ protos: $(PLUGIN_PATH) $(TEST_PROTO_LIBS)
 
 run-tests: protos
 	dart test
+	dart run -Dprotobuf.omit_enum_names=false test/omit_enum_names_test.dart
+	dart run -Dprotobuf.omit_enum_names=true test/omit_enum_names_test.dart
 
 update-goldens: protos
 	rm -rf test/goldens

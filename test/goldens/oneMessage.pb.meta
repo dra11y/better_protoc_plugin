@@ -1,0 +1,122 @@
+annotation: {
+  path: 4
+  path: 0
+  sourceFile: test
+  begin: 429
+  end: 440
+}
+annotation: {
+  path: 4
+  path: 0
+  sourceFile: test
+  begin: 511
+  end: 522
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 0
+  sourceFile: test
+  begin: 2231
+  end: 2237
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 0
+  sourceFile: test
+  begin: 2279
+  end: 2285
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 0
+  sourceFile: test
+  begin: 2358
+  end: 2367
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 0
+  sourceFile: test
+  begin: 2410
+  end: 2421
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 1
+  sourceFile: test
+  begin: 2479
+  end: 2483
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 1
+  sourceFile: test
+  begin: 2525
+  end: 2529
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 1
+  sourceFile: test
+  begin: 2604
+  end: 2611
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 1
+  sourceFile: test
+  begin: 2654
+  end: 2663
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 2
+  sourceFile: test
+  begin: 2724
+  end: 2728
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 2
+  sourceFile: test
+  begin: 2775
+  end: 2779
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 2
+  sourceFile: test
+  begin: 2852
+  end: 2859
+}
+annotation: {
+  path: 4
+  path: 0
+  path: 2
+  path: 2
+  sourceFile: test
+  begin: 2902
+  end: 2911
+}
