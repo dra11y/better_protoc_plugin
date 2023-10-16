@@ -14,6 +14,7 @@ enum CodeGeneratorResponse_Feature implements $pb.ProtobufEnum {
   featureNone(0, _omitEnumNames ? '' : 'FEATURE_NONE'),
   featureProto3Optional(1, _omitEnumNames ? '' : 'FEATURE_PROTO3_OPTIONAL');
 
+  @$core.override
   final $core.int value;
 
   @$core.override

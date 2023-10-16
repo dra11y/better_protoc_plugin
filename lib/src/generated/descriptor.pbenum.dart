@@ -29,6 +29,7 @@ enum FieldDescriptorProto_Type implements $pb.ProtobufEnum {
   typeSint32(17, _omitEnumNames ? '' : 'TYPE_SINT32'),
   typeSint64(18, _omitEnumNames ? '' : 'TYPE_SINT64');
 
+  @$core.override
   final $core.int value;
 
   @$core.override
@@ -51,6 +52,7 @@ enum FieldDescriptorProto_Label implements $pb.ProtobufEnum {
   labelRequired(2, _omitEnumNames ? '' : 'LABEL_REQUIRED'),
   labelRepeated(3, _omitEnumNames ? '' : 'LABEL_REPEATED');
 
+  @$core.override
   final $core.int value;
 
   @$core.override
@@ -75,6 +77,7 @@ enum FileOptions_OptimizeMode implements $pb.ProtobufEnum {
   codeSize(2, _omitEnumNames ? '' : 'CODE_SIZE'),
   liteRuntime(3, _omitEnumNames ? '' : 'LITE_RUNTIME');
 
+  @$core.override
   final $core.int value;
 
   @$core.override
@@ -97,6 +100,7 @@ enum FieldOptions_CType implements $pb.ProtobufEnum {
   cord(1, _omitEnumNames ? '' : 'CORD'),
   stringPiece(2, _omitEnumNames ? '' : 'STRING_PIECE');
 
+  @$core.override
   final $core.int value;
 
   @$core.override
@@ -119,6 +123,7 @@ enum FieldOptions_JSType implements $pb.ProtobufEnum {
   jsString(1, _omitEnumNames ? '' : 'JS_STRING'),
   jsNumber(2, _omitEnumNames ? '' : 'JS_NUMBER');
 
+  @$core.override
   final $core.int value;
 
   @$core.override
@@ -144,6 +149,7 @@ enum MethodOptions_IdempotencyLevel implements $pb.ProtobufEnum {
   noSideEffects(1, _omitEnumNames ? '' : 'NO_SIDE_EFFECTS'),
   idempotent(2, _omitEnumNames ? '' : 'IDEMPOTENT');
 
+  @$core.override
   final $core.int value;
 
   @$core.override

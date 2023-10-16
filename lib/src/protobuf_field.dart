@@ -152,6 +152,11 @@ class ProtobufField {
       return getDartType();
     }
     final String optional = isNullableOptional ? '?' : '';
+    if (baseType.isTimestamp && genOptions.useDateTime) {
+      return '$coreImportPrefix.DateTime$optional';
+    } else if (baseType.isDuration && genOptions.useDateTime) {
+      return '$coreImportPrefix.Duration$optional';
+    }
     if (isMapField) {
       final d = baseType.generator as MessageGenerator;
       final keyType =
@@ -169,7 +174,11 @@ class ProtobufField {
   /// Returns the expression to use for the Dart type.
   String getDartType({bool? isOptional}) {
     final String optional = isOptional == true || isNullableOptional ? '?' : '';
-
+    if (baseType.isTimestamp && genOptions.useDateTime) {
+      return '$coreImportPrefix.DateTime$optional';
+    } else if (baseType.isDuration && genOptions.useDateTime) {
+      return '$coreImportPrefix.Duration$optional';
+    }
     if (isMapField) {
       final d = baseType.generator as MessageGenerator;
       final keyType = d._fieldList[0].baseType.getDartType(parent.fileGen!);

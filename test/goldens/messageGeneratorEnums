@@ -5,7 +5,7 @@ enum PhoneNumber_PhoneType implements $pb.ProtobufEnum {
 
   static const PhoneNumber_PhoneType business = work;
 
-  final $core.int value;
+  @$core.override final $core.int value;
 
   @$core.override final $core.String name;
 

@@ -614,8 +614,10 @@ class MessageGenerator extends ProtobufContainer {
     _emitIndexAnnotation(field.number, out);
     final getterExpr = _getWithHazzer(
         field,
-        _getterExpression(fieldTypeString, field.index!, defaultExpr,
-            field.isRepeated, field.isMapField));
+        _getDateTimeWrapper(
+            field,
+            _getterExpression(fieldTypeString, field.index!, defaultExpr,
+                field.isRepeated, field.isMapField)));
 
     out.printlnAnnotated(
         '$fieldTypeString get ${names!.fieldName} => $getterExpr;', [
@@ -648,7 +650,7 @@ class MessageGenerator extends ProtobufContainer {
             'set ${names.fieldName}'
             '($fieldTypeString v) { '
             '${fieldTypeString.endsWith('?') ? 'v != null ? ' : ''}'
-            '$fastSetter(${field.index}, v)'
+            '$fastSetter(${field.index}, ${_setDateTimeWrapper(field, 'v')})'
             '${fieldTypeString.endsWith('?') ? ' : clearField(${field.number})' : ''}'
             '; }',
             [
@@ -662,7 +664,7 @@ class MessageGenerator extends ProtobufContainer {
             'set ${names.fieldName}'
             '($fieldTypeString v) { '
             '${fieldTypeString.endsWith('?') ? 'v != null ? ' : ''}'
-            'setField(${field.number}, v)'
+            'setField(${field.number}, ${_setDateTimeWrapper(field, 'v')})'
             '${fieldTypeString.endsWith('?') ? ' : clearField(${field.number})' : ''}'
             '; }',
             [
@@ -719,6 +721,26 @@ class MessageGenerator extends ProtobufContainer {
       return getter;
     }
     return '\$_has(${field.index}) ? $getter : null';
+  }
+
+  String _setDateTimeWrapper(ProtobufField field, String setter) {
+    final importedType = field.baseType.prefixed;
+    if (field.baseType.isTimestamp && genOptions.useDateTime) {
+      return '${importedType}.fromDateTime($setter)';
+    } else if (field.baseType.isDuration && genOptions.useDateTime) {
+      return '${importedType}.fromDartDuration($setter)';
+    }
+    return setter;
+  }
+
+  String _getDateTimeWrapper(ProtobufField field, String getter) {
+    final importedType = field.baseType.prefixed;
+    if (field.baseType.isTimestamp && genOptions.useDateTime) {
+      return '($getter as $importedType).toDateTime()';
+    } else if (field.baseType.isDuration && genOptions.useDateTime) {
+      return '($getter as $importedType).toDartDuration()';
+    }
+    return getter;
   }
 
   String _getterExpression(String fieldType, int index, String defaultExpr,
