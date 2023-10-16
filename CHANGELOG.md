@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Add @override prefix to enum value field
+
 ## 1.0.1
 
 * New .proto file-level experimental options (all default to **false**):
