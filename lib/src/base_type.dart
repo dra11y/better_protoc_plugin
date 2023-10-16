@@ -44,6 +44,9 @@ class BaseType {
           (key) => key.split('.').last == unprefixed.split('.').last) !=
       null;
 
+  bool get isTimestamp => unprefixed.split('.').last == 'Timestamp';
+  bool get isDuration => unprefixed.split('.').last == 'Duration';
+
   /// Prepend `interfacePrefix` to the type
   String get unprefixedInterface =>
       isMessage ? unprefixedInjectPrefix(interfacePrefix) : unprefixed;

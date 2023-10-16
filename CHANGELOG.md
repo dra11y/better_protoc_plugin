@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Actually generate dart:core `DateTime` and `Duration` getters/setters
+
 ## 1.0.2
 
 * Add @override prefix to enum value field

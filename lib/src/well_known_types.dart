@@ -47,6 +47,26 @@ static Timestamp fromDateTime($coreImportPrefix.DateTime dateTime) {
   'google.protobuf.Duration': PbMixin(
     'DurationMixin',
     importFrom: _wellKnownImportPath,
+    injectedHelpers: [
+      '''
+/// Creates a new protobuf.Duration from a dart:core Duration [duration].
+static Duration fromDartDuration($coreImportPrefix.Duration duration) {
+  final seconds = duration.inSeconds;
+  final nanoseconds = (duration.inMicroseconds % $coreImportPrefix.Duration.microsecondsPerSecond) * 1000;
+  return Duration.create()
+    ..seconds = $_fixnumImportPrefix.Int64(seconds)
+    ..nanos = nanoseconds;
+}
+
+/// Convert this protobuf.Duration back to a Dart Duration
+$coreImportPrefix.Duration toDartDuration() {
+  final seconds = this.seconds.toInt();
+  final totalMicroseconds =
+      (seconds * $coreImportPrefix.Duration.microsecondsPerSecond) + nanos ~/ 1000;
+  return $coreImportPrefix.Duration(microseconds: totalMicroseconds);
+}
+'''
+    ],
     hasProto3JsonHelpers: true,
   ),
   'google.protobuf.Struct': PbMixin(

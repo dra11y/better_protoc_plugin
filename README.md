@@ -5,11 +5,30 @@
 
 ## Forked from [Google's protoc_plugin v22.0.0-dev @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
 
-This fork provides:
-- generation of abstract interface classes for messages;
-- generation of nullable optionals for non-required fields, with getter/setter wrappers (setting a field to `null` calls clearField());
-- generation of real Dart enums instead of classes with static constants;
-- generation of camelCased (instead of UPPER_SNAKE_CASED) enum values, but keeping the `name` field as the original UPPER_SNAKE_CASED String name from the proto.
+**Premise: The reason I created this fork is to make it easier to use *protobuf* with Dart backends/database ORMs by generating interfaces, because having to create separate database model definitions without the type safety of interfaces is extra work and error prone. Heck, protoc_plugin generates your backend services and client stubs for you! Why not go all the way?**
+
+This fork improves the generators by adding interface classes, additional convenience wrappers/converters, and addressing several other open issues, without changing the underlying protocols.
+
+- additional `abstract interface class` with typed getters generated for each message:
+  - interface name prefixed with **I**;
+  - useful for implementing strongly-typed ORM classes;
+- `dart:core.DateTime` and `dart:core.Duration` setters/getters and conversion for `protobuf.Timestamp` and `protobuf.Duration` fields (google/protobuf.dart#792):
+  - `DateTime` uses built-in protobuf `TimeStampMixin` converters;
+- Dart null safety (nullable optionals) for non-required/presence fields, with getter/setter wrappers (google/protobuf.dart#493):
+  - getters use `has{Field}()` to check for presence;
+  - setting a field to `null` calls clearField();
+  - not used for required/non-presence, repeated, or map fields;
+- **real** Dart `enums` instead of classes with static constants (google/protobuf.dart#862):
+  - generates proper Dart **camelCased** enum values with conversion to/from CONSTANT_CASE protobuf values (google/protobuf.dart#372);
+
+
+## Bugfixes / PRs welcomed.
+
+Please, Google Dart/Flutter Team, it would be great to see some of these features in the *official* dart protoc generator.
+
+I will try to pull in any generator changes/improvements from `google/protobuf.dart`. Hopefully eventually we will see better support for Dart interfaces, optionals, enums, and native type conversions so it's easier to use protobuf with Dart backends & ORMs.
+
+I intend to keep this updated and use in my production projects in the meantime.
 
 ## Testing
 
