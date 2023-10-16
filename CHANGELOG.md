@@ -1,5 +1,6 @@
 ## 1.0.0
 
+* generate abstract interface class for each message prefixed with 'I' by default
 * use real Dart enums + unit test
 * enum values now use lowerCamelCase + unit test
 * upgrade to Dart 3 SDK

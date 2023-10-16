@@ -6,6 +6,7 @@
 ## Forked from [Google's protoc_plugin v22.0.0-dev @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
 
 This fork provides:
+- generation of abstract interface classes for messages;
 - generation of real Dart enums instead of classes with static constants;
 - generation of camelCased (instead of UPPER_SNAKE_CASED) enum values, but keeping the `name` field as the original UPPER_SNAKE_CASED String name from the proto.
 
