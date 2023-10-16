@@ -7,6 +7,7 @@
 
 This fork provides:
 - generation of abstract interface classes for messages;
+- generation of nullable optionals for non-required fields, with getter/setter wrappers (setting a field to `null` calls clearField());
 - generation of real Dart enums instead of classes with static constants;
 - generation of camelCased (instead of UPPER_SNAKE_CASED) enum values, but keeping the `name` field as the original UPPER_SNAKE_CASED String name from the proto.
 
