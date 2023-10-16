@@ -10,12 +10,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-abstract interface class IInt64 {
-
-  $fixnum.Int64 get value;
-}
-
-class Int64 extends $pb.GeneratedMessage implements IInt64 {
+class Int64 extends $pb.GeneratedMessage {
   factory Int64() => create();
   Int64._() : super();
   factory Int64.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
@@ -29,23 +24,22 @@ class Int64 extends $pb.GeneratedMessage implements IInt64 {
   @$core.Deprecated(
   'Use deepCopy() instead. '
   'Will be removed in next major version')
-  Int64 clone() => deepCopy();
+  @$core.override Int64 clone() => deepCopy();
   @$core.Deprecated(
   'Use rebuild(void Function(Int64) updates) instead. '
   'Will be removed in next major version')
-  Int64 copyWith(void Function(Int64) updates) => rebuild(updates);
+  @$core.override Int64 copyWith(void Function(Int64) updates) => rebuild(updates);
 
-  $pb.BuilderInfo get info_ => _i;
+  @$core.override $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Int64 create() => Int64._();
-  Int64 createEmptyInstance() => create();
+  @$core.override Int64 createEmptyInstance() => create();
   static $pb.PbList<Int64> createRepeated() => $pb.PbList<Int64>();
   @$core.pragma('dart2js:noInline')
   static Int64 getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Int64>(create);
   static Int64? _defaultInstance;
 
-  @$core.override
   @$pb.TagNumber(1)
   $fixnum.Int64 get value => $_getI64(0);
   @$pb.TagNumber(1)

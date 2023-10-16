@@ -9,23 +9,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-/// A mixin that can be used in the 'with' clause of the generated Dart class
-/// for a proto message.
-abstract interface class IDartMixin {
-  /// The name of the mixin class.
-  $core.String get name;
-
-  /// A URI pointing to the Dart library that defines the mixin.
-  /// The generated Dart code will use this in an import statement.
-  $core.String get importFrom;
-
-  /// The name of another mixin to be applied ahead of this one.
-  /// The generated class for the message will inherit from all mixins
-  /// in the parent chain.
-  $core.String get parent;
-}
-
-class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
+class DartMixin extends $pb.GeneratedMessage {
   factory DartMixin({
     $core.String? name,
     $core.String? importFrom,
@@ -62,15 +46,19 @@ class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
 
   @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
+  @$core.override
   DartMixin clone() => deepCopy();
   @$core.Deprecated('Use rebuild(void Function(DartMixin) updates) instead. '
       'Will be removed in next major version')
+  @$core.override
   DartMixin copyWith(void Function(DartMixin) updates) => rebuild(updates);
 
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static DartMixin create() => DartMixin._();
+  @$core.override
   DartMixin createEmptyInstance() => create();
   static $pb.PbList<DartMixin> createRepeated() => $pb.PbList<DartMixin>();
   @$core.pragma('dart2js:noInline')
@@ -79,7 +67,6 @@ class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
   static DartMixin? _defaultInstance;
 
   /// The name of the mixin class.
-  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -94,7 +81,6 @@ class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
 
   /// A URI pointing to the Dart library that defines the mixin.
   /// The generated Dart code will use this in an import statement.
-  @$core.override
   @$pb.TagNumber(2)
   $core.String get importFrom => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -110,7 +96,6 @@ class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
   /// The name of another mixin to be applied ahead of this one.
   /// The generated class for the message will inherit from all mixins
   /// in the parent chain.
-  @$core.override
   @$pb.TagNumber(3)
   $core.String get parent => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -124,20 +109,7 @@ class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
   void clearParent() => clearField(3);
 }
 
-/// Defines additional Dart imports to be used with messages in this file.
-abstract interface class IImports {
-  ///  Mixins to be used on messages in this file.
-  ///  These mixins are in addition to internally defined mixins (e.g PbMapMixin)
-  ///  and may override them.
-  ///
-  ///  Warning: mixins are experimental. The protoc Dart plugin doesn't check
-  ///  for name conflicts between mixin class members and generated class members,
-  ///  so the generated code may contain errors. Therefore, running dartanalyzer
-  ///  on the generated file is a good idea.
-  $core.List<IDartMixin> get mixins;
-}
-
-class Imports extends $pb.GeneratedMessage implements IImports {
+class Imports extends $pb.GeneratedMessage {
   factory Imports({
     $core.Iterable<DartMixin>? mixins,
   }) {
@@ -165,15 +137,19 @@ class Imports extends $pb.GeneratedMessage implements IImports {
 
   @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
+  @$core.override
   Imports clone() => deepCopy();
   @$core.Deprecated('Use rebuild(void Function(Imports) updates) instead. '
       'Will be removed in next major version')
+  @$core.override
   Imports copyWith(void Function(Imports) updates) => rebuild(updates);
 
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Imports create() => Imports._();
+  @$core.override
   Imports createEmptyInstance() => create();
   static $pb.PbList<Imports> createRepeated() => $pb.PbList<Imports>();
   @$core.pragma('dart2js:noInline')
@@ -189,7 +165,6 @@ class Imports extends $pb.GeneratedMessage implements IImports {
   ///  for name conflicts between mixin class members and generated class members,
   ///  so the generated code may contain errors. Therefore, running dartanalyzer
   ///  on the generated file is a good idea.
-  @$core.override
   @$pb.TagNumber(1)
   $core.List<DartMixin> get mixins => $_getList(0);
 }
@@ -207,6 +182,21 @@ class Dart_options {
       _omitFieldNames ? '' : 'defaultMixin',
       96128839,
       $pb.PbFieldType.OS);
+  static final messageInterfaces = $pb.Extension<$core.bool>(
+      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
+      _omitFieldNames ? '' : 'messageInterfaces',
+      71128890,
+      $pb.PbFieldType.OB);
+  static final nullableOptionals = $pb.Extension<$core.bool>(
+      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
+      _omitFieldNames ? '' : 'nullableOptionals',
+      87148944,
+      $pb.PbFieldType.OB);
+  static final useDateTime = $pb.Extension<$core.bool>(
+      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
+      _omitFieldNames ? '' : 'useDateTime',
+      50028268,
+      $pb.PbFieldType.OB);
   static final mixin = $pb.Extension<$core.String>(
       _omitMessageNames ? '' : 'google.protobuf.MessageOptions',
       _omitFieldNames ? '' : 'mixin',
@@ -240,6 +230,9 @@ class Dart_options {
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(imports);
     registry.add(defaultMixin);
+    registry.add(messageInterfaces);
+    registry.add(nullableOptionals);
+    registry.add(useDateTime);
     registry.add(mixin);
     registry.add(overrideGetter);
     registry.add(overrideSetter);
