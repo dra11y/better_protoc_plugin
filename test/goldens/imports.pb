@@ -3,6 +3,7 @@
 //  source: test.proto
 //
 
+// ignore_for_file: unnecessary_import
 
 import 'dart:core' as $core;
 
@@ -11,7 +12,16 @@ import 'package:protobuf/protobuf.dart' as $pb;
 import 'package1.pb.dart' as $1;
 import 'package2.pb.dart' as $2;
 
-class M extends $pb.GeneratedMessage {
+abstract interface class IM {
+
+  IM get m;
+
+  $1.IM get m1;
+
+  $2.IM get m2;
+}
+
+class M extends $pb.GeneratedMessage implements IM {
   factory M() => create();
   M._() : super();
   factory M.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
@@ -45,6 +55,7 @@ class M extends $pb.GeneratedMessage {
   static M getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<M>(create);
   static M? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   M get m => $_getN(0);
   @$pb.TagNumber(1)
@@ -56,6 +67,7 @@ class M extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   M ensureM() => $_ensure(0);
 
+  @$core.override
   @$pb.TagNumber(2)
   $1.M get m1 => $_getN(1);
   @$pb.TagNumber(2)
@@ -67,6 +79,7 @@ class M extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $1.M ensureM1() => $_ensure(1);
 
+  @$core.override
   @$pb.TagNumber(3)
   $2.M get m2 => $_getN(2);
   @$pb.TagNumber(3)

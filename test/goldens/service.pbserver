@@ -3,7 +3,7 @@
 //  source: test
 //
 
-// ignore_for_file: deprecated_member_use_from_same_package
+// ignore_for_file: deprecated_member_use_from_same_package, unnecessary_import
 
 import 'dart:async' as $async;
 import 'dart:core' as $core;

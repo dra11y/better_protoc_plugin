@@ -115,7 +115,7 @@ void main() {
     final eq = ListEquality();
     final fieldStringsMap = HashMap(
         equals: eq.equals, hashCode: eq.hash, isValidKey: eq.isValidKey);
-    fieldStringsMap[[4, 0]] = ['PhoneNumber'];
+    fieldStringsMap[[4, 0]] = ['IPhoneNumber', 'PhoneNumber'];
     fieldStringsMap[[4, 0, 2, 0]] = ['type', 'hasType', 'clearType'];
     fieldStringsMap[[4, 0, 2, 1]] = ['number', 'hasNumber', 'clearNumber'];
     fieldStringsMap[[4, 0, 2, 2]] = ['name', 'hasName', 'clearName'];

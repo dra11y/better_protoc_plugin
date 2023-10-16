@@ -11,7 +11,21 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// A mixin that can be used in the 'with' clause of the generated Dart class
 /// for a proto message.
-class DartMixin extends $pb.GeneratedMessage {
+abstract interface class IDartMixin {
+  /// The name of the mixin class.
+  $core.String get name;
+
+  /// A URI pointing to the Dart library that defines the mixin.
+  /// The generated Dart code will use this in an import statement.
+  $core.String get importFrom;
+
+  /// The name of another mixin to be applied ahead of this one.
+  /// The generated class for the message will inherit from all mixins
+  /// in the parent chain.
+  $core.String get parent;
+}
+
+class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
   factory DartMixin({
     $core.String? name,
     $core.String? importFrom,
@@ -68,6 +82,7 @@ class DartMixin extends $pb.GeneratedMessage {
   static DartMixin? _defaultInstance;
 
   /// The name of the mixin class.
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -82,6 +97,7 @@ class DartMixin extends $pb.GeneratedMessage {
 
   /// A URI pointing to the Dart library that defines the mixin.
   /// The generated Dart code will use this in an import statement.
+  @$core.override
   @$pb.TagNumber(2)
   $core.String get importFrom => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -97,6 +113,7 @@ class DartMixin extends $pb.GeneratedMessage {
   /// The name of another mixin to be applied ahead of this one.
   /// The generated class for the message will inherit from all mixins
   /// in the parent chain.
+  @$core.override
   @$pb.TagNumber(3)
   $core.String get parent => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -111,7 +128,19 @@ class DartMixin extends $pb.GeneratedMessage {
 }
 
 /// Defines additional Dart imports to be used with messages in this file.
-class Imports extends $pb.GeneratedMessage {
+abstract interface class IImports {
+  ///  Mixins to be used on messages in this file.
+  ///  These mixins are in addition to internally defined mixins (e.g PbMapMixin)
+  ///  and may override them.
+  ///
+  ///  Warning: mixins are experimental. The protoc Dart plugin doesn't check
+  ///  for name conflicts between mixin class members and generated class members,
+  ///  so the generated code may contain errors. Therefore, running dartanalyzer
+  ///  on the generated file is a good idea.
+  $core.List<IDartMixin> get mixins;
+}
+
+class Imports extends $pb.GeneratedMessage implements IImports {
   factory Imports({
     $core.Iterable<DartMixin>? mixins,
   }) {
@@ -166,6 +195,7 @@ class Imports extends $pb.GeneratedMessage {
   ///  for name conflicts between mixin class members and generated class members,
   ///  so the generated code may contain errors. Therefore, running dartanalyzer
   ///  on the generated file is a good idea.
+  @$core.override
   @$pb.TagNumber(1)
   $core.List<DartMixin> get mixins => $_getList(0);
 }

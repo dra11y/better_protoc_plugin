@@ -1,4 +1,16 @@
-class PhoneNumber extends $pb.GeneratedMessage {
+abstract interface class IPhoneNumber {
+
+  $core.String get number;
+
+  PhoneNumber_PhoneType get type;
+
+  $core.String get name;
+
+  @$core.Deprecated('This field is deprecated.')
+  $core.String get deprecatedField;
+}
+
+class PhoneNumber extends $pb.GeneratedMessage implements IPhoneNumber {
   factory PhoneNumber() => create();
   PhoneNumber._() : super();
   factory PhoneNumber.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
@@ -32,6 +44,7 @@ class PhoneNumber extends $pb.GeneratedMessage {
   static PhoneNumber getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PhoneNumber>(create);
   static PhoneNumber? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get number => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -41,6 +54,7 @@ class PhoneNumber extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearNumber() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   PhoneNumber_PhoneType get type => $_getN(1);
   @$pb.TagNumber(2)
@@ -50,6 +64,7 @@ class PhoneNumber extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearType() => clearField(2);
 
+  @$core.override
   @$pb.TagNumber(3)
   $core.String get name => $_getS(2, '\$');
   @$pb.TagNumber(3)
@@ -60,6 +75,7 @@ class PhoneNumber extends $pb.GeneratedMessage {
   void clearName() => clearField(3);
 
   @$core.Deprecated('This field is deprecated.')
+  @$core.override
   @$pb.TagNumber(4)
   $core.String get deprecatedField => $_getSZ(3);
   @$core.Deprecated('This field is deprecated.')

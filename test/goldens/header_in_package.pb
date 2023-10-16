@@ -3,6 +3,7 @@
 //  source: test
 //
 
+// ignore_for_file: unnecessary_import
 
 import 'dart:core' as $core;
 

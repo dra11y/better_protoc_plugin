@@ -18,6 +18,9 @@ class EnumGenerator extends ProtobufContainer {
   final String? classname;
 
   @override
+  final String? interfaceName;
+
+  @override
   final String fullName;
 
   final EnumDescriptorProto _descriptor;
@@ -42,6 +45,7 @@ class EnumGenerator extends ProtobufContainer {
       : _fieldPathSegment = [fieldIdTag, repeatedFieldIndex],
         classname = messageOrEnumClassName(descriptor.name, usedClassNames,
             parent: parent!.classname ?? ''),
+        interfaceName = null,
         fullName = parent.fullName == ''
             ? descriptor.name
             : '${parent.fullName}.${descriptor.name}',

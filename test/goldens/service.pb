@@ -3,13 +3,17 @@
 //  source: test
 //
 
+// ignore_for_file: unnecessary_import
 
 import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class Empty extends $pb.GeneratedMessage {
+abstract interface class IEmpty {
+}
+
+class Empty extends $pb.GeneratedMessage implements IEmpty {
   factory Empty() => create();
   Empty._() : super();
   factory Empty.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);

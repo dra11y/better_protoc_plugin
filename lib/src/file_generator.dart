@@ -208,6 +208,9 @@ class FileGenerator extends ProtobufContainer {
   String get classname => '';
 
   @override
+  String get interfaceName => '';
+
+  @override
   String get fullName => descriptor.package;
 
   @override

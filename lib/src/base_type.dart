@@ -37,6 +37,16 @@ class BaseType {
   /// (Always the empty string for primitive types.)
   String get package => generator == null ? '' : generator!.package;
 
+  /// Prepend `interfacePrefix` to the type except if it's already qualified,
+  /// or it is an Enum.
+  String get unprefixedInterface => isEnum || unprefixed.contains('.')
+      ? unprefixed
+      : interfacePrefix + unprefixed;
+
+  String get prefixedInterface => generator == null
+      ? unprefixedInterface
+      : '${generator!.fileImportPrefix}.$unprefixedInterface';
+
   /// The Dart expression to use for this type when in a different file.
   String get prefixed => generator == null
       ? unprefixed
@@ -53,11 +63,22 @@ class BaseType {
           ? unprefixed
           : prefixed;
 
+  String getInterfaceType(FileGenerator fileGen) =>
+      (fileGen.protoFileUri == generator?.fileGen?.protoFileUri)
+          ? unprefixedInterface
+          : prefixedInterface;
+
   String getRepeatedDartType(FileGenerator fileGen) =>
       '$coreImportPrefix.List<${getDartType(fileGen)}>';
 
   String getRepeatedDartTypeIterable(FileGenerator fileGen) =>
       '$coreImportPrefix.Iterable<${getDartType(fileGen)}>';
+
+  String getRepeatedInterfaceType(FileGenerator fileGen) =>
+      '$coreImportPrefix.List<${getInterfaceType(fileGen)}>';
+
+  String getRepeatedInterfaceTypeIterable(FileGenerator fileGen) =>
+      '$coreImportPrefix.Iterable<${getInterfaceType(fileGen)}>';
 
   factory BaseType(FieldDescriptorProto field, GenerationContext ctx) {
     String constSuffix;

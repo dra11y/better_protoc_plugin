@@ -25,6 +25,9 @@ abstract class ProtobufContainer {
   String? get classname;
   String get fullName;
 
+  /// The name of the Dart abstract interface to generate.
+  String? get interfaceName;
+
   /// The field path contains the field IDs and indices (for repeated fields)
   /// that lead to the proto member corresponding to a piece of generated code.
   /// Repeated fields in the descriptor are further identified by the index of

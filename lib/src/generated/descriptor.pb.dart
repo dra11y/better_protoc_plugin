@@ -16,7 +16,12 @@ export 'descriptor.pbenum.dart';
 
 /// The protocol compiler can output a FileDescriptorSet containing the .proto
 /// files it parses.
-class FileDescriptorSet extends $pb.GeneratedMessage {
+abstract interface class IFileDescriptorSet {
+  $core.List<IFileDescriptorProto> get file;
+}
+
+class FileDescriptorSet extends $pb.GeneratedMessage
+    implements IFileDescriptorSet {
   factory FileDescriptorSet({
     $core.Iterable<FileDescriptorProto>? file,
   }) {
@@ -66,12 +71,51 @@ class FileDescriptorSet extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<FileDescriptorSet>(create);
   static FileDescriptorSet? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.List<FileDescriptorProto> get file => $_getList(0);
 }
 
 /// Describes a complete .proto file.
-class FileDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IFileDescriptorProto {
+  $core.String get name;
+
+  $core.String get package;
+
+  /// Names of files imported by this file.
+  $core.List<$core.String> get dependency;
+
+  /// All top-level definitions in this file.
+  $core.List<IDescriptorProto> get messageType;
+
+  $core.List<IEnumDescriptorProto> get enumType;
+
+  $core.List<IServiceDescriptorProto> get service;
+
+  $core.List<IFieldDescriptorProto> get extension;
+
+  IFileOptions get options;
+
+  /// This field contains optional information about the original source code.
+  /// You may safely remove this entire field without harming runtime
+  /// functionality of the descriptors -- the information is needed only by
+  /// development tools.
+  ISourceCodeInfo get sourceCodeInfo;
+
+  /// Indexes of the public imported files in the dependency list above.
+  $core.List<$core.int> get publicDependency;
+
+  /// Indexes of the weak imported files in the dependency list.
+  /// For Google-internal migration only. Do not use.
+  $core.List<$core.int> get weakDependency;
+
+  /// The syntax of the proto file.
+  /// The supported values are "proto2" and "proto3".
+  $core.String get syntax;
+}
+
+class FileDescriptorProto extends $pb.GeneratedMessage
+    implements IFileDescriptorProto {
   factory FileDescriptorProto({
     $core.String? name,
     $core.String? package,
@@ -186,6 +230,7 @@ class FileDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<FileDescriptorProto>(create);
   static FileDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -198,6 +243,7 @@ class FileDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.String get package => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -211,22 +257,28 @@ class FileDescriptorProto extends $pb.GeneratedMessage {
   void clearPackage() => clearField(2);
 
   /// Names of files imported by this file.
+  @$core.override
   @$pb.TagNumber(3)
   $core.List<$core.String> get dependency => $_getList(2);
 
   /// All top-level definitions in this file.
+  @$core.override
   @$pb.TagNumber(4)
   $core.List<DescriptorProto> get messageType => $_getList(3);
 
+  @$core.override
   @$pb.TagNumber(5)
   $core.List<EnumDescriptorProto> get enumType => $_getList(4);
 
+  @$core.override
   @$pb.TagNumber(6)
   $core.List<ServiceDescriptorProto> get service => $_getList(5);
 
+  @$core.override
   @$pb.TagNumber(7)
   $core.List<FieldDescriptorProto> get extension => $_getList(6);
 
+  @$core.override
   @$pb.TagNumber(8)
   FileOptions get options => $_getN(7);
   @$pb.TagNumber(8)
@@ -245,6 +297,7 @@ class FileDescriptorProto extends $pb.GeneratedMessage {
   /// You may safely remove this entire field without harming runtime
   /// functionality of the descriptors -- the information is needed only by
   /// development tools.
+  @$core.override
   @$pb.TagNumber(9)
   SourceCodeInfo get sourceCodeInfo => $_getN(8);
   @$pb.TagNumber(9)
@@ -260,16 +313,19 @@ class FileDescriptorProto extends $pb.GeneratedMessage {
   SourceCodeInfo ensureSourceCodeInfo() => $_ensure(8);
 
   /// Indexes of the public imported files in the dependency list above.
+  @$core.override
   @$pb.TagNumber(10)
   $core.List<$core.int> get publicDependency => $_getList(9);
 
   /// Indexes of the weak imported files in the dependency list.
   /// For Google-internal migration only. Do not use.
+  @$core.override
   @$pb.TagNumber(11)
   $core.List<$core.int> get weakDependency => $_getList(10);
 
   /// The syntax of the proto file.
   /// The supported values are "proto2" and "proto3".
+  @$core.override
   @$pb.TagNumber(12)
   $core.String get syntax => $_getSZ(11);
   @$pb.TagNumber(12)
@@ -283,7 +339,16 @@ class FileDescriptorProto extends $pb.GeneratedMessage {
   void clearSyntax() => clearField(12);
 }
 
-class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage {
+abstract interface class IDescriptorProto_ExtensionRange {
+  $core.int get start;
+
+  $core.int get end;
+
+  IExtensionRangeOptions get options;
+}
+
+class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage
+    implements IDescriptorProto_ExtensionRange {
   factory DescriptorProto_ExtensionRange({
     $core.int? start,
     $core.int? end,
@@ -346,6 +411,7 @@ class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<DescriptorProto_ExtensionRange>(create);
   static DescriptorProto_ExtensionRange? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.int get start => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -358,6 +424,7 @@ class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearStart() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.int get end => $_getIZ(1);
   @$pb.TagNumber(2)
@@ -370,6 +437,7 @@ class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearEnd() => clearField(2);
 
+  @$core.override
   @$pb.TagNumber(3)
   ExtensionRangeOptions get options => $_getN(2);
   @$pb.TagNumber(3)
@@ -388,7 +456,14 @@ class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage {
 /// Range of reserved tag numbers. Reserved tag numbers may not be used by
 /// fields or extension ranges in the same message. Reserved ranges may
 /// not overlap.
-class DescriptorProto_ReservedRange extends $pb.GeneratedMessage {
+abstract interface class IDescriptorProto_ReservedRange {
+  $core.int get start;
+
+  $core.int get end;
+}
+
+class DescriptorProto_ReservedRange extends $pb.GeneratedMessage
+    implements IDescriptorProto_ReservedRange {
   factory DescriptorProto_ReservedRange({
     $core.int? start,
     $core.int? end,
@@ -446,6 +521,7 @@ class DescriptorProto_ReservedRange extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<DescriptorProto_ReservedRange>(create);
   static DescriptorProto_ReservedRange? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.int get start => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -458,6 +534,7 @@ class DescriptorProto_ReservedRange extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearStart() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.int get end => $_getIZ(1);
   @$pb.TagNumber(2)
@@ -472,7 +549,31 @@ class DescriptorProto_ReservedRange extends $pb.GeneratedMessage {
 }
 
 /// Describes a message type.
-class DescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IDescriptorProto {
+  $core.String get name;
+
+  $core.List<IFieldDescriptorProto> get field;
+
+  $core.List<IDescriptorProto> get nestedType;
+
+  $core.List<IEnumDescriptorProto> get enumType;
+
+  $core.List<IDescriptorProto_ExtensionRange> get extensionRange;
+
+  $core.List<IFieldDescriptorProto> get extension;
+
+  IMessageOptions get options;
+
+  $core.List<IOneofDescriptorProto> get oneofDecl;
+
+  $core.List<IDescriptorProto_ReservedRange> get reservedRange;
+
+  /// Reserved field names, which may not be used by fields in the same message.
+  /// A given name may only be reserved once.
+  $core.List<$core.String> get reservedName;
+}
+
+class DescriptorProto extends $pb.GeneratedMessage implements IDescriptorProto {
   factory DescriptorProto({
     $core.String? name,
     $core.Iterable<FieldDescriptorProto>? field,
@@ -580,6 +681,7 @@ class DescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<DescriptorProto>(create);
   static DescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -592,21 +694,27 @@ class DescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.List<FieldDescriptorProto> get field => $_getList(1);
 
+  @$core.override
   @$pb.TagNumber(3)
   $core.List<DescriptorProto> get nestedType => $_getList(2);
 
+  @$core.override
   @$pb.TagNumber(4)
   $core.List<EnumDescriptorProto> get enumType => $_getList(3);
 
+  @$core.override
   @$pb.TagNumber(5)
   $core.List<DescriptorProto_ExtensionRange> get extensionRange => $_getList(4);
 
+  @$core.override
   @$pb.TagNumber(6)
   $core.List<FieldDescriptorProto> get extension => $_getList(5);
 
+  @$core.override
   @$pb.TagNumber(7)
   MessageOptions get options => $_getN(6);
   @$pb.TagNumber(7)
@@ -621,19 +729,28 @@ class DescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   MessageOptions ensureOptions() => $_ensure(6);
 
+  @$core.override
   @$pb.TagNumber(8)
   $core.List<OneofDescriptorProto> get oneofDecl => $_getList(7);
 
+  @$core.override
   @$pb.TagNumber(9)
   $core.List<DescriptorProto_ReservedRange> get reservedRange => $_getList(8);
 
   /// Reserved field names, which may not be used by fields in the same message.
   /// A given name may only be reserved once.
+  @$core.override
   @$pb.TagNumber(10)
   $core.List<$core.String> get reservedName => $_getList(9);
 }
 
-class ExtensionRangeOptions extends $pb.GeneratedMessage {
+abstract interface class IExtensionRangeOptions {
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class ExtensionRangeOptions extends $pb.GeneratedMessage
+    implements IExtensionRangeOptions {
   factory ExtensionRangeOptions({
     $core.Iterable<UninterpretedOption>? uninterpretedOption,
   }) {
@@ -687,12 +804,79 @@ class ExtensionRangeOptions extends $pb.GeneratedMessage {
   static ExtensionRangeOptions? _defaultInstance;
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(0);
 }
 
 /// Describes a field within a message.
-class FieldDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IFieldDescriptorProto {
+  $core.String get name;
+
+  /// For extensions, this is the name of the type being extended.  It is
+  /// resolved in the same manner as type_name.
+  $core.String get extendee;
+
+  $core.int get number;
+
+  FieldDescriptorProto_Label get label;
+
+  /// If type_name is set, this need not be set.  If both this and type_name
+  /// are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP.
+  FieldDescriptorProto_Type get type;
+
+  /// For message and enum types, this is the name of the type.  If the name
+  /// starts with a '.', it is fully-qualified.  Otherwise, C++-like scoping
+  /// rules are used to find the type (i.e. first the nested types within this
+  /// message are searched, then within the parent, on up to the root
+  /// namespace).
+  $core.String get typeName;
+
+  /// For numeric types, contains the original text representation of the value.
+  /// For booleans, "true" or "false".
+  /// For strings, contains the default text contents (not escaped in any way).
+  /// For bytes, contains the C escaped value.  All bytes >= 128 are escaped.
+  /// TODO(kenton):  Base-64 encode?
+  $core.String get defaultValue;
+
+  IFieldOptions get options;
+
+  /// If set, gives the index of a oneof in the containing type's oneof_decl
+  /// list.  This field is a member of that oneof.
+  $core.int get oneofIndex;
+
+  /// JSON name of this field. The value is set by protocol compiler. If the
+  /// user has set a "json_name" option on this field, that option's value
+  /// will be used. Otherwise, it's deduced from the field's name by converting
+  /// it to camelCase.
+  $core.String get jsonName;
+
+  ///  If true, this is a proto3 "optional". When a proto3 field is optional, it
+  ///  tracks presence regardless of field type.
+  ///
+  ///  When proto3_optional is true, this field must be belong to a oneof to
+  ///  signal to old proto3 clients that presence is tracked for this field. This
+  ///  oneof is known as a "synthetic" oneof, and this field must be its sole
+  ///  member (each proto3 optional field gets its own synthetic oneof). Synthetic
+  ///  oneofs exist in the descriptor only, and do not generate any API. Synthetic
+  ///  oneofs must be ordered after all "real" oneofs.
+  ///
+  ///  For message fields, proto3_optional doesn't create any semantic change,
+  ///  since non-repeated message fields always track presence. However it still
+  ///  indicates the semantic detail of whether the user wrote "optional" or not.
+  ///  This can be useful for round-tripping the .proto file. For consistency we
+  ///  give message fields a synthetic oneof also, even though it is not required
+  ///  to track presence. This is especially important because the parser can't
+  ///  tell if a field is a message or an enum, so it must always create a
+  ///  synthetic oneof.
+  ///
+  ///  Proto2 optional fields do not set this flag, because they already indicate
+  ///  optional with `LABEL_OPTIONAL`.
+  $core.bool get proto3Optional;
+}
+
+class FieldDescriptorProto extends $pb.GeneratedMessage
+    implements IFieldDescriptorProto {
   factory FieldDescriptorProto({
     $core.String? name,
     $core.String? extendee,
@@ -800,6 +984,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<FieldDescriptorProto>(create);
   static FieldDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -814,6 +999,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
 
   /// For extensions, this is the name of the type being extended.  It is
   /// resolved in the same manner as type_name.
+  @$core.override
   @$pb.TagNumber(2)
   $core.String get extendee => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -826,6 +1012,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearExtendee() => clearField(2);
 
+  @$core.override
   @$pb.TagNumber(3)
   $core.int get number => $_getIZ(2);
   @$pb.TagNumber(3)
@@ -838,6 +1025,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearNumber() => clearField(3);
 
+  @$core.override
   @$pb.TagNumber(4)
   FieldDescriptorProto_Label get label => $_getN(3);
   @$pb.TagNumber(4)
@@ -852,6 +1040,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
 
   /// If type_name is set, this need not be set.  If both this and type_name
   /// are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP.
+  @$core.override
   @$pb.TagNumber(5)
   FieldDescriptorProto_Type get type => $_getN(4);
   @$pb.TagNumber(5)
@@ -869,6 +1058,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   /// rules are used to find the type (i.e. first the nested types within this
   /// message are searched, then within the parent, on up to the root
   /// namespace).
+  @$core.override
   @$pb.TagNumber(6)
   $core.String get typeName => $_getSZ(5);
   @$pb.TagNumber(6)
@@ -886,6 +1076,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   /// For strings, contains the default text contents (not escaped in any way).
   /// For bytes, contains the C escaped value.  All bytes >= 128 are escaped.
   /// TODO(kenton):  Base-64 encode?
+  @$core.override
   @$pb.TagNumber(7)
   $core.String get defaultValue => $_getSZ(6);
   @$pb.TagNumber(7)
@@ -898,6 +1089,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   void clearDefaultValue() => clearField(7);
 
+  @$core.override
   @$pb.TagNumber(8)
   FieldOptions get options => $_getN(7);
   @$pb.TagNumber(8)
@@ -914,6 +1106,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
 
   /// If set, gives the index of a oneof in the containing type's oneof_decl
   /// list.  This field is a member of that oneof.
+  @$core.override
   @$pb.TagNumber(9)
   $core.int get oneofIndex => $_getIZ(8);
   @$pb.TagNumber(9)
@@ -930,6 +1123,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   /// user has set a "json_name" option on this field, that option's value
   /// will be used. Otherwise, it's deduced from the field's name by converting
   /// it to camelCase.
+  @$core.override
   @$pb.TagNumber(10)
   $core.String get jsonName => $_getSZ(9);
   @$pb.TagNumber(10)
@@ -963,6 +1157,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   ///
   ///  Proto2 optional fields do not set this flag, because they already indicate
   ///  optional with `LABEL_OPTIONAL`.
+  @$core.override
   @$pb.TagNumber(17)
   $core.bool get proto3Optional => $_getBF(10);
   @$pb.TagNumber(17)
@@ -977,7 +1172,14 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
 }
 
 /// Describes a oneof.
-class OneofDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IOneofDescriptorProto {
+  $core.String get name;
+
+  IOneofOptions get options;
+}
+
+class OneofDescriptorProto extends $pb.GeneratedMessage
+    implements IOneofDescriptorProto {
   factory OneofDescriptorProto({
     $core.String? name,
     OneofOptions? options,
@@ -1032,6 +1234,7 @@ class OneofDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<OneofDescriptorProto>(create);
   static OneofDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1044,6 +1247,7 @@ class OneofDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   OneofOptions get options => $_getN(1);
   @$pb.TagNumber(2)
@@ -1065,7 +1269,14 @@ class OneofDescriptorProto extends $pb.GeneratedMessage {
 ///  Note that this is distinct from DescriptorProto.ReservedRange in that it
 ///  is inclusive such that it can appropriately represent the entire int32
 ///  domain.
-class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage {
+abstract interface class IEnumDescriptorProto_EnumReservedRange {
+  $core.int get start;
+
+  $core.int get end;
+}
+
+class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage
+    implements IEnumDescriptorProto_EnumReservedRange {
   factory EnumDescriptorProto_EnumReservedRange({
     $core.int? start,
     $core.int? end,
@@ -1125,6 +1336,7 @@ class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage {
           EnumDescriptorProto_EnumReservedRange>(create);
   static EnumDescriptorProto_EnumReservedRange? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.int get start => $_getIZ(0);
   @$pb.TagNumber(1)
@@ -1137,6 +1349,7 @@ class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearStart() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.int get end => $_getIZ(1);
   @$pb.TagNumber(2)
@@ -1151,7 +1364,25 @@ class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage {
 }
 
 /// Describes an enum type.
-class EnumDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IEnumDescriptorProto {
+  $core.String get name;
+
+  $core.List<IEnumValueDescriptorProto> get value;
+
+  IEnumOptions get options;
+
+  /// Range of reserved numeric values. Reserved numeric values may not be used
+  /// by enum values in the same enum declaration. Reserved ranges may not
+  /// overlap.
+  $core.List<IEnumDescriptorProto_EnumReservedRange> get reservedRange;
+
+  /// Reserved enum value names, which may not be reused. A given name may only
+  /// be reserved once.
+  $core.List<$core.String> get reservedName;
+}
+
+class EnumDescriptorProto extends $pb.GeneratedMessage
+    implements IEnumDescriptorProto {
   factory EnumDescriptorProto({
     $core.String? name,
     $core.Iterable<EnumValueDescriptorProto>? value,
@@ -1224,6 +1455,7 @@ class EnumDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<EnumDescriptorProto>(create);
   static EnumDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1236,9 +1468,11 @@ class EnumDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.List<EnumValueDescriptorProto> get value => $_getList(1);
 
+  @$core.override
   @$pb.TagNumber(3)
   EnumOptions get options => $_getN(2);
   @$pb.TagNumber(3)
@@ -1256,18 +1490,29 @@ class EnumDescriptorProto extends $pb.GeneratedMessage {
   /// Range of reserved numeric values. Reserved numeric values may not be used
   /// by enum values in the same enum declaration. Reserved ranges may not
   /// overlap.
+  @$core.override
   @$pb.TagNumber(4)
   $core.List<EnumDescriptorProto_EnumReservedRange> get reservedRange =>
       $_getList(3);
 
   /// Reserved enum value names, which may not be reused. A given name may only
   /// be reserved once.
+  @$core.override
   @$pb.TagNumber(5)
   $core.List<$core.String> get reservedName => $_getList(4);
 }
 
 /// Describes a value within an enum.
-class EnumValueDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IEnumValueDescriptorProto {
+  $core.String get name;
+
+  $core.int get number;
+
+  IEnumValueOptions get options;
+}
+
+class EnumValueDescriptorProto extends $pb.GeneratedMessage
+    implements IEnumValueDescriptorProto {
   factory EnumValueDescriptorProto({
     $core.String? name,
     $core.int? number,
@@ -1328,6 +1573,7 @@ class EnumValueDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<EnumValueDescriptorProto>(create);
   static EnumValueDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1340,6 +1586,7 @@ class EnumValueDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.int get number => $_getIZ(1);
   @$pb.TagNumber(2)
@@ -1352,6 +1599,7 @@ class EnumValueDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearNumber() => clearField(2);
 
+  @$core.override
   @$pb.TagNumber(3)
   EnumValueOptions get options => $_getN(2);
   @$pb.TagNumber(3)
@@ -1368,7 +1616,16 @@ class EnumValueDescriptorProto extends $pb.GeneratedMessage {
 }
 
 /// Describes a service.
-class ServiceDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IServiceDescriptorProto {
+  $core.String get name;
+
+  $core.List<IMethodDescriptorProto> get method;
+
+  IServiceOptions get options;
+}
+
+class ServiceDescriptorProto extends $pb.GeneratedMessage
+    implements IServiceDescriptorProto {
   factory ServiceDescriptorProto({
     $core.String? name,
     $core.Iterable<MethodDescriptorProto>? method,
@@ -1431,6 +1688,7 @@ class ServiceDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<ServiceDescriptorProto>(create);
   static ServiceDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1443,9 +1701,11 @@ class ServiceDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.List<MethodDescriptorProto> get method => $_getList(1);
 
+  @$core.override
   @$pb.TagNumber(3)
   ServiceOptions get options => $_getN(2);
   @$pb.TagNumber(3)
@@ -1462,7 +1722,26 @@ class ServiceDescriptorProto extends $pb.GeneratedMessage {
 }
 
 /// Describes a method of a service.
-class MethodDescriptorProto extends $pb.GeneratedMessage {
+abstract interface class IMethodDescriptorProto {
+  $core.String get name;
+
+  /// Input and output type names.  These are resolved in the same way as
+  /// FieldDescriptorProto.type_name, but must refer to a message type.
+  $core.String get inputType;
+
+  $core.String get outputType;
+
+  IMethodOptions get options;
+
+  /// Identifies if client streams multiple client messages
+  $core.bool get clientStreaming;
+
+  /// Identifies if server streams multiple server messages
+  $core.bool get serverStreaming;
+}
+
+class MethodDescriptorProto extends $pb.GeneratedMessage
+    implements IMethodDescriptorProto {
   factory MethodDescriptorProto({
     $core.String? name,
     $core.String? inputType,
@@ -1538,6 +1817,7 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<MethodDescriptorProto>(create);
   static MethodDescriptorProto? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1552,6 +1832,7 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
 
   /// Input and output type names.  These are resolved in the same way as
   /// FieldDescriptorProto.type_name, but must refer to a message type.
+  @$core.override
   @$pb.TagNumber(2)
   $core.String get inputType => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -1564,6 +1845,7 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearInputType() => clearField(2);
 
+  @$core.override
   @$pb.TagNumber(3)
   $core.String get outputType => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -1576,6 +1858,7 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearOutputType() => clearField(3);
 
+  @$core.override
   @$pb.TagNumber(4)
   MethodOptions get options => $_getN(3);
   @$pb.TagNumber(4)
@@ -1591,6 +1874,7 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
   MethodOptions ensureOptions() => $_ensure(3);
 
   /// Identifies if client streams multiple client messages
+  @$core.override
   @$pb.TagNumber(5)
   $core.bool get clientStreaming => $_getBF(4);
   @$pb.TagNumber(5)
@@ -1604,6 +1888,7 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
   void clearClientStreaming() => clearField(5);
 
   /// Identifies if server streams multiple server messages
+  @$core.override
   @$pb.TagNumber(6)
   $core.bool get serverStreaming => $_getBF(5);
   @$pb.TagNumber(6)
@@ -1617,7 +1902,115 @@ class MethodDescriptorProto extends $pb.GeneratedMessage {
   void clearServerStreaming() => clearField(6);
 }
 
-class FileOptions extends $pb.GeneratedMessage {
+abstract interface class IFileOptions {
+  /// Sets the Java package where classes generated from this .proto will be
+  /// placed.  By default, the proto package is used, but this is often
+  /// inappropriate because proto packages do not normally start with backwards
+  /// domain names.
+  $core.String get javaPackage;
+
+  /// If set, all the classes from the .proto file are wrapped in a single
+  /// outer class with the given name.  This applies to both Proto1
+  /// (equivalent to the old "--one_java_file" option) and Proto2 (where
+  /// a .proto always translates to a single class, but you may want to
+  /// explicitly choose the class name).
+  $core.String get javaOuterClassname;
+
+  FileOptions_OptimizeMode get optimizeFor;
+
+  /// If set true, then the Java code generator will generate a separate .java
+  /// file for each top-level message, enum, and service defined in the .proto
+  /// file.  Thus, these types will *not* be nested inside the outer class
+  /// named by java_outer_classname.  However, the outer class will still be
+  /// generated to contain the file's getDescriptor() method as well as any
+  /// top-level extensions defined in the file.
+  $core.bool get javaMultipleFiles;
+
+  /// Sets the Go package where structs generated from this .proto will be
+  /// placed. If omitted, the Go package will be derived from the following:
+  ///   - The basename of the package import path, if provided.
+  ///   - Otherwise, the package statement in the .proto file, if present.
+  ///   - Otherwise, the basename of the .proto file, without extension.
+  $core.String get goPackage;
+
+  ///  Should generic services be generated in each language?  "Generic" services
+  ///  are not specific to any particular RPC system.  They are generated by the
+  ///  main code generators in each language (without additional plugins).
+  ///  Generic services were the only kind of service generation supported by
+  ///  early versions of google.protobuf.
+  ///
+  ///  Generic services are now considered deprecated in favor of using plugins
+  ///  that generate code specific to your particular RPC system.  Therefore,
+  ///  these default to false.  Old code which depends on generic services should
+  ///  explicitly set them to true.
+  $core.bool get ccGenericServices;
+
+  $core.bool get javaGenericServices;
+
+  $core.bool get pyGenericServices;
+
+  /// This option does nothing.
+  @$core.Deprecated('This field is deprecated.')
+  $core.bool get javaGenerateEqualsAndHash;
+
+  /// Is this file deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for everything in the file, or it will be completely ignored; in the very
+  /// least, this is a formalization for deprecating files.
+  $core.bool get deprecated;
+
+  /// If set true, then the Java2 code generator will generate code that
+  /// throws an exception whenever an attempt is made to assign a non-UTF-8
+  /// byte sequence to a string field.
+  /// Message reflection will do the same.
+  /// However, an extension field still accepts non-UTF-8 byte sequences.
+  /// This option has no effect on when used with the lite runtime.
+  $core.bool get javaStringCheckUtf8;
+
+  /// Enables the use of arenas for the proto messages in this file. This applies
+  /// only to generated classes for C++.
+  $core.bool get ccEnableArenas;
+
+  /// Sets the objective c class prefix which is prepended to all objective c
+  /// generated classes from this .proto. There is no default.
+  $core.String get objcClassPrefix;
+
+  /// Namespace for generated classes; defaults to the package.
+  $core.String get csharpNamespace;
+
+  /// By default Swift generators will take the proto package and CamelCase it
+  /// replacing '.' with underscore and use that to prefix the types/symbols
+  /// defined. When this options is provided, they will use this value instead
+  /// to prefix the types/symbols defined.
+  $core.String get swiftPrefix;
+
+  /// Sets the php class prefix which is prepended to all php generated classes
+  /// from this .proto. Default is empty.
+  $core.String get phpClassPrefix;
+
+  /// Use this option to change the namespace of php generated classes. Default
+  /// is empty. When this option is empty, the package name will be used for
+  /// determining the namespace.
+  $core.String get phpNamespace;
+
+  $core.bool get phpGenericServices;
+
+  /// Use this option to change the namespace of php generated metadata classes.
+  /// Default is empty. When this option is empty, the proto file name will be
+  /// used for determining the namespace.
+  $core.String get phpMetadataNamespace;
+
+  /// Use this option to change the package of ruby generated classes. Default
+  /// is empty. When this option is not set, the package name will be used for
+  /// determining the ruby package.
+  $core.String get rubyPackage;
+
+  /// The parser stores options it doesn't recognize here.
+  /// See the documentation for the "Options" section above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class FileOptions extends $pb.GeneratedMessage implements IFileOptions {
   factory FileOptions({
     $core.String? javaPackage,
     $core.String? javaOuterClassname,
@@ -1779,6 +2172,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// placed.  By default, the proto package is used, but this is often
   /// inappropriate because proto packages do not normally start with backwards
   /// domain names.
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get javaPackage => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -1796,6 +2190,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// (equivalent to the old "--one_java_file" option) and Proto2 (where
   /// a .proto always translates to a single class, but you may want to
   /// explicitly choose the class name).
+  @$core.override
   @$pb.TagNumber(8)
   $core.String get javaOuterClassname => $_getSZ(1);
   @$pb.TagNumber(8)
@@ -1808,6 +2203,7 @@ class FileOptions extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   void clearJavaOuterClassname() => clearField(8);
 
+  @$core.override
   @$pb.TagNumber(9)
   FileOptions_OptimizeMode get optimizeFor => $_getN(2);
   @$pb.TagNumber(9)
@@ -1826,6 +2222,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// named by java_outer_classname.  However, the outer class will still be
   /// generated to contain the file's getDescriptor() method as well as any
   /// top-level extensions defined in the file.
+  @$core.override
   @$pb.TagNumber(10)
   $core.bool get javaMultipleFiles => $_getBF(3);
   @$pb.TagNumber(10)
@@ -1843,6 +2240,7 @@ class FileOptions extends $pb.GeneratedMessage {
   ///   - The basename of the package import path, if provided.
   ///   - Otherwise, the package statement in the .proto file, if present.
   ///   - Otherwise, the basename of the .proto file, without extension.
+  @$core.override
   @$pb.TagNumber(11)
   $core.String get goPackage => $_getSZ(4);
   @$pb.TagNumber(11)
@@ -1865,6 +2263,7 @@ class FileOptions extends $pb.GeneratedMessage {
   ///  that generate code specific to your particular RPC system.  Therefore,
   ///  these default to false.  Old code which depends on generic services should
   ///  explicitly set them to true.
+  @$core.override
   @$pb.TagNumber(16)
   $core.bool get ccGenericServices => $_getBF(5);
   @$pb.TagNumber(16)
@@ -1877,6 +2276,7 @@ class FileOptions extends $pb.GeneratedMessage {
   @$pb.TagNumber(16)
   void clearCcGenericServices() => clearField(16);
 
+  @$core.override
   @$pb.TagNumber(17)
   $core.bool get javaGenericServices => $_getBF(6);
   @$pb.TagNumber(17)
@@ -1889,6 +2289,7 @@ class FileOptions extends $pb.GeneratedMessage {
   @$pb.TagNumber(17)
   void clearJavaGenericServices() => clearField(17);
 
+  @$core.override
   @$pb.TagNumber(18)
   $core.bool get pyGenericServices => $_getBF(7);
   @$pb.TagNumber(18)
@@ -1903,6 +2304,7 @@ class FileOptions extends $pb.GeneratedMessage {
 
   /// This option does nothing.
   @$core.Deprecated('This field is deprecated.')
+  @$core.override
   @$pb.TagNumber(20)
   $core.bool get javaGenerateEqualsAndHash => $_getBF(8);
   @$core.Deprecated('This field is deprecated.')
@@ -1922,6 +2324,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for everything in the file, or it will be completely ignored; in the very
   /// least, this is a formalization for deprecating files.
+  @$core.override
   @$pb.TagNumber(23)
   $core.bool get deprecated => $_getBF(9);
   @$pb.TagNumber(23)
@@ -1940,6 +2343,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// Message reflection will do the same.
   /// However, an extension field still accepts non-UTF-8 byte sequences.
   /// This option has no effect on when used with the lite runtime.
+  @$core.override
   @$pb.TagNumber(27)
   $core.bool get javaStringCheckUtf8 => $_getBF(10);
   @$pb.TagNumber(27)
@@ -1954,6 +2358,7 @@ class FileOptions extends $pb.GeneratedMessage {
 
   /// Enables the use of arenas for the proto messages in this file. This applies
   /// only to generated classes for C++.
+  @$core.override
   @$pb.TagNumber(31)
   $core.bool get ccEnableArenas => $_getB(11, true);
   @$pb.TagNumber(31)
@@ -1968,6 +2373,7 @@ class FileOptions extends $pb.GeneratedMessage {
 
   /// Sets the objective c class prefix which is prepended to all objective c
   /// generated classes from this .proto. There is no default.
+  @$core.override
   @$pb.TagNumber(36)
   $core.String get objcClassPrefix => $_getSZ(12);
   @$pb.TagNumber(36)
@@ -1981,6 +2387,7 @@ class FileOptions extends $pb.GeneratedMessage {
   void clearObjcClassPrefix() => clearField(36);
 
   /// Namespace for generated classes; defaults to the package.
+  @$core.override
   @$pb.TagNumber(37)
   $core.String get csharpNamespace => $_getSZ(13);
   @$pb.TagNumber(37)
@@ -1997,6 +2404,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// replacing '.' with underscore and use that to prefix the types/symbols
   /// defined. When this options is provided, they will use this value instead
   /// to prefix the types/symbols defined.
+  @$core.override
   @$pb.TagNumber(39)
   $core.String get swiftPrefix => $_getSZ(14);
   @$pb.TagNumber(39)
@@ -2011,6 +2419,7 @@ class FileOptions extends $pb.GeneratedMessage {
 
   /// Sets the php class prefix which is prepended to all php generated classes
   /// from this .proto. Default is empty.
+  @$core.override
   @$pb.TagNumber(40)
   $core.String get phpClassPrefix => $_getSZ(15);
   @$pb.TagNumber(40)
@@ -2026,6 +2435,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// Use this option to change the namespace of php generated classes. Default
   /// is empty. When this option is empty, the package name will be used for
   /// determining the namespace.
+  @$core.override
   @$pb.TagNumber(41)
   $core.String get phpNamespace => $_getSZ(16);
   @$pb.TagNumber(41)
@@ -2038,6 +2448,7 @@ class FileOptions extends $pb.GeneratedMessage {
   @$pb.TagNumber(41)
   void clearPhpNamespace() => clearField(41);
 
+  @$core.override
   @$pb.TagNumber(42)
   $core.bool get phpGenericServices => $_getBF(17);
   @$pb.TagNumber(42)
@@ -2053,6 +2464,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// Use this option to change the namespace of php generated metadata classes.
   /// Default is empty. When this option is empty, the proto file name will be
   /// used for determining the namespace.
+  @$core.override
   @$pb.TagNumber(44)
   $core.String get phpMetadataNamespace => $_getSZ(18);
   @$pb.TagNumber(44)
@@ -2068,6 +2480,7 @@ class FileOptions extends $pb.GeneratedMessage {
   /// Use this option to change the package of ruby generated classes. Default
   /// is empty. When this option is not set, the package name will be used for
   /// determining the ruby package.
+  @$core.override
   @$pb.TagNumber(45)
   $core.String get rubyPackage => $_getSZ(19);
   @$pb.TagNumber(45)
@@ -2082,11 +2495,71 @@ class FileOptions extends $pb.GeneratedMessage {
 
   /// The parser stores options it doesn't recognize here.
   /// See the documentation for the "Options" section above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(20);
 }
 
-class MessageOptions extends $pb.GeneratedMessage {
+abstract interface class IMessageOptions {
+  ///  Set true to use the old proto1 MessageSet wire format for extensions.
+  ///  This is provided for backwards-compatibility with the MessageSet wire
+  ///  format.  You should not use this for any other reason:  It's less
+  ///  efficient, has fewer features, and is more complicated.
+  ///
+  ///  The message must be defined exactly as follows:
+  ///    message Foo {
+  ///      option message_set_wire_format = true;
+  ///      extensions 4 to max;
+  ///    }
+  ///  Note that the message cannot have any defined fields; MessageSets only
+  ///  have extensions.
+  ///
+  ///  All extensions of your type must be singular messages; e.g. they cannot
+  ///  be int32s, enums, or repeated messages.
+  ///
+  ///  Because this is an option, the above two restrictions are not enforced by
+  ///  the protocol compiler.
+  $core.bool get messageSetWireFormat;
+
+  /// Disables the generation of the standard "descriptor()" accessor, which can
+  /// conflict with a field of the same name.  This is meant to make migration
+  /// from proto1 easier; new code should avoid fields named "descriptor".
+  $core.bool get noStandardDescriptorAccessor;
+
+  /// Is this message deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for the message, or it will be completely ignored; in the very least,
+  /// this is a formalization for deprecating messages.
+  $core.bool get deprecated;
+
+  ///  Whether the message is an automatically generated map entry type for the
+  ///  maps field.
+  ///
+  ///  For maps fields:
+  ///      map<KeyType, ValueType> map_field = 1;
+  ///  The parsed descriptor looks like:
+  ///      message MapFieldEntry {
+  ///          option map_entry = true;
+  ///          optional KeyType key = 1;
+  ///          optional ValueType value = 2;
+  ///      }
+  ///      repeated MapFieldEntry map_field = 1;
+  ///
+  ///  Implementations may choose not to generate the map_entry=true message, but
+  ///  use a native map in the target language to hold the keys and values.
+  ///  The reflection APIs in such implementations still need to work as
+  ///  if the field is a repeated message field.
+  ///
+  ///  NOTE: Do not set the option in .proto files. Always use the maps syntax
+  ///  instead. The option should only be implicitly set by the proto compiler
+  ///  parser.
+  $core.bool get mapEntry;
+
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class MessageOptions extends $pb.GeneratedMessage implements IMessageOptions {
   factory MessageOptions({
     $core.bool? messageSetWireFormat,
     $core.bool? noStandardDescriptorAccessor,
@@ -2175,6 +2648,7 @@ class MessageOptions extends $pb.GeneratedMessage {
   ///
   ///  Because this is an option, the above two restrictions are not enforced by
   ///  the protocol compiler.
+  @$core.override
   @$pb.TagNumber(1)
   $core.bool get messageSetWireFormat => $_getBF(0);
   @$pb.TagNumber(1)
@@ -2190,6 +2664,7 @@ class MessageOptions extends $pb.GeneratedMessage {
   /// Disables the generation of the standard "descriptor()" accessor, which can
   /// conflict with a field of the same name.  This is meant to make migration
   /// from proto1 easier; new code should avoid fields named "descriptor".
+  @$core.override
   @$pb.TagNumber(2)
   $core.bool get noStandardDescriptorAccessor => $_getBF(1);
   @$pb.TagNumber(2)
@@ -2206,6 +2681,7 @@ class MessageOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for the message, or it will be completely ignored; in the very least,
   /// this is a formalization for deprecating messages.
+  @$core.override
   @$pb.TagNumber(3)
   $core.bool get deprecated => $_getBF(2);
   @$pb.TagNumber(3)
@@ -2239,6 +2715,7 @@ class MessageOptions extends $pb.GeneratedMessage {
   ///  NOTE: Do not set the option in .proto files. Always use the maps syntax
   ///  instead. The option should only be implicitly set by the proto compiler
   ///  parser.
+  @$core.override
   @$pb.TagNumber(7)
   $core.bool get mapEntry => $_getBF(3);
   @$pb.TagNumber(7)
@@ -2252,11 +2729,82 @@ class MessageOptions extends $pb.GeneratedMessage {
   void clearMapEntry() => clearField(7);
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(4);
 }
 
-class FieldOptions extends $pb.GeneratedMessage {
+abstract interface class IFieldOptions {
+  /// The ctype option instructs the C++ code generator to use a different
+  /// representation of the field than it normally would.  See the specific
+  /// options below.  This option is not yet implemented in the open source
+  /// release -- sorry, we'll try to include it in a future version!
+  FieldOptions_CType get ctype;
+
+  /// The packed option can be enabled for repeated primitive fields to enable
+  /// a more efficient representation on the wire. Rather than repeatedly
+  /// writing the tag and type for each element, the entire array is encoded as
+  /// a single length-delimited blob. In proto3, only explicit setting it to
+  /// false will avoid using packed encoding.
+  $core.bool get packed;
+
+  /// Is this field deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for accessors, or it will be completely ignored; in the very least, this
+  /// is a formalization for deprecating fields.
+  $core.bool get deprecated;
+
+  ///  Should this field be parsed lazily?  Lazy applies only to message-type
+  ///  fields.  It means that when the outer message is initially parsed, the
+  ///  inner message's contents will not be parsed but instead stored in encoded
+  ///  form.  The inner message will actually be parsed when it is first accessed.
+  ///
+  ///  This is only a hint.  Implementations are free to choose whether to use
+  ///  eager or lazy parsing regardless of the value of this option.  However,
+  ///  setting this option true suggests that the protocol author believes that
+  ///  using lazy parsing on this field is worth the additional bookkeeping
+  ///  overhead typically needed to implement it.
+  ///
+  ///  This option does not affect the public interface of any generated code;
+  ///  all method signatures remain the same.  Furthermore, thread-safety of the
+  ///  interface is not affected by this option; const methods remain safe to
+  ///  call from multiple threads concurrently, while non-const methods continue
+  ///  to require exclusive access.
+  ///
+  ///
+  ///  Note that implementations may choose not to check required fields within
+  ///  a lazy sub-message.  That is, calling IsInitialized() on the outer message
+  ///  may return true even if the inner message has missing required fields.
+  ///  This is necessary because otherwise the inner message would have to be
+  ///  parsed in order to perform the check, defeating the purpose of lazy
+  ///  parsing.  An implementation which chooses not to check required fields
+  ///  must be consistent about it.  That is, for any particular sub-message, the
+  ///  implementation must either *always* check its required fields, or *never*
+  ///  check its required fields, regardless of whether or not the message has
+  ///  been parsed.
+  $core.bool get lazy;
+
+  ///  The jstype option determines the JavaScript type used for values of the
+  ///  field.  The option is permitted only for 64 bit integral and fixed types
+  ///  (int64, uint64, sint64, fixed64, sfixed64).  A field with jstype JS_STRING
+  ///  is represented as JavaScript string, which avoids loss of precision that
+  ///  can happen when a large value is converted to a floating point JavaScript.
+  ///  Specifying JS_NUMBER for the jstype causes the generated JavaScript code to
+  ///  use the JavaScript "number" type.  The behavior of the default option
+  ///  JS_NORMAL is implementation dependent.
+  ///
+  ///  This option is an enum to permit additional types to be added, e.g.
+  ///  goog.math.Integer.
+  FieldOptions_JSType get jstype;
+
+  /// For Google-internal migration only. Do not use.
+  $core.bool get weak;
+
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class FieldOptions extends $pb.GeneratedMessage implements IFieldOptions {
   factory FieldOptions({
     FieldOptions_CType? ctype,
     $core.bool? packed,
@@ -2349,6 +2897,7 @@ class FieldOptions extends $pb.GeneratedMessage {
   /// representation of the field than it normally would.  See the specific
   /// options below.  This option is not yet implemented in the open source
   /// release -- sorry, we'll try to include it in a future version!
+  @$core.override
   @$pb.TagNumber(1)
   FieldOptions_CType get ctype => $_getN(0);
   @$pb.TagNumber(1)
@@ -2366,6 +2915,7 @@ class FieldOptions extends $pb.GeneratedMessage {
   /// writing the tag and type for each element, the entire array is encoded as
   /// a single length-delimited blob. In proto3, only explicit setting it to
   /// false will avoid using packed encoding.
+  @$core.override
   @$pb.TagNumber(2)
   $core.bool get packed => $_getBF(1);
   @$pb.TagNumber(2)
@@ -2382,6 +2932,7 @@ class FieldOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for accessors, or it will be completely ignored; in the very least, this
   /// is a formalization for deprecating fields.
+  @$core.override
   @$pb.TagNumber(3)
   $core.bool get deprecated => $_getBF(2);
   @$pb.TagNumber(3)
@@ -2422,6 +2973,7 @@ class FieldOptions extends $pb.GeneratedMessage {
   ///  implementation must either *always* check its required fields, or *never*
   ///  check its required fields, regardless of whether or not the message has
   ///  been parsed.
+  @$core.override
   @$pb.TagNumber(5)
   $core.bool get lazy => $_getBF(3);
   @$pb.TagNumber(5)
@@ -2445,6 +2997,7 @@ class FieldOptions extends $pb.GeneratedMessage {
   ///
   ///  This option is an enum to permit additional types to be added, e.g.
   ///  goog.math.Integer.
+  @$core.override
   @$pb.TagNumber(6)
   FieldOptions_JSType get jstype => $_getN(4);
   @$pb.TagNumber(6)
@@ -2458,6 +3011,7 @@ class FieldOptions extends $pb.GeneratedMessage {
   void clearJstype() => clearField(6);
 
   /// For Google-internal migration only. Do not use.
+  @$core.override
   @$pb.TagNumber(10)
   $core.bool get weak => $_getBF(5);
   @$pb.TagNumber(10)
@@ -2471,11 +3025,17 @@ class FieldOptions extends $pb.GeneratedMessage {
   void clearWeak() => clearField(10);
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(6);
 }
 
-class OneofOptions extends $pb.GeneratedMessage {
+abstract interface class IOneofOptions {
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class OneofOptions extends $pb.GeneratedMessage implements IOneofOptions {
   factory OneofOptions({
     $core.Iterable<UninterpretedOption>? uninterpretedOption,
   }) {
@@ -2527,11 +3087,27 @@ class OneofOptions extends $pb.GeneratedMessage {
   static OneofOptions? _defaultInstance;
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(0);
 }
 
-class EnumOptions extends $pb.GeneratedMessage {
+abstract interface class IEnumOptions {
+  /// Set this option to true to allow mapping different tag names to the same
+  /// value.
+  $core.bool get allowAlias;
+
+  /// Is this enum deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for the enum, or it will be completely ignored; in the very least, this
+  /// is a formalization for deprecating enums.
+  $core.bool get deprecated;
+
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class EnumOptions extends $pb.GeneratedMessage implements IEnumOptions {
   factory EnumOptions({
     $core.bool? allowAlias,
     $core.bool? deprecated,
@@ -2593,6 +3169,7 @@ class EnumOptions extends $pb.GeneratedMessage {
 
   /// Set this option to true to allow mapping different tag names to the same
   /// value.
+  @$core.override
   @$pb.TagNumber(2)
   $core.bool get allowAlias => $_getBF(0);
   @$pb.TagNumber(2)
@@ -2609,6 +3186,7 @@ class EnumOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for the enum, or it will be completely ignored; in the very least, this
   /// is a formalization for deprecating enums.
+  @$core.override
   @$pb.TagNumber(3)
   $core.bool get deprecated => $_getBF(1);
   @$pb.TagNumber(3)
@@ -2622,11 +3200,24 @@ class EnumOptions extends $pb.GeneratedMessage {
   void clearDeprecated() => clearField(3);
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(2);
 }
 
-class EnumValueOptions extends $pb.GeneratedMessage {
+abstract interface class IEnumValueOptions {
+  /// Is this enum value deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for the enum value, or it will be completely ignored; in the very least,
+  /// this is a formalization for deprecating enum values.
+  $core.bool get deprecated;
+
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class EnumValueOptions extends $pb.GeneratedMessage
+    implements IEnumValueOptions {
   factory EnumValueOptions({
     $core.bool? deprecated,
     $core.Iterable<UninterpretedOption>? uninterpretedOption,
@@ -2686,6 +3277,7 @@ class EnumValueOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for the enum value, or it will be completely ignored; in the very least,
   /// this is a formalization for deprecating enum values.
+  @$core.override
   @$pb.TagNumber(1)
   $core.bool get deprecated => $_getBF(0);
   @$pb.TagNumber(1)
@@ -2699,11 +3291,23 @@ class EnumValueOptions extends $pb.GeneratedMessage {
   void clearDeprecated() => clearField(1);
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(1);
 }
 
-class ServiceOptions extends $pb.GeneratedMessage {
+abstract interface class IServiceOptions {
+  /// Is this service deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for the service, or it will be completely ignored; in the very least,
+  /// this is a formalization for deprecating services.
+  $core.bool get deprecated;
+
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class ServiceOptions extends $pb.GeneratedMessage implements IServiceOptions {
   factory ServiceOptions({
     $core.bool? deprecated,
     $core.Iterable<UninterpretedOption>? uninterpretedOption,
@@ -2763,6 +3367,7 @@ class ServiceOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for the service, or it will be completely ignored; in the very least,
   /// this is a formalization for deprecating services.
+  @$core.override
   @$pb.TagNumber(33)
   $core.bool get deprecated => $_getBF(0);
   @$pb.TagNumber(33)
@@ -2776,11 +3381,25 @@ class ServiceOptions extends $pb.GeneratedMessage {
   void clearDeprecated() => clearField(33);
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(1);
 }
 
-class MethodOptions extends $pb.GeneratedMessage {
+abstract interface class IMethodOptions {
+  /// Is this method deprecated?
+  /// Depending on the target platform, this can emit Deprecated annotations
+  /// for the method, or it will be completely ignored; in the very least,
+  /// this is a formalization for deprecating methods.
+  $core.bool get deprecated;
+
+  MethodOptions_IdempotencyLevel get idempotencyLevel;
+
+  /// The parser stores options it doesn't recognize here. See above.
+  $core.List<IUninterpretedOption> get uninterpretedOption;
+}
+
+class MethodOptions extends $pb.GeneratedMessage implements IMethodOptions {
   factory MethodOptions({
     $core.bool? deprecated,
     MethodOptions_IdempotencyLevel? idempotencyLevel,
@@ -2849,6 +3468,7 @@ class MethodOptions extends $pb.GeneratedMessage {
   /// Depending on the target platform, this can emit Deprecated annotations
   /// for the method, or it will be completely ignored; in the very least,
   /// this is a formalization for deprecating methods.
+  @$core.override
   @$pb.TagNumber(33)
   $core.bool get deprecated => $_getBF(0);
   @$pb.TagNumber(33)
@@ -2861,6 +3481,7 @@ class MethodOptions extends $pb.GeneratedMessage {
   @$pb.TagNumber(33)
   void clearDeprecated() => clearField(33);
 
+  @$core.override
   @$pb.TagNumber(34)
   MethodOptions_IdempotencyLevel get idempotencyLevel => $_getN(1);
   @$pb.TagNumber(34)
@@ -2874,6 +3495,7 @@ class MethodOptions extends $pb.GeneratedMessage {
   void clearIdempotencyLevel() => clearField(34);
 
   /// The parser stores options it doesn't recognize here. See above.
+  @$core.override
   @$pb.TagNumber(999)
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(2);
 }
@@ -2883,7 +3505,14 @@ class MethodOptions extends $pb.GeneratedMessage {
 /// extension (denoted with parentheses in options specs in .proto files).
 /// E.g.,{ ["foo", false], ["bar.baz", true], ["qux", false] } represents
 /// "foo.(bar.baz).qux".
-class UninterpretedOption_NamePart extends $pb.GeneratedMessage {
+abstract interface class IUninterpretedOption_NamePart {
+  $core.String get namePart;
+
+  $core.bool get isExtension;
+}
+
+class UninterpretedOption_NamePart extends $pb.GeneratedMessage
+    implements IUninterpretedOption_NamePart {
   factory UninterpretedOption_NamePart({
     $core.String? namePart,
     $core.bool? isExtension,
@@ -2941,6 +3570,7 @@ class UninterpretedOption_NamePart extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<UninterpretedOption_NamePart>(create);
   static UninterpretedOption_NamePart? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $core.String get namePart => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -2953,6 +3583,7 @@ class UninterpretedOption_NamePart extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearNamePart() => clearField(1);
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.bool get isExtension => $_getBF(1);
   @$pb.TagNumber(2)
@@ -2972,7 +3603,26 @@ class UninterpretedOption_NamePart extends $pb.GeneratedMessage {
 /// options protos in descriptor objects (e.g. returned by Descriptor::options(),
 /// or produced by Descriptor::CopyTo()) will never have UninterpretedOptions
 /// in them.
-class UninterpretedOption extends $pb.GeneratedMessage {
+abstract interface class IUninterpretedOption {
+  $core.List<IUninterpretedOption_NamePart> get name;
+
+  /// The value of the uninterpreted option, in whatever type the tokenizer
+  /// identified it as during parsing. Exactly one of these should be set.
+  $core.String get identifierValue;
+
+  $fixnum.Int64 get positiveIntValue;
+
+  $fixnum.Int64 get negativeIntValue;
+
+  $core.double get doubleValue;
+
+  $core.List<$core.int> get stringValue;
+
+  $core.String get aggregateValue;
+}
+
+class UninterpretedOption extends $pb.GeneratedMessage
+    implements IUninterpretedOption {
   factory UninterpretedOption({
     $core.Iterable<UninterpretedOption_NamePart>? name,
     $core.String? identifierValue,
@@ -3056,11 +3706,13 @@ class UninterpretedOption extends $pb.GeneratedMessage {
       $pb.GeneratedMessage.$_defaultFor<UninterpretedOption>(create);
   static UninterpretedOption? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(2)
   $core.List<UninterpretedOption_NamePart> get name => $_getList(0);
 
   /// The value of the uninterpreted option, in whatever type the tokenizer
   /// identified it as during parsing. Exactly one of these should be set.
+  @$core.override
   @$pb.TagNumber(3)
   $core.String get identifierValue => $_getSZ(1);
   @$pb.TagNumber(3)
@@ -3073,6 +3725,7 @@ class UninterpretedOption extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearIdentifierValue() => clearField(3);
 
+  @$core.override
   @$pb.TagNumber(4)
   $fixnum.Int64 get positiveIntValue => $_getI64(2);
   @$pb.TagNumber(4)
@@ -3085,6 +3738,7 @@ class UninterpretedOption extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearPositiveIntValue() => clearField(4);
 
+  @$core.override
   @$pb.TagNumber(5)
   $fixnum.Int64 get negativeIntValue => $_getI64(3);
   @$pb.TagNumber(5)
@@ -3097,6 +3751,7 @@ class UninterpretedOption extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearNegativeIntValue() => clearField(5);
 
+  @$core.override
   @$pb.TagNumber(6)
   $core.double get doubleValue => $_getN(4);
   @$pb.TagNumber(6)
@@ -3109,6 +3764,7 @@ class UninterpretedOption extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearDoubleValue() => clearField(6);
 
+  @$core.override
   @$pb.TagNumber(7)
   $core.List<$core.int> get stringValue => $_getN(5);
   @$pb.TagNumber(7)
@@ -3121,6 +3777,7 @@ class UninterpretedOption extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   void clearStringValue() => clearField(7);
 
+  @$core.override
   @$pb.TagNumber(8)
   $core.String get aggregateValue => $_getSZ(6);
   @$pb.TagNumber(8)
@@ -3134,7 +3791,95 @@ class UninterpretedOption extends $pb.GeneratedMessage {
   void clearAggregateValue() => clearField(8);
 }
 
-class SourceCodeInfo_Location extends $pb.GeneratedMessage {
+abstract interface class ISourceCodeInfo_Location {
+  ///  Identifies which part of the FileDescriptorProto was defined at this
+  ///  location.
+  ///
+  ///  Each element is a field number or an index.  They form a path from
+  ///  the root FileDescriptorProto to the place where the definition.  For
+  ///  example, this path:
+  ///    [ 4, 3, 2, 7, 1 ]
+  ///  refers to:
+  ///    file.message_type(3)  // 4, 3
+  ///        .field(7)         // 2, 7
+  ///        .name()           // 1
+  ///  This is because FileDescriptorProto.message_type has field number 4:
+  ///    repeated DescriptorProto message_type = 4;
+  ///  and DescriptorProto.field has field number 2:
+  ///    repeated FieldDescriptorProto field = 2;
+  ///  and FieldDescriptorProto.name has field number 1:
+  ///    optional string name = 1;
+  ///
+  ///  Thus, the above path gives the location of a field name.  If we removed
+  ///  the last element:
+  ///    [ 4, 3, 2, 7 ]
+  ///  this path refers to the whole field declaration (from the beginning
+  ///  of the label to the terminating semicolon).
+  $core.List<$core.int> get path;
+
+  /// Always has exactly three or four elements: start line, start column,
+  /// end line (optional, otherwise assumed same as start line), end column.
+  /// These are packed into a single field for efficiency.  Note that line
+  /// and column numbers are zero-based -- typically you will want to add
+  /// 1 to each before displaying to a user.
+  $core.List<$core.int> get span;
+
+  ///  If this SourceCodeInfo represents a complete declaration, these are any
+  ///  comments appearing before and after the declaration which appear to be
+  ///  attached to the declaration.
+  ///
+  ///  A series of line comments appearing on consecutive lines, with no other
+  ///  tokens appearing on those lines, will be treated as a single comment.
+  ///
+  ///  leading_detached_comments will keep paragraphs of comments that appear
+  ///  before (but not connected to) the current element. Each paragraph,
+  ///  separated by empty lines, will be one comment element in the repeated
+  ///  field.
+  ///
+  ///  Only the comment content is provided; comment markers (e.g. //) are
+  ///  stripped out.  For block comments, leading whitespace and an asterisk
+  ///  will be stripped from the beginning of each line other than the first.
+  ///  Newlines are included in the output.
+  ///
+  ///  Examples:
+  ///
+  ///    optional int32 foo = 1;  // Comment attached to foo.
+  ///    // Comment attached to bar.
+  ///    optional int32 bar = 2;
+  ///
+  ///    optional string baz = 3;
+  ///    // Comment attached to baz.
+  ///    // Another line attached to baz.
+  ///
+  ///    // Comment attached to qux.
+  ///    //
+  ///    // Another line attached to qux.
+  ///    optional double qux = 4;
+  ///
+  ///    // Detached comment for corge. This is not leading or trailing comments
+  ///    // to qux or corge because there are blank lines separating it from
+  ///    // both.
+  ///
+  ///    // Detached comment for corge paragraph 2.
+  ///
+  ///    optional string corge = 5;
+  ///    /* Block comment attached
+  ///     * to corge.  Leading asterisks
+  ///     * will be removed. */
+  ///    /* Block comment attached to
+  ///     * grault. */
+  ///    optional int32 grault = 6;
+  ///
+  ///    // ignored detached comments.
+  $core.String get leadingComments;
+
+  $core.String get trailingComments;
+
+  $core.List<$core.String> get leadingDetachedComments;
+}
+
+class SourceCodeInfo_Location extends $pb.GeneratedMessage
+    implements ISourceCodeInfo_Location {
   factory SourceCodeInfo_Location({
     $core.Iterable<$core.int>? path,
     $core.Iterable<$core.int>? span,
@@ -3228,6 +3973,7 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage {
   ///    [ 4, 3, 2, 7 ]
   ///  this path refers to the whole field declaration (from the beginning
   ///  of the label to the terminating semicolon).
+  @$core.override
   @$pb.TagNumber(1)
   $core.List<$core.int> get path => $_getList(0);
 
@@ -3236,6 +3982,7 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage {
   /// These are packed into a single field for efficiency.  Note that line
   /// and column numbers are zero-based -- typically you will want to add
   /// 1 to each before displaying to a user.
+  @$core.override
   @$pb.TagNumber(2)
   $core.List<$core.int> get span => $_getList(1);
 
@@ -3286,6 +4033,7 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage {
   ///    optional int32 grault = 6;
   ///
   ///    // ignored detached comments.
+  @$core.override
   @$pb.TagNumber(3)
   $core.String get leadingComments => $_getSZ(2);
   @$pb.TagNumber(3)
@@ -3298,6 +4046,7 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearLeadingComments() => clearField(3);
 
+  @$core.override
   @$pb.TagNumber(4)
   $core.String get trailingComments => $_getSZ(3);
   @$pb.TagNumber(4)
@@ -3310,13 +4059,61 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearTrailingComments() => clearField(4);
 
+  @$core.override
   @$pb.TagNumber(6)
   $core.List<$core.String> get leadingDetachedComments => $_getList(4);
 }
 
 /// Encapsulates information about the original source file from which a
 /// FileDescriptorProto was generated.
-class SourceCodeInfo extends $pb.GeneratedMessage {
+abstract interface class ISourceCodeInfo {
+  ///  A Location identifies a piece of source code in a .proto file which
+  ///  corresponds to a particular definition.  This information is intended
+  ///  to be useful to IDEs, code indexers, documentation generators, and similar
+  ///  tools.
+  ///
+  ///  For example, say we have a file like:
+  ///    message Foo {
+  ///      optional string foo = 1;
+  ///    }
+  ///  Let's look at just the field definition:
+  ///    optional string foo = 1;
+  ///    ^       ^^     ^^  ^  ^^^
+  ///    a       bc     de  f  ghi
+  ///  We have the following locations:
+  ///    span   path               represents
+  ///    [a,i)  [ 4, 0, 2, 0 ]     The whole field definition.
+  ///    [a,b)  [ 4, 0, 2, 0, 4 ]  The label (optional).
+  ///    [c,d)  [ 4, 0, 2, 0, 5 ]  The type (string).
+  ///    [e,f)  [ 4, 0, 2, 0, 1 ]  The name (foo).
+  ///    [g,h)  [ 4, 0, 2, 0, 3 ]  The number (1).
+  ///
+  ///  Notes:
+  ///  - A location may refer to a repeated field itself (i.e. not to any
+  ///    particular index within it).  This is used whenever a set of elements are
+  ///    logically enclosed in a single code segment.  For example, an entire
+  ///    extend block (possibly containing multiple extension definitions) will
+  ///    have an outer location whose path refers to the "extensions" repeated
+  ///    field without an index.
+  ///  - Multiple locations may have the same path.  This happens when a single
+  ///    logical declaration is spread out across multiple places.  The most
+  ///    obvious example is the "extend" block again -- there may be multiple
+  ///    extend blocks in the same scope, each of which will have the same path.
+  ///  - A location's span is not always a subset of its parent's span.  For
+  ///    example, the "extendee" of an extension declaration appears at the
+  ///    beginning of the "extend" block and is shared by all extensions within
+  ///    the block.
+  ///  - Just because a location's span is a subset of some other location's span
+  ///    does not mean that it is a descendant.  For example, a "group" defines
+  ///    both a type and a field in a single declaration.  Thus, the locations
+  ///    corresponding to the type and field and their components will overlap.
+  ///  - Code which tries to interpret locations should probably be designed to
+  ///    ignore those that it doesn't understand, as more types of locations could
+  ///    be recorded in the future.
+  $core.List<ISourceCodeInfo_Location> get location;
+}
+
+class SourceCodeInfo extends $pb.GeneratedMessage implements ISourceCodeInfo {
   factory SourceCodeInfo({
     $core.Iterable<SourceCodeInfo_Location>? location,
   }) {
@@ -3410,11 +4207,31 @@ class SourceCodeInfo extends $pb.GeneratedMessage {
   ///  - Code which tries to interpret locations should probably be designed to
   ///    ignore those that it doesn't understand, as more types of locations could
   ///    be recorded in the future.
+  @$core.override
   @$pb.TagNumber(1)
   $core.List<SourceCodeInfo_Location> get location => $_getList(0);
 }
 
-class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage {
+abstract interface class IGeneratedCodeInfo_Annotation {
+  /// Identifies the element in the original source .proto file. This field
+  /// is formatted the same as SourceCodeInfo.Location.path.
+  $core.List<$core.int> get path;
+
+  /// Identifies the filesystem path to the original source .proto.
+  $core.String get sourceFile;
+
+  /// Identifies the starting offset in bytes in the generated code
+  /// that relates to the identified object.
+  $core.int get begin;
+
+  /// Identifies the ending offset in bytes in the generated code that
+  /// relates to the identified offset. The end offset should be one past
+  /// the last relevant byte (so the length of the text = end - begin).
+  $core.int get end;
+}
+
+class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage
+    implements IGeneratedCodeInfo_Annotation {
   factory GeneratedCodeInfo_Annotation({
     $core.Iterable<$core.int>? path,
     $core.String? sourceFile,
@@ -3484,10 +4301,12 @@ class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage {
 
   /// Identifies the element in the original source .proto file. This field
   /// is formatted the same as SourceCodeInfo.Location.path.
+  @$core.override
   @$pb.TagNumber(1)
   $core.List<$core.int> get path => $_getList(0);
 
   /// Identifies the filesystem path to the original source .proto.
+  @$core.override
   @$pb.TagNumber(2)
   $core.String get sourceFile => $_getSZ(1);
   @$pb.TagNumber(2)
@@ -3502,6 +4321,7 @@ class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage {
 
   /// Identifies the starting offset in bytes in the generated code
   /// that relates to the identified object.
+  @$core.override
   @$pb.TagNumber(3)
   $core.int get begin => $_getIZ(2);
   @$pb.TagNumber(3)
@@ -3517,6 +4337,7 @@ class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage {
   /// Identifies the ending offset in bytes in the generated code that
   /// relates to the identified offset. The end offset should be one past
   /// the last relevant byte (so the length of the text = end - begin).
+  @$core.override
   @$pb.TagNumber(4)
   $core.int get end => $_getIZ(3);
   @$pb.TagNumber(4)
@@ -3533,7 +4354,14 @@ class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage {
 /// Describes the relationship between generated code and its original source
 /// file. A GeneratedCodeInfo message is associated with only one generated
 /// source file, but may contain references to different source .proto files.
-class GeneratedCodeInfo extends $pb.GeneratedMessage {
+abstract interface class IGeneratedCodeInfo {
+  /// An Annotation connects some span of text in generated code to an element
+  /// of its generating .proto file.
+  $core.List<IGeneratedCodeInfo_Annotation> get annotation;
+}
+
+class GeneratedCodeInfo extends $pb.GeneratedMessage
+    implements IGeneratedCodeInfo {
   factory GeneratedCodeInfo({
     $core.Iterable<GeneratedCodeInfo_Annotation>? annotation,
   }) {
@@ -3586,6 +4414,7 @@ class GeneratedCodeInfo extends $pb.GeneratedMessage {
 
   /// An Annotation connects some span of text in generated code to an element
   /// of its generating .proto file.
+  @$core.override
   @$pb.TagNumber(1)
   $core.List<GeneratedCodeInfo_Annotation> get annotation => $_getList(0);
 }

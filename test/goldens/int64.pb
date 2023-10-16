@@ -3,13 +3,19 @@
 //  source: test
 //
 
+// ignore_for_file: unnecessary_import
 
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class Int64 extends $pb.GeneratedMessage {
+abstract interface class IInt64 {
+
+  $fixnum.Int64 get value;
+}
+
+class Int64 extends $pb.GeneratedMessage implements IInt64 {
   factory Int64() => create();
   Int64._() : super();
   factory Int64.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
@@ -41,6 +47,7 @@ class Int64 extends $pb.GeneratedMessage {
   static Int64 getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Int64>(create);
   static Int64? _defaultInstance;
 
+  @$core.override
   @$pb.TagNumber(1)
   $fixnum.Int64 get value => $_getI64(0);
   @$pb.TagNumber(1)

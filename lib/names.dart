@@ -245,6 +245,28 @@ String messageOrEnumClassName(String descriptorName, Set<String> usedNames,
       avoidInitialUnderscore(descriptorName), usedNames, defaultSuffixes());
 }
 
+const String interfacePrefix = const String.fromEnvironment(
+    'protobuf.interface_prefix',
+    defaultValue: 'I');
+
+/// Chooses the name of the Dart abstract interface class to generate for a proto message or enum.
+///
+/// For a nested message or enum, [parent] should be provided
+/// with the name of the Dart class for the immediate parent.
+String messageOrEnumAbstractInterfaceName(
+    String descriptorName, Set<String> usedNames,
+    {String parent = ''}) {
+  assert(interfacePrefix.isNotEmpty, 'protobuf.interface_prefix is required!');
+  final nameRegexp = RegExp(r'^[A-Z][A-Za-z_]*$');
+  assert(nameRegexp.hasMatch(interfacePrefix),
+      'protobuf.interface_prefix should start with a capital letter and be CamelCased!');
+  if (parent != '') {
+    descriptorName = '${parent}_$descriptorName';
+  }
+  descriptorName = '$interfacePrefix${avoidInitialUnderscore(descriptorName)}';
+  return disambiguateName(descriptorName, usedNames, defaultSuffixes());
+}
+
 /// Returns the set of names reserved by the ProtobufEnum class and its
 /// generated subclasses.
 Set<String> get reservedEnumNames => <String>{}

@@ -140,6 +140,20 @@ class ProtobufField {
     // for example in package:protobuf/src/protobuf/mixins/well_known.dart.
   }
 
+  /// Returns the expression to use for the Dart abstract interface type.
+  String getInterfaceType() {
+    if (isMapField) {
+      final d = baseType.generator as MessageGenerator;
+      final keyType =
+          d._fieldList[0].baseType.getInterfaceType(parent.fileGen!);
+      final valueType =
+          d._fieldList[1].baseType.getInterfaceType(parent.fileGen!);
+      return '$coreImportPrefix.Map<$keyType, $valueType>';
+    }
+    if (isRepeated) return baseType.getRepeatedInterfaceType(parent.fileGen!);
+    return baseType.getInterfaceType(parent.fileGen!);
+  }
+
   /// Returns the expression to use for the Dart type.
   String getDartType() {
     if (isMapField) {

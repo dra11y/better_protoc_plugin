@@ -30,6 +30,10 @@ class MessageGenerator extends ProtobufContainer {
   @override
   final String fullName;
 
+  /// The name of the Dart abstract interface to generate.
+  @override
+  final String interfaceName;
+
   /// The part of the fully qualified name that comes after the package prefix.
   ///
   /// For nested messages this will include the names of the parents.
@@ -89,6 +93,9 @@ class MessageGenerator extends ProtobufContainer {
       : _descriptor = descriptor,
         _fieldPathSegment = [fieldIdTag, repeatedFieldIndex],
         classname = messageOrEnumClassName(descriptor.name, _usedTopLevelNames,
+            parent: parent?.classname ?? ''),
+        interfaceName = messageOrEnumAbstractInterfaceName(
+            descriptor.name, _usedTopLevelNames,
             parent: parent?.classname ?? ''),
         assert(parent != null),
         fullName = parent!.fullName == ''
@@ -325,7 +332,19 @@ class MessageGenerator extends ProtobufContainer {
     }
 
     out.addAnnotatedBlock(
-        '${commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause {',
+        '${commentBlock}abstract interface class $interfaceName {', '}', [
+      NamedLocation(
+          name: interfaceName,
+          fieldPathSegment: fieldPath,
+          start: 'abstract interface class '.length)
+    ], () {
+      generateInterfaceGetters(out);
+    });
+
+    out.println();
+
+    out.addAnnotatedBlock(
+        'class $classname extends $protobufImportPrefix.$extendedClass$mixinClause implements $interfaceName {',
         '}', [
       NamedLocation(
           name: classname, fieldPathSegment: fieldPath, start: 'class '.length)
@@ -510,6 +529,19 @@ class MessageGenerator extends ProtobufContainer {
     return false;
   }
 
+  void generateInterfaceGetters(IndentingWriter out) {
+    for (final oneof in _oneofNames) {
+      generateOneofAccessors(out, oneof, isInterface: true);
+    }
+
+    for (final field in _fieldList) {
+      out.println();
+      final memberFieldPath = List<int>.from(fieldPath)
+        ..addAll([_messageFieldTag, field.sourcePosition!]);
+      generateInterfaceGetter(field, out, memberFieldPath);
+    }
+  }
+
   void generateFieldsAccessorsMutators(IndentingWriter out) {
     for (final oneof in _oneofNames) {
       generateOneofAccessors(out, oneof);
@@ -523,12 +555,36 @@ class MessageGenerator extends ProtobufContainer {
     }
   }
 
-  void generateOneofAccessors(IndentingWriter out, OneofNames oneof) {
+  void generateOneofAccessors(IndentingWriter out, OneofNames oneof,
+      {bool isInterface = false}) {
     out.println();
-    out.println('${oneof.oneofEnumName} ${oneof.whichOneofMethodName}() '
-        '=> ${oneof.byTagMapName}[\$_whichOneof(${oneof.index})]!;');
-    out.println('void ${oneof.clearMethodName}() '
-        '=> clearField(\$_whichOneof(${oneof.index}));');
+    out.print('${oneof.oneofEnumName} ${oneof.whichOneofMethodName}()');
+    out.println(isInterface
+        ? ';'
+        : ' => ${oneof.byTagMapName}[\$_whichOneof(${oneof.index})]!;');
+    out.print('void ${oneof.clearMethodName}()');
+    out.println(
+        isInterface ? ';' : ' => clearField(\$_whichOneof(${oneof.index}));');
+  }
+
+  void generateInterfaceGetter(
+      ProtobufField field, IndentingWriter out, List<int> memberFieldPath) {
+    final fieldTypeString = field.getInterfaceType();
+    final names = field.memberNames;
+
+    final commentBlock = fileGen.commentBlock(memberFieldPath);
+    if (commentBlock != null) {
+      out.println(commentBlock.trim());
+    }
+
+    _emitDeprecatedIf(field.isDeprecated, out);
+
+    out.printlnAnnotated('$fieldTypeString get ${names!.fieldName};', [
+      NamedLocation(
+          name: names.fieldName,
+          fieldPathSegment: memberFieldPath,
+          start: '$fieldTypeString get '.length),
+    ]);
   }
 
   void generateFieldAccessorsMutators(
@@ -543,7 +599,8 @@ class MessageGenerator extends ProtobufContainer {
     }
 
     _emitDeprecatedIf(field.isDeprecated, out);
-    _emitOverrideIf(field.overridesGetter, out);
+    // We always override our interface getters.
+    _emitOverrideIf(true, out);
     _emitIndexAnnotation(field.number, out);
     final getterExpr = _getterExpression(fieldTypeString, field.index!,
         defaultExpr, field.isRepeated, field.isMapField);
