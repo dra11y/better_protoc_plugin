@@ -48,16 +48,14 @@ class FileDescriptorSet extends $pb.GeneratedMessage
         1, _omitFieldNames ? '' : 'file', $pb.PbFieldType.PM,
         subBuilder: FileDescriptorProto.create);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  FileDescriptorSet clone() => FileDescriptorSet()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  FileDescriptorSet clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(FileDescriptorSet) updates) instead. '
       'Will be removed in next major version')
   FileDescriptorSet copyWith(void Function(FileDescriptorSet) updates) =>
-      super.copyWith((message) => updates(message as FileDescriptorSet))
-          as FileDescriptorSet;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -207,16 +205,14 @@ class FileDescriptorProto extends $pb.GeneratedMessage
         11, _omitFieldNames ? '' : 'weakDependency', $pb.PbFieldType.P3)
     ..aOS(12, _omitFieldNames ? '' : 'syntax');
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  FileDescriptorProto clone() => FileDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  FileDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(FileDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   FileDescriptorProto copyWith(void Function(FileDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as FileDescriptorProto))
-          as FileDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -384,19 +380,15 @@ class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage
     ..aOM<ExtensionRangeOptions>(3, _omitFieldNames ? '' : 'options',
         subBuilder: ExtensionRangeOptions.create);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  DescriptorProto_ExtensionRange clone() =>
-      DescriptorProto_ExtensionRange()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  DescriptorProto_ExtensionRange clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(DescriptorProto_ExtensionRange) updates) instead. '
       'Will be removed in next major version')
   DescriptorProto_ExtensionRange copyWith(
           void Function(DescriptorProto_ExtensionRange) updates) =>
-      super.copyWith(
-              (message) => updates(message as DescriptorProto_ExtensionRange))
-          as DescriptorProto_ExtensionRange;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -494,19 +486,15 @@ class DescriptorProto_ReservedRange extends $pb.GeneratedMessage
     ..a<$core.int>(2, _omitFieldNames ? '' : 'end', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  DescriptorProto_ReservedRange clone() =>
-      DescriptorProto_ReservedRange()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  DescriptorProto_ReservedRange clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(DescriptorProto_ReservedRange) updates) instead. '
       'Will be removed in next major version')
   DescriptorProto_ReservedRange copyWith(
           void Function(DescriptorProto_ReservedRange) updates) =>
-      super.copyWith(
-              (message) => updates(message as DescriptorProto_ReservedRange))
-          as DescriptorProto_ReservedRange;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -658,16 +646,14 @@ class DescriptorProto extends $pb.GeneratedMessage implements IDescriptorProto {
         subBuilder: DescriptorProto_ReservedRange.create)
     ..pPS(10, _omitFieldNames ? '' : 'reservedName');
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  DescriptorProto clone() => DescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  DescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(DescriptorProto) updates) instead. '
       'Will be removed in next major version')
   DescriptorProto copyWith(void Function(DescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as DescriptorProto))
-          as DescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -778,18 +764,15 @@ class ExtensionRangeOptions extends $pb.GeneratedMessage
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  ExtensionRangeOptions clone() =>
-      ExtensionRangeOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  ExtensionRangeOptions clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(ExtensionRangeOptions) updates) instead. '
       'Will be removed in next major version')
   ExtensionRangeOptions copyWith(
           void Function(ExtensionRangeOptions) updates) =>
-      super.copyWith((message) => updates(message as ExtensionRangeOptions))
-          as ExtensionRangeOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -960,17 +943,14 @@ class FieldDescriptorProto extends $pb.GeneratedMessage
     ..aOS(10, _omitFieldNames ? '' : 'jsonName')
     ..aOB(17, _omitFieldNames ? '' : 'proto3Optional');
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  FieldDescriptorProto clone() =>
-      FieldDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  FieldDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(FieldDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   FieldDescriptorProto copyWith(void Function(FieldDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as FieldDescriptorProto))
-          as FieldDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1210,17 +1190,14 @@ class OneofDescriptorProto extends $pb.GeneratedMessage
     ..aOM<OneofOptions>(2, _omitFieldNames ? '' : 'options',
         subBuilder: OneofOptions.create);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  OneofDescriptorProto clone() =>
-      OneofDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  OneofDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(OneofDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   OneofDescriptorProto copyWith(void Function(OneofDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as OneofDescriptorProto))
-          as OneofDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1308,19 +1285,15 @@ class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage
     ..a<$core.int>(2, _omitFieldNames ? '' : 'end', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  EnumDescriptorProto_EnumReservedRange clone() =>
-      EnumDescriptorProto_EnumReservedRange()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  EnumDescriptorProto_EnumReservedRange clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(EnumDescriptorProto_EnumReservedRange) updates) instead. '
       'Will be removed in next major version')
   EnumDescriptorProto_EnumReservedRange copyWith(
           void Function(EnumDescriptorProto_EnumReservedRange) updates) =>
-      super.copyWith((message) =>
-              updates(message as EnumDescriptorProto_EnumReservedRange))
-          as EnumDescriptorProto_EnumReservedRange;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1432,16 +1405,14 @@ class EnumDescriptorProto extends $pb.GeneratedMessage
         subBuilder: EnumDescriptorProto_EnumReservedRange.create)
     ..pPS(5, _omitFieldNames ? '' : 'reservedName');
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  EnumDescriptorProto clone() => EnumDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  EnumDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(EnumDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   EnumDescriptorProto copyWith(void Function(EnumDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as EnumDescriptorProto))
-          as EnumDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1548,18 +1519,15 @@ class EnumValueDescriptorProto extends $pb.GeneratedMessage
     ..aOM<EnumValueOptions>(3, _omitFieldNames ? '' : 'options',
         subBuilder: EnumValueOptions.create);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  EnumValueDescriptorProto clone() =>
-      EnumValueDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  EnumValueDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(EnumValueDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   EnumValueDescriptorProto copyWith(
           void Function(EnumValueDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as EnumValueDescriptorProto))
-          as EnumValueDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1663,18 +1631,15 @@ class ServiceDescriptorProto extends $pb.GeneratedMessage
     ..aOM<ServiceOptions>(3, _omitFieldNames ? '' : 'options',
         subBuilder: ServiceOptions.create);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  ServiceDescriptorProto clone() =>
-      ServiceDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  ServiceDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(ServiceDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   ServiceDescriptorProto copyWith(
           void Function(ServiceDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as ServiceDescriptorProto))
-          as ServiceDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -1792,18 +1757,15 @@ class MethodDescriptorProto extends $pb.GeneratedMessage
     ..aOB(5, _omitFieldNames ? '' : 'clientStreaming')
     ..aOB(6, _omitFieldNames ? '' : 'serverStreaming');
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  MethodDescriptorProto clone() =>
-      MethodDescriptorProto()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  MethodDescriptorProto clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(MethodDescriptorProto) updates) instead. '
       'Will be removed in next major version')
   MethodDescriptorProto copyWith(
           void Function(MethodDescriptorProto) updates) =>
-      super.copyWith((message) => updates(message as MethodDescriptorProto))
-          as MethodDescriptorProto;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -2146,16 +2108,12 @@ class FileOptions extends $pb.GeneratedMessage implements IFileOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  FileOptions clone() => FileOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  FileOptions clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(FileOptions) updates) instead. '
       'Will be removed in next major version')
-  FileOptions copyWith(void Function(FileOptions) updates) =>
-      super.copyWith((message) => updates(message as FileOptions))
-          as FileOptions;
+  FileOptions copyWith(void Function(FileOptions) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -2607,16 +2565,14 @@ class MessageOptions extends $pb.GeneratedMessage implements IMessageOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  MessageOptions clone() => MessageOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  MessageOptions clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(MessageOptions) updates) instead. '
       'Will be removed in next major version')
   MessageOptions copyWith(void Function(MessageOptions) updates) =>
-      super.copyWith((message) => updates(message as MessageOptions))
-          as MessageOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -2870,16 +2826,13 @@ class FieldOptions extends $pb.GeneratedMessage implements IFieldOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  FieldOptions clone() => FieldOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  FieldOptions clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(FieldOptions) updates) instead. '
       'Will be removed in next major version')
   FieldOptions copyWith(void Function(FieldOptions) updates) =>
-      super.copyWith((message) => updates(message as FieldOptions))
-          as FieldOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3063,16 +3016,13 @@ class OneofOptions extends $pb.GeneratedMessage implements IOneofOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  OneofOptions clone() => OneofOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  OneofOptions clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(OneofOptions) updates) instead. '
       'Will be removed in next major version')
   OneofOptions copyWith(void Function(OneofOptions) updates) =>
-      super.copyWith((message) => updates(message as OneofOptions))
-          as OneofOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3145,16 +3095,12 @@ class EnumOptions extends $pb.GeneratedMessage implements IEnumOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  EnumOptions clone() => EnumOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  EnumOptions clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(EnumOptions) updates) instead. '
       'Will be removed in next major version')
-  EnumOptions copyWith(void Function(EnumOptions) updates) =>
-      super.copyWith((message) => updates(message as EnumOptions))
-          as EnumOptions;
+  EnumOptions copyWith(void Function(EnumOptions) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3250,16 +3196,14 @@ class EnumValueOptions extends $pb.GeneratedMessage
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  EnumValueOptions clone() => EnumValueOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  EnumValueOptions clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(EnumValueOptions) updates) instead. '
       'Will be removed in next major version')
   EnumValueOptions copyWith(void Function(EnumValueOptions) updates) =>
-      super.copyWith((message) => updates(message as EnumValueOptions))
-          as EnumValueOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3340,16 +3284,14 @@ class ServiceOptions extends $pb.GeneratedMessage implements IServiceOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  ServiceOptions clone() => ServiceOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  ServiceOptions clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(ServiceOptions) updates) instead. '
       'Will be removed in next major version')
   ServiceOptions copyWith(void Function(ServiceOptions) updates) =>
-      super.copyWith((message) => updates(message as ServiceOptions))
-          as ServiceOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3441,16 +3383,14 @@ class MethodOptions extends $pb.GeneratedMessage implements IMethodOptions {
         subBuilder: UninterpretedOption.create)
     ..hasExtensions = true;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  MethodOptions clone() => MethodOptions()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  MethodOptions clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(MethodOptions) updates) instead. '
       'Will be removed in next major version')
   MethodOptions copyWith(void Function(MethodOptions) updates) =>
-      super.copyWith((message) => updates(message as MethodOptions))
-          as MethodOptions;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3543,19 +3483,15 @@ class UninterpretedOption_NamePart extends $pb.GeneratedMessage
     ..a<$core.bool>(
         2, _omitFieldNames ? '' : 'isExtension', $pb.PbFieldType.QB);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  UninterpretedOption_NamePart clone() =>
-      UninterpretedOption_NamePart()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  UninterpretedOption_NamePart clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(UninterpretedOption_NamePart) updates) instead. '
       'Will be removed in next major version')
   UninterpretedOption_NamePart copyWith(
           void Function(UninterpretedOption_NamePart) updates) =>
-      super.copyWith(
-              (message) => updates(message as UninterpretedOption_NamePart))
-          as UninterpretedOption_NamePart;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3683,16 +3619,14 @@ class UninterpretedOption extends $pb.GeneratedMessage
         7, _omitFieldNames ? '' : 'stringValue', $pb.PbFieldType.OY)
     ..aOS(8, _omitFieldNames ? '' : 'aggregateValue');
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  UninterpretedOption clone() => UninterpretedOption()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  UninterpretedOption clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(UninterpretedOption) updates) instead. '
       'Will be removed in next major version')
   UninterpretedOption copyWith(void Function(UninterpretedOption) updates) =>
-      super.copyWith((message) => updates(message as UninterpretedOption))
-          as UninterpretedOption;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -3925,18 +3859,15 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage
     ..pPS(6, _omitFieldNames ? '' : 'leadingDetachedComments')
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  SourceCodeInfo_Location clone() =>
-      SourceCodeInfo_Location()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  SourceCodeInfo_Location clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(SourceCodeInfo_Location) updates) instead. '
       'Will be removed in next major version')
   SourceCodeInfo_Location copyWith(
           void Function(SourceCodeInfo_Location) updates) =>
-      super.copyWith((message) => updates(message as SourceCodeInfo_Location))
-          as SourceCodeInfo_Location;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -4141,16 +4072,14 @@ class SourceCodeInfo extends $pb.GeneratedMessage implements ISourceCodeInfo {
         subBuilder: SourceCodeInfo_Location.create)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  SourceCodeInfo clone() => SourceCodeInfo()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  SourceCodeInfo clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(SourceCodeInfo) updates) instead. '
       'Will be removed in next major version')
   SourceCodeInfo copyWith(void Function(SourceCodeInfo) updates) =>
-      super.copyWith((message) => updates(message as SourceCodeInfo))
-          as SourceCodeInfo;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -4272,19 +4201,15 @@ class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage
     ..a<$core.int>(4, _omitFieldNames ? '' : 'end', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  GeneratedCodeInfo_Annotation clone() =>
-      GeneratedCodeInfo_Annotation()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  GeneratedCodeInfo_Annotation clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(GeneratedCodeInfo_Annotation) updates) instead. '
       'Will be removed in next major version')
   GeneratedCodeInfo_Annotation copyWith(
           void Function(GeneratedCodeInfo_Annotation) updates) =>
-      super.copyWith(
-              (message) => updates(message as GeneratedCodeInfo_Annotation))
-          as GeneratedCodeInfo_Annotation;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -4389,16 +4314,14 @@ class GeneratedCodeInfo extends $pb.GeneratedMessage
         subBuilder: GeneratedCodeInfo_Annotation.create)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  GeneratedCodeInfo clone() => GeneratedCodeInfo()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  GeneratedCodeInfo clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(GeneratedCodeInfo) updates) instead. '
       'Will be removed in next major version')
   GeneratedCodeInfo copyWith(void Function(GeneratedCodeInfo) updates) =>
-      super.copyWith((message) => updates(message as GeneratedCodeInfo))
-          as GeneratedCodeInfo;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 

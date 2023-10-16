@@ -35,15 +35,13 @@ class M extends $pb.GeneratedMessage implements IM {
   ;
 
   @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Use deepCopy() instead. '
   'Will be removed in next major version')
-  M clone() => M()..mergeFromMessage(this);
+  M clone() => deepCopy();
   @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Use rebuild(void Function(M) updates) instead. '
   'Will be removed in next major version')
-  M copyWith(void Function(M) updates) => super.copyWith((message) => updates(message as M)) as M;
+  M copyWith(void Function(M) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 

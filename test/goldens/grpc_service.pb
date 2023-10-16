@@ -23,15 +23,13 @@ class Empty extends $pb.GeneratedMessage implements IEmpty {
   ;
 
   @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Use deepCopy() instead. '
   'Will be removed in next major version')
-  Empty clone() => Empty()..mergeFromMessage(this);
+  Empty clone() => deepCopy();
   @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Use rebuild(void Function(Empty) updates) instead. '
   'Will be removed in next major version')
-  Empty copyWith(void Function(Empty) updates) => super.copyWith((message) => updates(message as Empty)) as Empty;
+  Empty copyWith(void Function(Empty) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 

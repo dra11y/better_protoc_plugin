@@ -60,15 +60,12 @@ class DartMixin extends $pb.GeneratedMessage implements IDartMixin {
     ..aOS(3, _omitFieldNames ? '' : 'parent')
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  DartMixin clone() => DartMixin()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  DartMixin clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(DartMixin) updates) instead. '
       'Will be removed in next major version')
-  DartMixin copyWith(void Function(DartMixin) updates) =>
-      super.copyWith((message) => updates(message as DartMixin)) as DartMixin;
+  DartMixin copyWith(void Function(DartMixin) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -166,15 +163,12 @@ class Imports extends $pb.GeneratedMessage implements IImports {
         subBuilder: DartMixin.create)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  Imports clone() => Imports()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  Imports clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(Imports) updates) instead. '
       'Will be removed in next major version')
-  Imports copyWith(void Function(Imports) updates) =>
-      super.copyWith((message) => updates(message as Imports)) as Imports;
+  Imports copyWith(void Function(Imports) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 

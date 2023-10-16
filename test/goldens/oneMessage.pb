@@ -31,15 +31,13 @@ class PhoneNumber extends $pb.GeneratedMessage implements IPhoneNumber {
   ;
 
   @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Use deepCopy() instead. '
   'Will be removed in next major version')
-  PhoneNumber clone() => PhoneNumber()..mergeFromMessage(this);
+  PhoneNumber clone() => deepCopy();
   @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Use rebuild(void Function(PhoneNumber) updates) instead. '
   'Will be removed in next major version')
-  PhoneNumber copyWith(void Function(PhoneNumber) updates) => super.copyWith((message) => updates(message as PhoneNumber)) as PhoneNumber;
+  PhoneNumber copyWith(void Function(PhoneNumber) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 

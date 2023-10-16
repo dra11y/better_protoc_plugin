@@ -68,15 +68,12 @@ class Version extends $pb.GeneratedMessage implements IVersion {
     ..aOS(4, _omitFieldNames ? '' : 'suffix')
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  Version clone() => Version()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  Version clone() => deepCopy();
+  @$core.Deprecated('Use rebuild(void Function(Version) updates) instead. '
       'Will be removed in next major version')
-  Version copyWith(void Function(Version) updates) =>
-      super.copyWith((message) => updates(message as Version)) as Version;
+  Version copyWith(void Function(Version) updates) => rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -218,17 +215,14 @@ class CodeGeneratorRequest extends $pb.GeneratedMessage
         15, _omitFieldNames ? '' : 'protoFile', $pb.PbFieldType.PM,
         subBuilder: $0.FileDescriptorProto.create);
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  CodeGeneratorRequest clone() =>
-      CodeGeneratorRequest()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  CodeGeneratorRequest clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(CodeGeneratorRequest) updates) instead. '
       'Will be removed in next major version')
   CodeGeneratorRequest copyWith(void Function(CodeGeneratorRequest) updates) =>
-      super.copyWith((message) => updates(message as CodeGeneratorRequest))
-          as CodeGeneratorRequest;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -404,19 +398,15 @@ class CodeGeneratorResponse_File extends $pb.GeneratedMessage
         subBuilder: $0.GeneratedCodeInfo.create)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  CodeGeneratorResponse_File clone() =>
-      CodeGeneratorResponse_File()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  CodeGeneratorResponse_File clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(CodeGeneratorResponse_File) updates) instead. '
       'Will be removed in next major version')
   CodeGeneratorResponse_File copyWith(
           void Function(CodeGeneratorResponse_File) updates) =>
-      super.copyWith(
-              (message) => updates(message as CodeGeneratorResponse_File))
-          as CodeGeneratorResponse_File;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -597,18 +587,15 @@ class CodeGeneratorResponse extends $pb.GeneratedMessage
         subBuilder: CodeGeneratorResponse_File.create)
     ..hasRequiredFields = false;
 
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  @$core.Deprecated('Use deepCopy() instead. '
       'Will be removed in next major version')
-  CodeGeneratorResponse clone() =>
-      CodeGeneratorResponse()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  CodeGeneratorResponse clone() => deepCopy();
+  @$core.Deprecated(
+      'Use rebuild(void Function(CodeGeneratorResponse) updates) instead. '
       'Will be removed in next major version')
   CodeGeneratorResponse copyWith(
           void Function(CodeGeneratorResponse) updates) =>
-      super.copyWith((message) => updates(message as CodeGeneratorResponse))
-          as CodeGeneratorResponse;
+      rebuild(updates);
 
   $pb.BuilderInfo get info_ => _i;
 
