@@ -157,11 +157,10 @@ class EnumGenerator extends ProtobufContainer {
       }
       out.println();
 
-      out.println('final $coreImportPrefix.int value;');
+      out.println('$overridePrefix final $coreImportPrefix.int value;');
       out.println();
 
-      out.println(
-          '@$coreImportPrefix.override final $coreImportPrefix.String name;');
+      out.println('$overridePrefix final $coreImportPrefix.String name;');
       out.println();
 
       out.println('''
