@@ -12,6 +12,7 @@ const asyncImportPrefix = r'$async';
 const coreImportPrefix = r'$core';
 const grpcImportPrefix = r'$grpc';
 const mixinImportPrefix = r'$mixin';
+const overridePrefix = '@$coreImportPrefix.override';
 
 extension FileDescriptorProtoExt on FileGenerator {
   String? commentBlock(List<int> path) {

@@ -33,15 +33,28 @@ class BaseType {
   bool get isBytes => descriptor == FieldDescriptorProto_Type.typeBytes;
   bool get isPackable => (generator == null && !isString && !isBytes) || isEnum;
 
+  bool get useInterfaceType => isMessage && !isWellKnownType;
+
   /// The package where this type is declared.
   /// (Always the empty string for primitive types.)
   String get package => generator == null ? '' : generator!.package;
 
-  /// Prepend `interfacePrefix` to the type except if it's already qualified,
-  /// or it is an Enum.
-  String get unprefixedInterface => isEnum || unprefixed.contains('.')
-      ? unprefixed
-      : interfacePrefix + unprefixed;
+  bool get isWellKnownType =>
+      wellKnownMixins.keys.firstWhereOrNull(
+          (key) => key.split('.').last == unprefixed.split('.').last) !=
+      null;
+
+  /// Prepend `interfacePrefix` to the type
+  String get unprefixedInterface =>
+      isMessage ? unprefixedInjectPrefix(interfacePrefix) : unprefixed;
+
+  String unprefixedInjectPrefix(String prefix) {
+    final parts = unprefixed.split('.');
+    return parts
+        .mapIndexed(
+            (index, part) => index == parts.length - 1 ? '$prefix$part' : part)
+        .join('.');
+  }
 
   String get prefixedInterface => generator == null
       ? unprefixedInterface
@@ -68,11 +81,12 @@ class BaseType {
           ? unprefixedInterface
           : prefixedInterface;
 
-  String getRepeatedDartType(FileGenerator fileGen) =>
-      '$coreImportPrefix.List<${getDartType(fileGen)}>';
+  String getRepeatedDartType(FileGenerator fileGen, {bool? isOptional}) =>
+      '$coreImportPrefix.List<${getDartType(fileGen)}>${isOptional == true ? '?' : ''}';
 
-  String getRepeatedDartTypeIterable(FileGenerator fileGen) =>
-      '$coreImportPrefix.Iterable<${getDartType(fileGen)}>';
+  String getRepeatedDartTypeIterable(FileGenerator fileGen,
+          {bool? isOptional}) =>
+      '$coreImportPrefix.Iterable<${getDartType(fileGen)}>${isOptional == true ? '?' : ''}';
 
   String getRepeatedInterfaceType(FileGenerator fileGen) =>
       '$coreImportPrefix.List<${getInterfaceType(fileGen)}>';

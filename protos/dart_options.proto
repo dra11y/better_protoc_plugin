@@ -48,6 +48,19 @@ extend google.protobuf.FileOptions {
   // (May be overridden by the "mixin" option on a message.)
   // For now, "PbMapMixin" is the only available mixin.
   optional string default_mixin = 96128839;
+
+  // Experimental option that causes the generator to generate
+  // abstract interface classes for messages.
+  optional bool message_interfaces = 71128890 [default = false];
+
+  // Experimental option that causes the generator to generate
+  // nullable optional fields.
+  optional bool nullable_optionals = 87148944 [default = false];
+
+  // Experimental option that causes the generator to generate
+  // Dart DateTime / Duration getters/setters and auto-convert
+  // these <-> google.protobuf.Timestamp / google.protobuf.Duration.
+  optional bool use_date_time = 50028268 [default = false];
 }
 
 extend google.protobuf.MessageOptions {

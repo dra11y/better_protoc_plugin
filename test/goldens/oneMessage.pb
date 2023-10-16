@@ -9,16 +9,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-abstract interface class IPhoneNumber {
-
-  $core.String get number;
-
-  $core.int get type;
-
-  $core.String get name;
-}
-
-class PhoneNumber extends $pb.GeneratedMessage implements IPhoneNumber {
+class PhoneNumber extends $pb.GeneratedMessage {
   factory PhoneNumber() => create();
   PhoneNumber._() : super();
   factory PhoneNumber.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
@@ -33,23 +24,22 @@ class PhoneNumber extends $pb.GeneratedMessage implements IPhoneNumber {
   @$core.Deprecated(
   'Use deepCopy() instead. '
   'Will be removed in next major version')
-  PhoneNumber clone() => deepCopy();
+  @$core.override PhoneNumber clone() => deepCopy();
   @$core.Deprecated(
   'Use rebuild(void Function(PhoneNumber) updates) instead. '
   'Will be removed in next major version')
-  PhoneNumber copyWith(void Function(PhoneNumber) updates) => rebuild(updates);
+  @$core.override PhoneNumber copyWith(void Function(PhoneNumber) updates) => rebuild(updates);
 
-  $pb.BuilderInfo get info_ => _i;
+  @$core.override $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static PhoneNumber create() => PhoneNumber._();
-  PhoneNumber createEmptyInstance() => create();
+  @$core.override PhoneNumber createEmptyInstance() => create();
   static $pb.PbList<PhoneNumber> createRepeated() => $pb.PbList<PhoneNumber>();
   @$core.pragma('dart2js:noInline')
   static PhoneNumber getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PhoneNumber>(create);
   static PhoneNumber? _defaultInstance;
 
-  @$core.override
   @$pb.TagNumber(1)
   $core.String get number => $_getSZ(0);
   @$pb.TagNumber(1)
@@ -59,7 +49,6 @@ class PhoneNumber extends $pb.GeneratedMessage implements IPhoneNumber {
   @$pb.TagNumber(1)
   void clearNumber() => clearField(1);
 
-  @$core.override
   @$pb.TagNumber(2)
   $core.int get type => $_getIZ(1);
   @$pb.TagNumber(2)
@@ -69,7 +58,6 @@ class PhoneNumber extends $pb.GeneratedMessage implements IPhoneNumber {
   @$pb.TagNumber(2)
   void clearType() => clearField(2);
 
-  @$core.override
   @$pb.TagNumber(3)
   $core.String get name => $_getS(2, '\$');
   @$pb.TagNumber(3)

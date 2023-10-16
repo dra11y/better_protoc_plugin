@@ -10,10 +10,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-abstract interface class IEmpty {
-}
-
-class Empty extends $pb.GeneratedMessage implements IEmpty {
+class Empty extends $pb.GeneratedMessage {
   factory Empty() => create();
   Empty._() : super();
   factory Empty.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
@@ -26,17 +23,17 @@ class Empty extends $pb.GeneratedMessage implements IEmpty {
   @$core.Deprecated(
   'Use deepCopy() instead. '
   'Will be removed in next major version')
-  Empty clone() => deepCopy();
+  @$core.override Empty clone() => deepCopy();
   @$core.Deprecated(
   'Use rebuild(void Function(Empty) updates) instead. '
   'Will be removed in next major version')
-  Empty copyWith(void Function(Empty) updates) => rebuild(updates);
+  @$core.override Empty copyWith(void Function(Empty) updates) => rebuild(updates);
 
-  $pb.BuilderInfo get info_ => _i;
+  @$core.override $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
   static Empty create() => Empty._();
-  Empty createEmptyInstance() => create();
+  @$core.override Empty createEmptyInstance() => create();
   static $pb.PbList<Empty> createRepeated() => $pb.PbList<Empty>();
   @$core.pragma('dart2js:noInline')
   static Empty getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Empty>(create);

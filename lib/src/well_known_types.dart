@@ -7,6 +7,8 @@ part of '../protoc.dart';
 PbMixin? wellKnownMixinForFullName(String qualifiedName) =>
     _wellKnownMixins[qualifiedName];
 
+Map<String, PbMixin> get wellKnownMixins => _wellKnownMixins;
+
 const _wellKnownImportPath =
     'package:protobuf/src/protobuf/mixins/well_known.dart';
 

@@ -1,3 +1,20 @@
+## 1.0.1
+
+* New .proto file-level experimental options (all default to **false**):
+  - generate `DateTime` / Dart `Duration` getters/setters and autoconvert
+    these <-> google.protobuf.Timestamp / google.protobuf.Duration:
+    ```
+    option (dart_options.use_date_time) = true | false;
+    ```
+  - generate nullable optionals (`Type?` vs `Type`):
+    ```
+    option (dart_options.nullable_optionals) = true | false;
+    ```
+  - generate abstract interface classes (prefixed with 'I') for messages:
+    ```
+    option (dart_options.message_interfaces) = true | false;
+    ```
+
 ## 1.0.0
 
 * generate abstract interface class for each message prefixed with 'I' by default

@@ -25,17 +25,20 @@ class ProtobufField {
   final String fullName;
   final BaseType baseType;
   final ProtobufContainer parent;
+  final GenOptions genOptions;
 
   ProtobufField.message(
-      FieldNames names, ProtobufContainer parent, GenerationContext ctx)
-      : this._(names.descriptor, names, parent, ctx);
+      FieldNames names, ProtobufContainer parent, GenerationContext ctx,
+      {GenOptions genOptions = const GenOptions()})
+      : this._(names.descriptor, names, parent, ctx, genOptions: genOptions);
 
   ProtobufField.extension(FieldDescriptorProto descriptor,
       ProtobufContainer parent, GenerationContext ctx)
       : this._(descriptor, null, parent, ctx);
 
   ProtobufField._(this.descriptor, FieldNames? dartNames, this.parent,
-      GenerationContext ctx)
+      GenerationContext ctx,
+      {this.genOptions = const GenOptions()})
       : memberNames = dartNames,
         fullName = '${parent.fullName}.${descriptor.name}',
         baseType = BaseType(descriptor, ctx);
@@ -140,30 +143,43 @@ class ProtobufField {
     // for example in package:protobuf/src/protobuf/mixins/well_known.dart.
   }
 
+  bool get isNullableOptional =>
+      !isRequired && hasPresence && genOptions.nullableOptionals;
+
   /// Returns the expression to use for the Dart abstract interface type.
   String getInterfaceType() {
+    if (!baseType.useInterfaceType) {
+      return getDartType();
+    }
+    final String optional = isNullableOptional ? '?' : '';
     if (isMapField) {
       final d = baseType.generator as MessageGenerator;
       final keyType =
           d._fieldList[0].baseType.getInterfaceType(parent.fileGen!);
       final valueType =
           d._fieldList[1].baseType.getInterfaceType(parent.fileGen!);
-      return '$coreImportPrefix.Map<$keyType, $valueType>';
+      return '$coreImportPrefix.Map<$keyType, $valueType>$optional';
     }
-    if (isRepeated) return baseType.getRepeatedInterfaceType(parent.fileGen!);
-    return baseType.getInterfaceType(parent.fileGen!);
+    if (isRepeated) {
+      return baseType.getRepeatedInterfaceType(parent.fileGen!) + optional;
+    }
+    return baseType.getInterfaceType(parent.fileGen!) + optional;
   }
 
   /// Returns the expression to use for the Dart type.
-  String getDartType() {
+  String getDartType({bool? isOptional}) {
+    final String optional = isOptional == true || isNullableOptional ? '?' : '';
+
     if (isMapField) {
       final d = baseType.generator as MessageGenerator;
       final keyType = d._fieldList[0].baseType.getDartType(parent.fileGen!);
       final valueType = d._fieldList[1].baseType.getDartType(parent.fileGen!);
-      return '$coreImportPrefix.Map<$keyType, $valueType>';
+      return '$coreImportPrefix.Map<$keyType, $valueType>$optional';
     }
-    if (isRepeated) return baseType.getRepeatedDartType(parent.fileGen!);
-    return baseType.getDartType(parent.fileGen!);
+    if (isRepeated) {
+      return baseType.getRepeatedDartType(parent.fileGen!) + optional;
+    }
+    return baseType.getDartType(parent.fileGen!) + optional;
   }
 
   /// Returns the tag number of the underlying proto field.
