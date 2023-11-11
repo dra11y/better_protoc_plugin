@@ -3,6 +3,8 @@
 
 # better_protoc_plugin
 
+## An opinionated, "new and improved" protobuf protoc compiler plugin used to generate Dart code with real Dart enums, message interfaces, automatic DateTime/Duration conversion, etc.
+
 ## TLDR: Usage
 
 Simplest way, If activated globally:
