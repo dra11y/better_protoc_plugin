@@ -61,6 +61,13 @@ extend google.protobuf.FileOptions {
   // Dart DateTime / Duration getters/setters and auto-convert
   // these <-> google.protobuf.Timestamp / google.protobuf.Duration.
   optional bool use_date_time = 50028268 [default = false];
+
+  // TODO(tgrushka):
+  // Code to replace the enum default toString() method body
+  // in all generated enums throughout the file.
+  // default: name == '' ? value.toString() : name
+  // https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
+  optional string enums_to_string = 58293813;
 }
 
 extend google.protobuf.MessageOptions {
@@ -89,4 +96,12 @@ extend google.protobuf.FieldOptions {
   // Uses the given name for getters, setters and as suffixes for has/clear
   // methods in the generated Dart file. Should be lowerCamelCase.
   optional string dart_name = 28700919;
+}
+
+extend google.protobuf.EnumOptions {
+  // TODO(tgrushka):
+  // Code to replace the enum default toString() method body.
+  // default: name == '' ? value.toString() : name
+  // https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
+  optional string enum_to_string = 23849239;
 }

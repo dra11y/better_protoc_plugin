@@ -91,7 +91,9 @@ class BaseType {
           {bool? isOptional}) =>
       '$coreImportPrefix.Iterable<${getDartType(fileGen)}>${isOptional == true ? '?' : ''}';
 
-  String getRepeatedInterfaceType(FileGenerator fileGen) =>
+  String getRepeatedInterfaceType(
+    FileGenerator fileGen,
+  ) =>
       '$coreImportPrefix.List<${getInterfaceType(fileGen)}>';
 
   String getRepeatedInterfaceTypeIterable(FileGenerator fileGen) =>

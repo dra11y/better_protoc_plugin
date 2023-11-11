@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:protobuf/meta.dart';
@@ -98,12 +99,20 @@ String makeEnumValueName(
     }
     underscores++;
   }
-  final prefix = classname?.camelCase;
+  final prefix = classname?.toLowerCase();
   final camelCased = underscoreAvoided.camelCase;
+  // final constantCased = camelCased.constantCase;
   final removePrefix =
-      prefix != null && prefix != camelCased && camelCased.startsWith(prefix);
+      prefix != null && camelCased.toLowerCase().startsWith(prefix);
+  // stderr.write('----------------------------\n');
+  // stderr.write('underscoreAvoided: $underscoreAvoided\n');
+  // stderr.write('constantCased: $constantCased\n');
+  // stderr.write('prefix: $prefix\n');
+  // stderr.write('camelCased: $camelCased\n');
+  // stderr.write('removePrefix: $removePrefix\n');
   final prefixRemoved =
-      removePrefix ? camelCased.replaceFirst(prefix, '').camelCase : camelCased;
+      removePrefix ? camelCased.substring(prefix.length).camelCase : camelCased;
+  // stderr.write('prefixRemoved: $prefixRemoved\n');
   final underscored = prefixRemoved + '_' * underscores;
   final disambiguated = disambiguateName(underscored, usedNames, suffixes);
   // stderr.write('$value -> $disambiguated\n');

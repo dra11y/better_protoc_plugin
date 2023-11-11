@@ -9,6 +9,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+/// A mixin that can be used in the 'with' clause of the generated Dart class
+/// for a proto message.
 class DartMixin extends $pb.GeneratedMessage {
   factory DartMixin({
     $core.String? name,
@@ -109,6 +111,7 @@ class DartMixin extends $pb.GeneratedMessage {
   void clearParent() => clearField(3);
 }
 
+/// Defines additional Dart imports to be used with messages in this file.
 class Imports extends $pb.GeneratedMessage {
   factory Imports({
     $core.Iterable<DartMixin>? mixins,
@@ -197,6 +200,11 @@ class Dart_options {
       _omitFieldNames ? '' : 'useDateTime',
       50028268,
       $pb.PbFieldType.OB);
+  static final enumsToString = $pb.Extension<$core.String>(
+      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
+      _omitFieldNames ? '' : 'enumsToString',
+      58293813,
+      $pb.PbFieldType.OS);
   static final mixin = $pb.Extension<$core.String>(
       _omitMessageNames ? '' : 'google.protobuf.MessageOptions',
       _omitFieldNames ? '' : 'mixin',
@@ -227,18 +235,25 @@ class Dart_options {
       _omitFieldNames ? '' : 'dartName',
       28700919,
       $pb.PbFieldType.OS);
+  static final enumToString = $pb.Extension<$core.String>(
+      _omitMessageNames ? '' : 'google.protobuf.EnumOptions',
+      _omitFieldNames ? '' : 'enumToString',
+      23849239,
+      $pb.PbFieldType.OS);
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(imports);
     registry.add(defaultMixin);
     registry.add(messageInterfaces);
     registry.add(nullableOptionals);
     registry.add(useDateTime);
+    registry.add(enumsToString);
     registry.add(mixin);
     registry.add(overrideGetter);
     registry.add(overrideSetter);
     registry.add(overrideHasMethod);
     registry.add(overrideClearMethod);
     registry.add(dartName);
+    registry.add(enumToString);
   }
 }
 

@@ -143,6 +143,9 @@ class ProtobufField {
     // for example in package:protobuf/src/protobuf/mixins/well_known.dart.
   }
 
+  bool get needsConversionToProto =>
+      baseType.isMessage && !baseType.isWellKnownType;
+
   bool get isNullableOptional =>
       !isRequired && hasPresence && genOptions.nullableOptionals;
 

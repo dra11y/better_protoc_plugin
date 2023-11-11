@@ -14,6 +14,7 @@ import 'descriptor.pb.dart' as $0;
 
 export 'plugin.pbenum.dart';
 
+/// The version number of protocol compiler.
 class Version extends $pb.GeneratedMessage {
   factory Version({
     $core.int? major,
@@ -128,6 +129,7 @@ class Version extends $pb.GeneratedMessage {
   void clearSuffix() => clearField(4);
 }
 
+/// An encoded CodeGeneratorRequest is written to the plugin's stdin.
 class CodeGeneratorRequest extends $pb.GeneratedMessage {
   factory CodeGeneratorRequest({
     $core.Iterable<$core.String>? fileToGenerate,
@@ -248,6 +250,7 @@ class CodeGeneratorRequest extends $pb.GeneratedMessage {
   $core.List<$0.FileDescriptorProto> get protoFile => $_getList(3);
 }
 
+/// Represents a single generated file.
 class CodeGeneratorResponse_File extends $pb.GeneratedMessage {
   factory CodeGeneratorResponse_File({
     $core.String? name,
@@ -419,6 +422,7 @@ class CodeGeneratorResponse_File extends $pb.GeneratedMessage {
   $0.GeneratedCodeInfo ensureGeneratedCodeInfo() => $_ensure(3);
 }
 
+/// The plugin writes an encoded CodeGeneratorResponse to stdout.
 class CodeGeneratorResponse extends $pb.GeneratedMessage {
   factory CodeGeneratorResponse({
     $core.String? error,

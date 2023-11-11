@@ -14,6 +14,8 @@ import 'descriptor.pbenum.dart';
 
 export 'descriptor.pbenum.dart';
 
+/// The protocol compiler can output a FileDescriptorSet containing the .proto
+/// files it parses.
 class FileDescriptorSet extends $pb.GeneratedMessage {
   factory FileDescriptorSet({
     $core.Iterable<FileDescriptorProto>? file,
@@ -70,6 +72,7 @@ class FileDescriptorSet extends $pb.GeneratedMessage {
   $core.List<FileDescriptorProto> get file => $_getList(0);
 }
 
+/// Describes a complete .proto file.
 class FileDescriptorProto extends $pb.GeneratedMessage {
   factory FileDescriptorProto({
     $core.String? name,
@@ -386,6 +389,9 @@ class DescriptorProto_ExtensionRange extends $pb.GeneratedMessage {
   ExtensionRangeOptions ensureOptions() => $_ensure(2);
 }
 
+/// Range of reserved tag numbers. Reserved tag numbers may not be used by
+/// fields or extension ranges in the same message. Reserved ranges may
+/// not overlap.
 class DescriptorProto_ReservedRange extends $pb.GeneratedMessage {
   factory DescriptorProto_ReservedRange({
     $core.int? start,
@@ -469,6 +475,7 @@ class DescriptorProto_ReservedRange extends $pb.GeneratedMessage {
   void clearEnd() => clearField(2);
 }
 
+/// Describes a message type.
 class DescriptorProto extends $pb.GeneratedMessage {
   factory DescriptorProto({
     $core.String? name,
@@ -691,6 +698,7 @@ class ExtensionRangeOptions extends $pb.GeneratedMessage {
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(0);
 }
 
+/// Describes a field within a message.
 class FieldDescriptorProto extends $pb.GeneratedMessage {
   factory FieldDescriptorProto({
     $core.String? name,
@@ -976,6 +984,7 @@ class FieldDescriptorProto extends $pb.GeneratedMessage {
   void clearProto3Optional() => clearField(17);
 }
 
+/// Describes a oneof.
 class OneofDescriptorProto extends $pb.GeneratedMessage {
   factory OneofDescriptorProto({
     $core.String? name,
@@ -1059,6 +1068,12 @@ class OneofDescriptorProto extends $pb.GeneratedMessage {
   OneofOptions ensureOptions() => $_ensure(1);
 }
 
+///  Range of reserved numeric values. Reserved values may not be used by
+///  entries in the same enum. Reserved ranges may not overlap.
+///
+///  Note that this is distinct from DescriptorProto.ReservedRange in that it
+///  is inclusive such that it can appropriately represent the entire int32
+///  domain.
 class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage {
   factory EnumDescriptorProto_EnumReservedRange({
     $core.int? start,
@@ -1144,6 +1159,7 @@ class EnumDescriptorProto_EnumReservedRange extends $pb.GeneratedMessage {
   void clearEnd() => clearField(2);
 }
 
+/// Describes an enum type.
 class EnumDescriptorProto extends $pb.GeneratedMessage {
   factory EnumDescriptorProto({
     $core.String? name,
@@ -1261,6 +1277,7 @@ class EnumDescriptorProto extends $pb.GeneratedMessage {
   $core.List<$core.String> get reservedName => $_getList(4);
 }
 
+/// Describes a value within an enum.
 class EnumValueDescriptorProto extends $pb.GeneratedMessage {
   factory EnumValueDescriptorProto({
     $core.String? name,
@@ -1362,6 +1379,7 @@ class EnumValueDescriptorProto extends $pb.GeneratedMessage {
   EnumValueOptions ensureOptions() => $_ensure(2);
 }
 
+/// Describes a service.
 class ServiceDescriptorProto extends $pb.GeneratedMessage {
   factory ServiceDescriptorProto({
     $core.String? name,
@@ -1456,6 +1474,7 @@ class ServiceDescriptorProto extends $pb.GeneratedMessage {
   ServiceOptions ensureOptions() => $_ensure(2);
 }
 
+/// Describes a method of a service.
 class MethodDescriptorProto extends $pb.GeneratedMessage {
   factory MethodDescriptorProto({
     $core.String? name,
@@ -2883,6 +2902,11 @@ class MethodOptions extends $pb.GeneratedMessage {
   $core.List<UninterpretedOption> get uninterpretedOption => $_getList(2);
 }
 
+/// The name of the uninterpreted option.  Each string represents a segment in
+/// a dot-separated name.  is_extension is true iff a segment represents an
+/// extension (denoted with parentheses in options specs in .proto files).
+/// E.g.,{ ["foo", false], ["bar.baz", true], ["qux", false] } represents
+/// "foo.(bar.baz).qux".
 class UninterpretedOption_NamePart extends $pb.GeneratedMessage {
   factory UninterpretedOption_NamePart({
     $core.String? namePart,
@@ -2966,6 +2990,12 @@ class UninterpretedOption_NamePart extends $pb.GeneratedMessage {
   void clearIsExtension() => clearField(2);
 }
 
+/// A message representing a option the parser does not recognize. This only
+/// appears in options protos created by the compiler::Parser class.
+/// DescriptorPool resolves these when building Descriptor objects. Therefore,
+/// options protos in descriptor objects (e.g. returned by Descriptor::options(),
+/// or produced by Descriptor::CopyTo()) will never have UninterpretedOptions
+/// in them.
 class UninterpretedOption extends $pb.GeneratedMessage {
   factory UninterpretedOption({
     $core.Iterable<UninterpretedOption_NamePart>? name,
@@ -3311,6 +3341,8 @@ class SourceCodeInfo_Location extends $pb.GeneratedMessage {
   $core.List<$core.String> get leadingDetachedComments => $_getList(4);
 }
 
+/// Encapsulates information about the original source file from which a
+/// FileDescriptorProto was generated.
 class SourceCodeInfo extends $pb.GeneratedMessage {
   factory SourceCodeInfo({
     $core.Iterable<SourceCodeInfo_Location>? location,
@@ -3527,6 +3559,9 @@ class GeneratedCodeInfo_Annotation extends $pb.GeneratedMessage {
   void clearEnd() => clearField(4);
 }
 
+/// Describes the relationship between generated code and its original source
+/// file. A GeneratedCodeInfo message is associated with only one generated
+/// source file, but may contain references to different source .proto files.
 class GeneratedCodeInfo extends $pb.GeneratedMessage {
   factory GeneratedCodeInfo({
     $core.Iterable<GeneratedCodeInfo_Annotation>? annotation,

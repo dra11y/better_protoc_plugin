@@ -347,11 +347,22 @@ class MessageGenerator extends ProtobufContainer {
       ], () {
         generateInterfaceGetters(out);
       });
+
+      out.addAnnotatedBlock(
+          'extension ${interfaceName}ToProto on $interfaceName {', '}', [
+        NamedLocation(
+            name: '${interfaceName}ToProto',
+            fieldPathSegment: fieldPath,
+            start: 'extension '.length)
+      ], () {
+        generateToProto(out);
+      });
+
       out.println();
     }
 
     out.addAnnotatedBlock(
-        'class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
+        '${genOptions.messageInterfaces ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
             '${genOptions.messageInterfaces ? ' implements $interfaceName' : ''}'
             ' {',
         '}',
@@ -539,6 +550,24 @@ class MessageGenerator extends ProtobufContainer {
     return false;
   }
 
+  void generateToProto(IndentingWriter out) {
+    out.println('$classname toProto() => $classname(');
+    for (final field in _fieldList) {
+      final fieldName = field.memberNames!.fieldName;
+      final optional = field.isNullableOptional ? '?' : '';
+      String toProto;
+      if (field.isRepeated) {
+        toProto = field.needsConversionToProto
+            ? '.map((item) => item.toProto())'
+            : '';
+      } else {
+        toProto = field.needsConversionToProto ? '$optional.toProto()' : '';
+      }
+      out.print('\n$fieldName: $fieldName$toProto,');
+    }
+    out.println(');\n');
+  }
+
   void generateInterfaceGetters(IndentingWriter out) {
     for (final oneof in _oneofNames) {
       generateOneofAccessors(out, oneof, isInterface: true);
@@ -616,7 +645,7 @@ class MessageGenerator extends ProtobufContainer {
         field,
         _getDateTimeWrapper(
             field,
-            _getterExpression(fieldTypeString, field.index!, defaultExpr,
+            _getterExpression(field, fieldTypeString, field.index!, defaultExpr,
                 field.isRepeated, field.isMapField)));
 
     out.printlnAnnotated(
@@ -743,8 +772,8 @@ class MessageGenerator extends ProtobufContainer {
     return getter;
   }
 
-  String _getterExpression(String fieldType, int index, String defaultExpr,
-      bool isRepeated, bool isMapField) {
+  String _getterExpression(ProtobufField field, String fieldType, int index,
+      String defaultExpr, bool isRepeated, bool isMapField) {
     if (isMapField) {
       return '\$_getMap($index)';
     }

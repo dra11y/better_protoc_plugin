@@ -130,7 +130,7 @@ class EnumGenerator extends ProtobufContainer {
         final conditionalValName = omitEnumNames.createTernary(val.name);
         final separator = i < _canonicalValues.length - 1 ? ',' : ';';
         out.printlnAnnotated(
-            '$name(${val.number}, $conditionalValName)$separator', [
+            '$name(${val.number}, \'$name\', $conditionalValName)$separator', [
           NamedLocation(
               name: name,
               fieldPathSegment: List.from(fieldPath!)
@@ -163,12 +163,32 @@ class EnumGenerator extends ProtobufContainer {
       out.println('$overridePrefix final $coreImportPrefix.String name;');
       out.println();
 
-      out.println('''
+      out.println('final $coreImportPrefix.String dartName;');
+      out.println();
+
+      final String currentEnumToString =
+          _descriptor.options.getExtension(Dart_options.enumToString);
+      final String enumToString = currentEnumToString.isNotEmpty
+          ? currentEnumToString
+          : fileGen!.descriptor.options
+              .getExtension(Dart_options.enumsToString);
+
+      if (enumToString.isNotEmpty) {
+        out.println('''
+  /// Custom override of protobuf.dart 3 spec:
+  /// https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
+  @\$core.override
+  \$core.String toString() => $enumToString;
+      ''');
+      } else {
+        out.println('''
   /// protobuf.dart 3 spec:
+  /// https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
   /// Returns this enum's [name] or the [value] if names are not represented.
   @\$core.override
   \$core.String toString() => name == '' ? value.toString() : name;
       ''');
+      }
 
       out.println(
           'static final $coreImportPrefix.Map<$coreImportPrefix.int, $classname> _byValue ='
@@ -177,7 +197,30 @@ class EnumGenerator extends ProtobufContainer {
           ' _byValue[value];');
       out.println();
 
-      out.println('const $classname(this.value, this.name);');
+      out.println(
+          'static final $coreImportPrefix.Map<$coreImportPrefix.String, $classname> _byProtoName ='
+          ' { for (final value in values) value.name: value };');
+      out.println(
+          'static final $coreImportPrefix.Map<$coreImportPrefix.String, $classname> _byDartName ='
+          ' values.asNameMap();');
+
+      final unspecifiedRegexp = RegExp(r'(unspecified|unknown|undefined)$',
+          caseSensitive: false, multiLine: true);
+      final unspecifiedValue = dartNames.values
+          .firstWhereOrNull((name) => unspecifiedRegexp.hasMatch(name));
+      final bool hasUnspecified = unspecifiedValue != null;
+      final String orUnspecified =
+          hasUnspecified ? ' ?? $unspecifiedValue' : '';
+
+      out.println(
+          'static $classname${hasUnspecified ? '' : '?'} ofProtoName($coreImportPrefix.String name) =>'
+          ' _byProtoName[name]$orUnspecified;');
+      out.println(
+          'static $classname${hasUnspecified ? '' : '?'} ofDartName($coreImportPrefix.String name) =>'
+          ' _byDartName[name]$orUnspecified;');
+      out.println();
+
+      out.println('const $classname(this.value, this.dartName, this.name);');
     });
   }
 
