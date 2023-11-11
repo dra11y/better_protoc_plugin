@@ -82,18 +82,15 @@ class MessageGenerator extends ProtobufContainer {
 
   Set<String> _usedTopLevelNames;
 
-  final GenOptions genOptions;
-
   MessageGenerator._(
-    DescriptorProto descriptor,
-    this.parent,
-    Map<String, PbMixin> declaredMixins,
-    PbMixin? defaultMixin,
-    this._usedTopLevelNames,
-    int repeatedFieldIndex,
-    int fieldIdTag, {
-    this.genOptions = const GenOptions(),
-  })  : _descriptor = descriptor,
+      DescriptorProto descriptor,
+      this.parent,
+      Map<String, PbMixin> declaredMixins,
+      PbMixin? defaultMixin,
+      this._usedTopLevelNames,
+      int repeatedFieldIndex,
+      int fieldIdTag)
+      : _descriptor = descriptor,
         _fieldPathSegment = [fieldIdTag, repeatedFieldIndex],
         classname = messageOrEnumClassName(descriptor.name, _usedTopLevelNames,
             parent: parent?.classname ?? ''),
@@ -133,16 +130,14 @@ class MessageGenerator extends ProtobufContainer {
   static const _messageFieldTag = 2;
 
   MessageGenerator.topLevel(
-    DescriptorProto descriptor,
-    ProtobufContainer parent,
-    Map<String, PbMixin> declaredMixins,
-    PbMixin? defaultMixin,
-    Set<String> usedNames,
-    int repeatedFieldIndex, {
-    GenOptions genOptions = const GenOptions(),
-  }) : this._(descriptor, parent, declaredMixins, defaultMixin, usedNames,
-            repeatedFieldIndex, _topLevelMessageTag,
-            genOptions: genOptions);
+      DescriptorProto descriptor,
+      ProtobufContainer parent,
+      Map<String, PbMixin> declaredMixins,
+      PbMixin? defaultMixin,
+      Set<String> usedNames,
+      int repeatedFieldIndex)
+      : this._(descriptor, parent, declaredMixins, defaultMixin, usedNames,
+            repeatedFieldIndex, _topLevelMessageTag);
 
   MessageGenerator.nested(
       DescriptorProto descriptor,
@@ -211,8 +206,7 @@ class MessageGenerator extends ProtobufContainer {
 
     _fieldList = <ProtobufField>[];
     for (final names in members.fieldNames) {
-      final field =
-          ProtobufField.message(names, this, ctx, genOptions: genOptions);
+      final field = ProtobufField.message(names, this, ctx);
       if (field.descriptor.hasOneofIndex() &&
           !field.descriptor.proto3Optional) {
         _oneofFields[field.descriptor.oneofIndex].add(field);
@@ -337,7 +331,7 @@ class MessageGenerator extends ProtobufContainer {
       commentBlock = '$commentBlock\n';
     }
 
-    if (genOptions.messageInterfaces) {
+    if (fileGen.options.betterProtos) {
       out.addAnnotatedBlock(
           '${commentBlock}abstract interface class $interfaceName {', '}', [
         NamedLocation(
@@ -362,8 +356,8 @@ class MessageGenerator extends ProtobufContainer {
     }
 
     out.addAnnotatedBlock(
-        '${genOptions.messageInterfaces ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
-            '${genOptions.messageInterfaces ? ' implements $interfaceName' : ''}'
+        '${fileGen.options.betterProtos ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
+            '${fileGen.options.betterProtos ? ' implements $interfaceName' : ''}'
             ' {',
         '}',
         [
@@ -639,7 +633,7 @@ class MessageGenerator extends ProtobufContainer {
     _emitDeprecatedIf(field.isDeprecated, out);
 
     // add overrides if we have an interface or override option on the field.
-    _emitOverrideIf(field.overridesSetter || genOptions.messageInterfaces, out);
+    _emitOverrideIf(field.overridesSetter || fileGen.options.betterProtos, out);
     _emitIndexAnnotation(field.number, out);
     final getterExpr = _getWithHazzer(
         field,
@@ -754,9 +748,9 @@ class MessageGenerator extends ProtobufContainer {
 
   String _setDateTimeWrapper(ProtobufField field, String setter) {
     final importedType = field.baseType.prefixed;
-    if (field.baseType.isTimestamp && genOptions.useDateTime) {
+    if (field.baseType.isTimestamp && fileGen.options.betterProtos) {
       return '${importedType}.fromDateTime($setter)';
-    } else if (field.baseType.isDuration && genOptions.useDateTime) {
+    } else if (field.baseType.isDuration && fileGen.options.betterProtos) {
       return '${importedType}.fromDartDuration($setter)';
     }
     return setter;
@@ -764,9 +758,9 @@ class MessageGenerator extends ProtobufContainer {
 
   String _getDateTimeWrapper(ProtobufField field, String getter) {
     final importedType = field.baseType.prefixed;
-    if (field.baseType.isTimestamp && genOptions.useDateTime) {
+    if (field.baseType.isTimestamp && fileGen.options.betterProtos) {
       return '($getter as $importedType).toDateTime()';
-    } else if (field.baseType.isDuration && genOptions.useDateTime) {
+    } else if (field.baseType.isDuration && fileGen.options.betterProtos) {
       return '($getter as $importedType).toDartDuration()';
     }
     return getter;

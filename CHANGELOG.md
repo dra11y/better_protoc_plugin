@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Dart_options are gone! Pass only a single `better_protos` option to `protoc`!
+
 ## 1.1.0
 
 * Actually generate dart:core `DateTime` and `Duration` getters/setters

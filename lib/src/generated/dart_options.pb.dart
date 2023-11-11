@@ -185,26 +185,6 @@ class Dart_options {
       _omitFieldNames ? '' : 'defaultMixin',
       96128839,
       $pb.PbFieldType.OS);
-  static final messageInterfaces = $pb.Extension<$core.bool>(
-      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
-      _omitFieldNames ? '' : 'messageInterfaces',
-      71128890,
-      $pb.PbFieldType.OB);
-  static final nullableOptionals = $pb.Extension<$core.bool>(
-      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
-      _omitFieldNames ? '' : 'nullableOptionals',
-      87148944,
-      $pb.PbFieldType.OB);
-  static final useDateTime = $pb.Extension<$core.bool>(
-      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
-      _omitFieldNames ? '' : 'useDateTime',
-      50028268,
-      $pb.PbFieldType.OB);
-  static final enumsToString = $pb.Extension<$core.String>(
-      _omitMessageNames ? '' : 'google.protobuf.FileOptions',
-      _omitFieldNames ? '' : 'enumsToString',
-      58293813,
-      $pb.PbFieldType.OS);
   static final mixin = $pb.Extension<$core.String>(
       _omitMessageNames ? '' : 'google.protobuf.MessageOptions',
       _omitFieldNames ? '' : 'mixin',
@@ -235,25 +215,15 @@ class Dart_options {
       _omitFieldNames ? '' : 'dartName',
       28700919,
       $pb.PbFieldType.OS);
-  static final enumToString = $pb.Extension<$core.String>(
-      _omitMessageNames ? '' : 'google.protobuf.EnumOptions',
-      _omitFieldNames ? '' : 'enumToString',
-      23849239,
-      $pb.PbFieldType.OS);
   static void registerAllExtensions($pb.ExtensionRegistry registry) {
     registry.add(imports);
     registry.add(defaultMixin);
-    registry.add(messageInterfaces);
-    registry.add(nullableOptionals);
-    registry.add(useDateTime);
-    registry.add(enumsToString);
     registry.add(mixin);
     registry.add(overrideGetter);
     registry.add(overrideSetter);
     registry.add(overrideHasMethod);
     registry.add(overrideClearMethod);
     registry.add(dartName);
-    registry.add(enumToString);
   }
 }
 

@@ -3,6 +3,52 @@
 
 # better_protoc_plugin
 
+## TLDR: Usage
+
+Simplest way, If activated globally:
+```bash
+dart pub global activate better_protoc_plugin
+
+# => Activated better_protoc_plugin 1.2.0
+
+cd $HOME/myproject
+
+# Notice the `better_protos` option in addition to `gprc:path...`.
+# Assumes .proto files raae in `$HOME/myproject/proto`.
+# You must explicitly include any google/protobuf/.proto files
+# because unfortunately `protoc` doesn't understand wildcards on those.
+protoc --dart_out=better_protos,grpc:path/to/generated \
+    -Iproto \
+    proto/* \
+    -I$HOME/myproject/proto \
+    $HOME/myproject/proto/* \
+    google/protobuf/timestamp.proto \
+    google/protobuf/duration.proto
+```
+
+From source, if cloned from GitHub into `$HOME/better_protoc_plugin`:
+```bash
+cd $HOME/better_protoc_plugin
+
+make
+
+cd $HOME/myproject
+
+# Notice the `better_protos` option in addition to `gprc:path...`.
+# Assumes .proto files raae in `$HOME/myproject/proto`.
+# You must explicitly include any google/protobuf/.proto files
+# because unfortunately `protoc` doesn't understand wildcards on those.
+protoc --plugin=$HOME/better_protoc_plugin/bin/protoc-gen-dart \
+    --dart_out=better_protos,grpc:path/to/generated \
+    --proto_path=$HOME/better_protoc_plugin/protos \
+    -Iproto \
+    proto/* \
+    -I$HOME/myproject/proto \
+    $HOME/myproject/proto/* \
+    google/protobuf/timestamp.proto \
+    google/protobuf/duration.proto
+```
+
 ## Forked from [Google's protoc_plugin v22.0.0-dev @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
 
 **Premise: The reason I created this fork is to make it easier to use *protobuf* with Dart backends/database ORMs by generating interfaces, because having to create separate database model definitions without the type safety of interfaces is extra work and error prone. Heck, protoc_plugin generates your backend services and client stubs for you! Why not go all the way?**

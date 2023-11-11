@@ -102,8 +102,9 @@ String makeEnumValueName(
   final prefix = classname?.toLowerCase();
   final camelCased = underscoreAvoided.camelCase;
   // final constantCased = camelCased.constantCase;
+  final lowerCased = camelCased.toLowerCase();
   final removePrefix =
-      prefix != null && camelCased.toLowerCase().startsWith(prefix);
+      prefix != null && prefix != lowerCased && lowerCased.startsWith(prefix);
   // stderr.write('----------------------------\n');
   // stderr.write('underscoreAvoided: $underscoreAvoided\n');
   // stderr.write('constantCased: $constantCased\n');

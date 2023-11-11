@@ -24,18 +24,6 @@ enum ProtoSyntax {
   proto3,
 }
 
-class GenOptions {
-  final bool messageInterfaces;
-  final bool nullableOptionals;
-  final bool useDateTime;
-
-  const GenOptions({
-    this.messageInterfaces = false,
-    this.nullableOptionals = false,
-    this.useDateTime = false,
-  });
-}
-
 /// Generates the Dart output files for one .proto input file.
 ///
 /// Outputs include .pb.dart, pbenum.dart, and .pbjson.dart.
@@ -172,14 +160,6 @@ class FileGenerator extends ProtobufContainer {
           '$defaultMixinName';
     }
 
-    final genOptions = GenOptions(
-      messageInterfaces:
-          descriptor.options.getExtension(Dart_options.messageInterfaces),
-      nullableOptionals:
-          descriptor.options.getExtension(Dart_options.nullableOptionals),
-      useDateTime: descriptor.options.getExtension(Dart_options.useDateTime),
-    );
-
     // Load and register all enum and message types.
     for (var i = 0; i < descriptor.enumType.length; i++) {
       enumGenerators.add(EnumGenerator.topLevel(
@@ -187,8 +167,7 @@ class FileGenerator extends ProtobufContainer {
     }
     for (var i = 0; i < descriptor.messageType.length; i++) {
       messageGenerators.add(MessageGenerator.topLevel(descriptor.messageType[i],
-          this, declaredMixins, defaultMixin, usedTopLevelNames, i,
-          genOptions: genOptions));
+          this, declaredMixins, defaultMixin, usedTopLevelNames, i));
     }
     for (var i = 0; i < descriptor.extension.length; i++) {
       extensionGenerators.add(ExtensionGenerator.topLevel(

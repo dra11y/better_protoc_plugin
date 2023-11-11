@@ -2,6 +2,8 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:io';
+
 import 'generated/plugin.pb.dart';
 
 typedef OnError = void Function(String details);
@@ -51,11 +53,13 @@ class GenerationOptions {
   final bool useGrpc;
   final bool generateMetadata;
   final bool disableConstructorArgs;
+  final bool betterProtos;
 
   GenerationOptions(
       {this.useGrpc = false,
       this.generateMetadata = false,
-      this.disableConstructorArgs = false});
+      this.disableConstructorArgs = false,
+      this.betterProtos = false});
 }
 
 /// A parser for a name-value pair option. Options parsed in
@@ -108,6 +112,20 @@ class DisableConstructorArgsParser implements SingleOptionParser {
   }
 }
 
+class BetterProtosParser implements SingleOptionParser {
+  bool value = false;
+
+  @override
+  void parse(String name, String? value, OnError onError) {
+    stderr.write('option: better_protos: $name $value\n');
+    if (value != null) {
+      onError('Invalid better_protos option. No value expected.');
+      return;
+    }
+    this.value = true;
+  }
+}
+
 /// Parser used by the compiler, which supports the `rpc` option (see
 /// [GrpcOptionParser]) and any additional option added in [parsers]. If
 /// [parsers] has a key for `rpc`, it will be ignored.
@@ -126,11 +144,15 @@ GenerationOptions? parseGenerationOptions(
   final disableConstructorArgsParser = DisableConstructorArgsParser();
   newParsers['disable_constructor_args'] = disableConstructorArgsParser;
 
+  final betterProtosParser = BetterProtosParser();
+  newParsers['better_protos'] = betterProtosParser;
+
   if (genericOptionsParser(request, response, newParsers)) {
     return GenerationOptions(
         useGrpc: grpcOptionParser.grpcEnabled,
         generateMetadata: generateMetadataParser.generateKytheInfo,
-        disableConstructorArgs: disableConstructorArgsParser.value);
+        disableConstructorArgs: disableConstructorArgsParser.value,
+        betterProtos: betterProtosParser.value);
   }
   return null;
 }

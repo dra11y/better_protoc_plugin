@@ -119,6 +119,11 @@ class EnumGenerator extends ProtobufContainer {
       NamedLocation(
           name: classname!, fieldPathSegment: fieldPath!, start: 'enum '.length)
     ], () {
+      stderr.write('fileGen!.package = ${fileGen!.package}\n');
+
+      final bool betterProtos = fileGen!.options.betterProtos;
+      stderr.write('betterProtos = $betterProtos\n');
+
       // -----------------------------------------------------------------
       // Define enum types.
       for (var i = 0; i < _canonicalValues.length; i++) {
@@ -160,27 +165,15 @@ class EnumGenerator extends ProtobufContainer {
       out.println('$overridePrefix final $coreImportPrefix.int value;');
       out.println();
 
+      /// We must always override `name` because ProtobufEnum unfortunately requires it.
       out.println('$overridePrefix final $coreImportPrefix.String name;');
       out.println();
 
-      out.println('final $coreImportPrefix.String dartName;');
+      out.println(
+          'final $coreImportPrefix.String ${betterProtos ? 'protoName' : 'dartName'};');
       out.println();
 
-      final String currentEnumToString =
-          _descriptor.options.getExtension(Dart_options.enumToString);
-      final String enumToString = currentEnumToString.isNotEmpty
-          ? currentEnumToString
-          : fileGen!.descriptor.options
-              .getExtension(Dart_options.enumsToString);
-
-      if (enumToString.isNotEmpty) {
-        out.println('''
-  /// Custom override of protobuf.dart 3 spec:
-  /// https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
-  @\$core.override
-  \$core.String toString() => $enumToString;
-      ''');
-      } else {
+      if (!betterProtos) {
         out.println('''
   /// protobuf.dart 3 spec:
   /// https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
@@ -199,7 +192,7 @@ class EnumGenerator extends ProtobufContainer {
 
       out.println(
           'static final $coreImportPrefix.Map<$coreImportPrefix.String, $classname> _byProtoName ='
-          ' { for (final value in values) value.name: value };');
+          ' { for (final value in values) value.${betterProtos ? 'protoName' : 'name'}: value };');
       out.println(
           'static final $coreImportPrefix.Map<$coreImportPrefix.String, $classname> _byDartName ='
           ' values.asNameMap();');
@@ -220,7 +213,11 @@ class EnumGenerator extends ProtobufContainer {
           ' _byDartName[name]$orUnspecified;');
       out.println();
 
-      out.println('const $classname(this.value, this.dartName, this.name);');
+      if (betterProtos) {
+        out.println('const $classname(this.value, this.name, this.protoName);');
+      } else {
+        out.println('const $classname(this.value, this.dartName, this.name);');
+      }
     });
   }
 
