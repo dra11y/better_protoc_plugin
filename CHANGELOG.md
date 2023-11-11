@@ -1,3 +1,7 @@
+## 1.2.1
+
+* Remove extra annoying print.
+
 ## 1.2.0
 
 * Dart_options are gone! Pass only a single `better_protos` option to `protoc`!

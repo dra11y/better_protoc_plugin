@@ -1,5 +1,5 @@
 name: better_protoc_plugin
-version: 1.2.0
+version: 1.2.1
 description: An opinionated, "new and improved" protobuf protoc compiler plugin used to generate Dart code with real Dart enums, message interfaces, automatic DateTime/Duration conversion, etc.
 repository: https://github.com/dra11y/better_protoc_plugin
 

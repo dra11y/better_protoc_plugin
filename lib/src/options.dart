@@ -117,7 +117,6 @@ class BetterProtosParser implements SingleOptionParser {
 
   @override
   void parse(String name, String? value, OnError onError) {
-    stderr.write('option: better_protos: $name $value\n');
     if (value != null) {
       onError('Invalid better_protos option. No value expected.');
       return;
