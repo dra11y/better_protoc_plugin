@@ -2,7 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-
 import 'generated/plugin.pb.dart';
 
 typedef OnError = void Function(String details);
@@ -52,13 +51,18 @@ class GenerationOptions {
   final bool useGrpc;
   final bool generateMetadata;
   final bool disableConstructorArgs;
-  final bool betterProtos;
+  final bool _betterProtos;
+
+  // Skip better_protos on google protos because it breaks things.
+  bool useBetterProtos(String package) =>
+      _betterProtos && !package.contains('google');
 
   GenerationOptions(
       {this.useGrpc = false,
       this.generateMetadata = false,
       this.disableConstructorArgs = false,
-      this.betterProtos = false});
+      bool betterProtos = false})
+      : _betterProtos = betterProtos;
 }
 
 /// A parser for a name-value pair option. Options parsed in

@@ -331,7 +331,7 @@ class MessageGenerator extends ProtobufContainer {
       commentBlock = '$commentBlock\n';
     }
 
-    if (fileGen.options.betterProtos) {
+    if (fileGen.useBetterProtos) {
       out.addAnnotatedBlock(
           '${commentBlock}abstract interface class $interfaceName {', '}', [
         NamedLocation(
@@ -356,8 +356,8 @@ class MessageGenerator extends ProtobufContainer {
     }
 
     out.addAnnotatedBlock(
-        '${fileGen.options.betterProtos ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
-            '${fileGen.options.betterProtos ? ' implements $interfaceName' : ''}'
+        '${fileGen.useBetterProtos ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
+            '${fileGen.useBetterProtos ? ' implements $interfaceName' : ''}'
             ' {',
         '}',
         [
@@ -633,7 +633,7 @@ class MessageGenerator extends ProtobufContainer {
     _emitDeprecatedIf(field.isDeprecated, out);
 
     // add overrides if we have an interface or override option on the field.
-    _emitOverrideIf(field.overridesSetter || fileGen.options.betterProtos, out);
+    _emitOverrideIf(field.overridesSetter || fileGen.useBetterProtos, out);
     _emitIndexAnnotation(field.number, out);
     final getterExpr = _getWithHazzer(
         field,
@@ -748,9 +748,9 @@ class MessageGenerator extends ProtobufContainer {
 
   String _setDateTimeWrapper(ProtobufField field, String setter) {
     final importedType = field.baseType.prefixed;
-    if (field.baseType.isTimestamp && fileGen.options.betterProtos) {
+    if (field.baseType.isTimestamp && fileGen.useBetterProtos) {
       return '${importedType}.fromDateTime($setter)';
-    } else if (field.baseType.isDuration && fileGen.options.betterProtos) {
+    } else if (field.baseType.isDuration && fileGen.useBetterProtos) {
       return '${importedType}.fromDartDuration($setter)';
     }
     return setter;
@@ -758,9 +758,9 @@ class MessageGenerator extends ProtobufContainer {
 
   String _getDateTimeWrapper(ProtobufField field, String getter) {
     final importedType = field.baseType.prefixed;
-    if (field.baseType.isTimestamp && fileGen.options.betterProtos) {
+    if (field.baseType.isTimestamp && fileGen.useBetterProtos) {
       return '($getter as $importedType).toDateTime()';
-    } else if (field.baseType.isDuration && fileGen.options.betterProtos) {
+    } else if (field.baseType.isDuration && fileGen.useBetterProtos) {
       return '($getter as $importedType).toDartDuration()';
     }
     return getter;

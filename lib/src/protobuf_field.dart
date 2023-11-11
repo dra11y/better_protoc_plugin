@@ -144,7 +144,7 @@ class ProtobufField {
       baseType.isMessage && !baseType.isWellKnownType;
 
   bool get isNullableOptional =>
-      !isRequired && hasPresence && parent.fileGen!.options.betterProtos;
+      !isRequired && hasPresence && parent.fileGen!.useBetterProtos;
 
   /// Returns the expression to use for the Dart abstract interface type.
   String getInterfaceType() {
@@ -152,9 +152,9 @@ class ProtobufField {
       return getDartType();
     }
     final String optional = isNullableOptional ? '?' : '';
-    if (baseType.isTimestamp && parent.fileGen!.options.betterProtos) {
+    if (baseType.isTimestamp && parent.fileGen!.useBetterProtos) {
       return '$coreImportPrefix.DateTime$optional';
-    } else if (baseType.isDuration && parent.fileGen!.options.betterProtos) {
+    } else if (baseType.isDuration && parent.fileGen!.useBetterProtos) {
       return '$coreImportPrefix.Duration$optional';
     }
     if (isMapField) {
@@ -174,9 +174,9 @@ class ProtobufField {
   /// Returns the expression to use for the Dart type.
   String getDartType({bool? isOptional}) {
     final String optional = isOptional == true || isNullableOptional ? '?' : '';
-    if (baseType.isTimestamp && parent.fileGen!.options.betterProtos) {
+    if (baseType.isTimestamp && parent.fileGen!.useBetterProtos) {
       return '$coreImportPrefix.DateTime$optional';
-    } else if (baseType.isDuration && parent.fileGen!.options.betterProtos) {
+    } else if (baseType.isDuration && parent.fileGen!.useBetterProtos) {
       return '$coreImportPrefix.Duration$optional';
     }
     if (isMapField) {

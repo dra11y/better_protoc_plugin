@@ -119,7 +119,7 @@ class EnumGenerator extends ProtobufContainer {
       NamedLocation(
           name: classname!, fieldPathSegment: fieldPath!, start: 'enum '.length)
     ], () {
-      final bool betterProtos = fileGen!.options.betterProtos;
+      final bool betterProtos = fileGen!.useBetterProtos;
       // -----------------------------------------------------------------
       // Define enum types.
       for (var i = 0; i < _canonicalValues.length; i++) {

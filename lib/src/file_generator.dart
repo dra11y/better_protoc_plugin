@@ -111,6 +111,9 @@ class FileGenerator extends ProtobufContainer {
   final FileDescriptorProto descriptor;
   final GenerationOptions options;
 
+  // Skip on google protos because it breaks things.
+  bool get useBetterProtos => options.useBetterProtos(package);
+
   // The relative path used to import the .proto file, as a URI.
   final Uri protoFileUri;
 

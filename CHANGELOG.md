@@ -1,3 +1,9 @@
+## 1.2.2
+
+* Skip `better_protos` on Google protos because they don't play nice for some reason.
+  Achieved by ensuring the package name does not contain `google`.
+  TODO: Maybe add a skip file or package level option in the future.
+
 ## 1.2.1
 
 * Remove extra annoying print.

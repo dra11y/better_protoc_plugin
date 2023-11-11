@@ -11,7 +11,7 @@ Simplest way, If activated globally:
 ```bash
 dart pub global activate better_protoc_plugin
 
-# => Activated better_protoc_plugin 1.2.1
+# => Activated better_protoc_plugin 1.2.2
 
 cd $HOME/myproject
 
