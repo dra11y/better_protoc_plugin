@@ -1,3 +1,7 @@
+.PHONY: clean compare-upstream
+
+LATEST_UPSTREAM_COMMIT=96d9522
+
 PLUGIN_SRC = \
 	bin/protoc_plugin.dart \
 	lib/**/*.dart
@@ -119,3 +123,8 @@ update-goldens: protos
 
 clean:
 	rm -rf $(OUTPUT_DIR)
+
+compare-upstream:
+	git submodule init
+	git submodule update
+	cd protobuf.dart && git diff --name-only $(LATEST_UPSTREAM_COMMIT) | grep -E "^protoc_plugin" | xargs -I{} echo {}

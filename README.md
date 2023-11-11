@@ -51,6 +51,16 @@ protoc --plugin=$HOME/better_protoc_plugin/bin/protoc-gen-dart \
     google/protobuf/duration.proto
 ```
 
+## Latest merged `google/protobuf.dart` upstream commit:
+
+`LATEST_UPSTREAM_COMMIT=96d9522`
+
+To compare:
+
+    $ make compare-upstream
+
+After merging in changes, update `LATEST_UPSTREAM_COMMIT` variable in Makefile and this README to the latest commit. NOTE: we only care about the `protoc_plugin` subdirectory of the upstream repo (which is added as a `git submodule` to this project for easy comparison).
+
 ## Forked from [Google's protoc_plugin v22.0.0-dev @96d9522](https://github.com/google/protobuf.dart/tree/96d9522/protoc_plugin)
 
 **Premise: The reason I created this fork is to make it easier to use *protobuf* with Dart backends/database ORMs by generating interfaces, because having to create separate database model definitions without the type safety of interfaces is extra work and error prone. Heck, protoc_plugin generates your backend services and client stubs for you! Why not go all the way?**

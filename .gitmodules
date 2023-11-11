@@ -1,0 +1,3 @@
+[submodule "protobuf.dart"]
+	path = protobuf.dart
+	url = https://github.com/google/protobuf.dart
