@@ -10,9 +10,9 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 enum PhoneType implements $pb.ProtobufEnum {
-  mobile(0, _omitEnumNames ? '' : 'MOBILE'),
-  home(1, _omitEnumNames ? '' : 'HOME'),
-  work(2, _omitEnumNames ? '' : 'WORK');
+  mobile(0, 'mobile', _omitEnumNames ? '' : 'MOBILE'),
+  home(1, 'home', _omitEnumNames ? '' : 'HOME'),
+  work(2, 'work', _omitEnumNames ? '' : 'WORK');
 
   static const PhoneType business = work;
 
@@ -20,7 +20,10 @@ enum PhoneType implements $pb.ProtobufEnum {
 
   @$core.override final $core.String name;
 
+  final $core.String dartName;
+
     /// protobuf.dart 3 spec:
+    /// https://pub.dev/documentation/protobuf/latest/protobuf/ProtobufEnum/toString.html
     /// Returns this enum's [name] or the [value] if names are not represented.
     @$core.override
     $core.String toString() => name == '' ? value.toString() : name;
@@ -28,7 +31,12 @@ enum PhoneType implements $pb.ProtobufEnum {
   static final $core.Map<$core.int, PhoneType> _byValue = $pb.ProtobufEnum.initByValue(values);
   static PhoneType? valueOf($core.int value) => _byValue[value];
 
-  const PhoneType(this.value, this.name);
+  static final $core.Map<$core.String, PhoneType> _byProtoName = { for (final value in values) value.name: value };
+  static final $core.Map<$core.String, PhoneType> _byDartName = values.asNameMap();
+  static PhoneType? ofProtoName($core.String name) => _byProtoName[name];
+  static PhoneType? ofDartName($core.String name) => _byDartName[name];
+
+  const PhoneType(this.value, this.dartName, this.name);
 }
 
 
