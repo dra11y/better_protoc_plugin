@@ -1,3 +1,9 @@
+## 1.2.3
+
+* Added protoc option flags (both require `better_protos` to be true):
+  - `interfaces` to generate abstract interfaces (default: false)
+  - `factory_constructors` to revert to using factory constructors on messages (default: false)
+
 ## 1.2.2
 
 * Skip `better_protos` on Google protos because they don't play nice for some reason.

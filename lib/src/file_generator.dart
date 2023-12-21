@@ -114,6 +114,12 @@ class FileGenerator extends ProtobufContainer {
   // Skip on google protos because it breaks things.
   bool get useBetterProtos => options.useBetterProtos(package);
 
+  // Use factory constructors?
+  bool get useFactoryConstructors => options.useFactoryConstructors(package);
+
+  // Generate interfaces?
+  bool get useInterfaces => options.useInterfaces(package);
+
   // The relative path used to import the .proto file, as a URI.
   final Uri protoFileUri;
 
@@ -708,4 +714,5 @@ class ConditionalConstDefinition {
 // Removed a whole bunch of unnecessary ignore rules.
 const _fileIgnores = <String>{
   'unnecessary_import',
+  'library_prefixes',
 };

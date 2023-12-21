@@ -51,7 +51,17 @@ class GenerationOptions {
   final bool useGrpc;
   final bool generateMetadata;
   final bool disableConstructorArgs;
+  // Generate interfaces
+  final bool _interfaces;
+  // Generate real enums, etc.
   final bool _betterProtos;
+  // Revert to using factory constructors for messages.
+  final bool _factoryConstructors;
+
+  bool useInterfaces(String package) => useBetterProtos(package) && _interfaces;
+
+  bool useFactoryConstructors(String package) =>
+      useBetterProtos(package) && _factoryConstructors;
 
   // Skip better_protos on google protos because it breaks things.
   bool useBetterProtos(String package) =>
@@ -61,8 +71,12 @@ class GenerationOptions {
       {this.useGrpc = false,
       this.generateMetadata = false,
       this.disableConstructorArgs = false,
-      bool betterProtos = false})
-      : _betterProtos = betterProtos;
+      bool interfaces = false,
+      bool betterProtos = false,
+      bool factoryConstructors = false})
+      : _interfaces = interfaces,
+        _betterProtos = betterProtos,
+        _factoryConstructors = factoryConstructors || !betterProtos;
 }
 
 /// A parser for a name-value pair option. Options parsed in
@@ -115,6 +129,7 @@ class DisableConstructorArgsParser implements SingleOptionParser {
   }
 }
 
+// better_protoc_plugin: generate real enums, etc.
 class BetterProtosParser implements SingleOptionParser {
   bool value = false;
 
@@ -122,6 +137,34 @@ class BetterProtosParser implements SingleOptionParser {
   void parse(String name, String? value, OnError onError) {
     if (value != null) {
       onError('Invalid better_protos option. No value expected.');
+      return;
+    }
+    this.value = true;
+  }
+}
+
+// better_protoc_plugin: generate interfaces
+class InterfacesParser implements SingleOptionParser {
+  bool value = false;
+
+  @override
+  void parse(String name, String? value, OnError onError) {
+    if (value != null) {
+      onError('Invalid interfaces option. No value expected.');
+      return;
+    }
+    this.value = true;
+  }
+}
+
+// better_protoc_plugin: revert to factory constructors
+class FactoryConstructorsParser implements SingleOptionParser {
+  bool value = false;
+
+  @override
+  void parse(String name, String? value, OnError onError) {
+    if (value != null) {
+      onError('Invalid factory_constructors option. No value expected.');
       return;
     }
     this.value = true;
@@ -149,12 +192,20 @@ GenerationOptions? parseGenerationOptions(
   final betterProtosParser = BetterProtosParser();
   newParsers['better_protos'] = betterProtosParser;
 
+  final interfacesParser = InterfacesParser();
+  newParsers['interfaces'] = interfacesParser;
+
+  final factoryConstructorsParser = FactoryConstructorsParser();
+  newParsers['factory_constructors'] = factoryConstructorsParser;
+
   if (genericOptionsParser(request, response, newParsers)) {
     return GenerationOptions(
         useGrpc: grpcOptionParser.grpcEnabled,
         generateMetadata: generateMetadataParser.generateKytheInfo,
         disableConstructorArgs: disableConstructorArgsParser.value,
-        betterProtos: betterProtosParser.value);
+        betterProtos: betterProtosParser.value,
+        interfaces: interfacesParser.value,
+        factoryConstructors: factoryConstructorsParser.value);
   }
   return null;
 }

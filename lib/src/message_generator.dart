@@ -331,7 +331,7 @@ class MessageGenerator extends ProtobufContainer {
       commentBlock = '$commentBlock\n';
     }
 
-    if (fileGen.useBetterProtos) {
+    if (fileGen.useInterfaces) {
       out.addAnnotatedBlock(
           '${commentBlock}abstract interface class $interfaceName {', '}', [
         NamedLocation(
@@ -356,8 +356,8 @@ class MessageGenerator extends ProtobufContainer {
     }
 
     out.addAnnotatedBlock(
-        '${fileGen.useBetterProtos ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
-            '${fileGen.useBetterProtos ? ' implements $interfaceName' : ''}'
+        '${fileGen.useInterfaces ? '' : commentBlock}class $classname extends $protobufImportPrefix.$extendedClass$mixinClause'
+            '${fileGen.useInterfaces ? ' implements $interfaceName' : ''}'
             ' {',
         '}',
         [
@@ -467,7 +467,13 @@ class MessageGenerator extends ProtobufContainer {
 
   void _generateFactory(IndentingWriter out) {
     if (!fileGen.options.disableConstructorArgs && _fieldList.isNotEmpty) {
-      out.println('factory $classname({');
+      out.println(
+          '${fileGen.useFactoryConstructors ? 'factory ' : ''}$classname({');
+
+      // Add '$' prefix to factory `$result` to avoid proto field name conflicts.
+      final constructorSetter =
+          fileGen.useFactoryConstructors ? '\$result' : 'this';
+
       for (final field in _fieldList) {
         _emitDeprecatedIf(field.isDeprecated, out);
         if (field.isRepeated && !field.isMapField) {
@@ -479,8 +485,9 @@ class MessageGenerator extends ProtobufContainer {
         }
       }
       out.println('}) {');
-      // Add '$' prefix to avoid proto field name conflicts.
-      out.println('  final \$result = create();');
+      if (fileGen.useFactoryConstructors) {
+        out.println('  final $constructorSetter = create();');
+      }
       for (final field in _fieldList) {
         out.println('  if (${field.memberNames!.fieldName} != null) {');
         if (field.isDeprecated) {
@@ -488,17 +495,21 @@ class MessageGenerator extends ProtobufContainer {
         }
         if (field.isRepeated || field.isMapField) {
           out.println(
-              '    \$result.${field.memberNames!.fieldName}.addAll(${field.memberNames!.fieldName});');
+              '    $constructorSetter.${field.memberNames!.fieldName}.addAll(${field.memberNames!.fieldName});');
         } else {
           out.println(
-              '    \$result.${field.memberNames!.fieldName} = ${field.memberNames!.fieldName};');
+              '    $constructorSetter.${field.memberNames!.fieldName} = ${field.memberNames!.fieldName};');
         }
         out.println('  }');
       }
-      out.println('  return \$result;');
+      if (fileGen.useFactoryConstructors) {
+        out.println('  return $constructorSetter;');
+      }
       out.println('}');
-    } else {
+    } else if (fileGen.useFactoryConstructors) {
       out.println('factory $classname() => create();');
+    } else {
+      out.println('$classname();');
     }
   }
 
@@ -633,7 +644,10 @@ class MessageGenerator extends ProtobufContainer {
     _emitDeprecatedIf(field.isDeprecated, out);
 
     // add overrides if we have an interface or override option on the field.
-    _emitOverrideIf(field.overridesSetter || fileGen.useBetterProtos, out);
+    _emitOverrideIf(
+        field.overridesSetter ||
+            (fileGen.useBetterProtos && fileGen.useInterfaces),
+        out);
     _emitIndexAnnotation(field.number, out);
     final getterExpr = _getWithHazzer(
         field,
