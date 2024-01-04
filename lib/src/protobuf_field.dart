@@ -96,10 +96,18 @@ class ProtobufField {
   }
 
   /// Whether the field has the `overrideGetter` annotation set to true.
-  bool get overridesGetter => _hasBooleanOption(Dart_options.overrideGetter);
+  bool get overridesGetter =>
+      hasMixin || _hasBooleanOption(Dart_options.overrideGetter);
 
   /// Whether the field has the `overrideSetter` annotation set to true.
-  bool get overridesSetter => _hasBooleanOption(Dart_options.overrideSetter);
+  bool get overridesSetter =>
+      hasMixin || _hasBooleanOption(Dart_options.overrideSetter);
+
+  bool get hasMixin {
+    final messageGen =
+        parent is MessageGenerator ? parent as MessageGenerator : null;
+    return messageGen?.mixin != null;
+  }
 
   /// Whether the field has the `overrideHasMethod` annotation set to true.
   bool get overridesHasMethod =>

@@ -333,7 +333,7 @@ class MessageGenerator extends ProtobufContainer {
 
     if (fileGen.useInterfaces) {
       out.addAnnotatedBlock(
-          '${commentBlock}abstract interface class $interfaceName {', '}', [
+          '${commentBlock}abstract class $interfaceName {', '}', [
         NamedLocation(
             name: interfaceName,
             fieldPathSegment: fieldPath,
@@ -680,6 +680,8 @@ class MessageGenerator extends ProtobufContainer {
     } else {
       final fastSetter = field.baseType.setter;
       _emitDeprecatedIf(field.isDeprecated, out);
+      stderr.writeln(
+          'field.fullName: ${field.fullName}, field.overridesSetter: ${field.overridesSetter}');
       _emitOverrideIf(field.overridesSetter, out);
       _emitIndexAnnotation(field.number, out);
       if (fastSetter != null) {

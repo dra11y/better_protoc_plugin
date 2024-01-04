@@ -49,13 +49,14 @@ class BaseType {
 
   /// Prepend `interfacePrefix` to the type
   String get unprefixedInterface =>
-      isMessage ? unprefixedInjectPrefix(interfacePrefix) : unprefixed;
+      isMessage ? _unprefixedAbstractClassName() : unprefixed;
 
-  String unprefixedInjectPrefix(String prefix) {
+  String _unprefixedAbstractClassName() {
     final parts = unprefixed.split('.');
     return parts
-        .mapIndexed(
-            (index, part) => index == parts.length - 1 ? '$prefix$part' : part)
+        .mapIndexed((index, part) => index == parts.length - 1
+            ? messageOrEnumAbstractInterfaceName(part, {})
+            : part)
         .join('.');
   }
 

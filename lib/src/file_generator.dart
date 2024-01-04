@@ -24,6 +24,9 @@ enum ProtoSyntax {
   proto3,
 }
 
+final generatedBy =
+    'Generated code by better_protoc_plugin. Do not modify by hand.';
+
 /// Generates the Dart output files for one .proto input file.
 ///
 /// Outputs include .pb.dart, pbenum.dart, and .pbjson.dart.
@@ -571,7 +574,7 @@ class FileGenerator extends ProtobufContainer {
       [OutputConfiguration config = const DefaultOutputConfiguration()]) {
     if (!_linked) throw StateError('not linked');
     final out = makeWriter();
-    _writeHeading(out);
+    _writeHeading(out, extraIgnores: {'constant_identifier_names'});
 
     final importWriter = ImportWriter();
     importWriter.addImport(_convertImportUrl, prefix: _convertImportPrefix);
@@ -649,7 +652,7 @@ class FileGenerator extends ProtobufContainer {
 
     out.println('''
 //
-//  Generated code. Do not modify.
+//  $generatedBy
 //  source: ${descriptor.name}
 //
 ''');
@@ -715,4 +718,5 @@ class ConditionalConstDefinition {
 const _fileIgnores = <String>{
   'unnecessary_import',
   'library_prefixes',
+  'implementation_imports',
 };
