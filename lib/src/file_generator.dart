@@ -24,8 +24,39 @@ enum ProtoSyntax {
   proto3,
 }
 
-final generatedBy =
-    'Generated code by better_protoc_plugin. Do not modify by hand.';
+String? _generatedBy;
+
+String get generatedBy {
+  if (_generatedBy == null) {
+    final String version;
+    final packageDir = path.join(path.dirname(Platform.script.path), '..');
+
+    if (Directory(path.normalize(path.join(packageDir, '.git'))).existsSync()) {
+      final result = Process.runSync('git', ['log', '-1', '--format=%h|%at'])
+          .stdout
+          .toString()
+          .trim()
+          .split('|');
+      final hash = result[0];
+      final date =
+          DateTime.fromMillisecondsSinceEpoch(int.parse(result[1]) * 1000);
+      version = 'commit: $hash (${date.toString().substring(0, 19)})';
+    } else {
+      final pubLines =
+          File(path.normalize(path.join(packageDir, 'pubspec.yaml')))
+              .readAsLinesSync();
+      final pubVersion = pubLines
+          .firstWhere((line) => line.startsWith('version:'))
+          .split(':')
+          .last
+          .trim();
+      version = 'version: $pubVersion';
+    }
+    _generatedBy =
+        'GENERATED CODE by better_protoc_plugin $version. DO NOT MODIFY BY HAND.';
+  }
+  return _generatedBy!;
+}
 
 /// Generates the Dart output files for one .proto input file.
 ///

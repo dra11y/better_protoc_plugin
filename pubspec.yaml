@@ -4,7 +4,7 @@ description: An opinionated, "new and improved" protobuf protoc compiler plugin 
 repository: https://github.com/dra11y/better_protoc_plugin
 
 environment:
-  sdk: '>=3.1.3 <4.0.0'
+  sdk: '>=3.2.4 <4.0.0'
 
 dependencies:
   fixnum: ^1.0.0
