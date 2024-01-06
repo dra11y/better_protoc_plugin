@@ -127,7 +127,7 @@ sure you have the latest version of Dart installed.
 **The recommended way** is to activate the latest published version of the
 plugin:
 
-    $ dart pub global activate protoc_plugin
+    $ dart pub global activate better_protoc_plugin
 
 Make sure you have `~/.pub-cache/bin` in your `PATH`.
 
@@ -136,21 +136,21 @@ in your `PATH`.
 
 **To build from the source:**
 
-- Run `dart pub get` in `protoc_plugin` directory
-- Add `protoc_plugin/bin` to your `PATH`, or pass the path to
-  `protoc_plugin/bin/protoc-gen-dart` to `protoc`'s `--plugin` option.
+- Run `dart pub get` in `better_protoc_plugin` directory
+- Add `better_protoc_plugin/bin` to your `PATH`, or pass the path to
+  `better_protoc_plugin/bin/protoc-gen-dart` to `protoc`'s `--plugin` option.
 
 The `protoc-gen-dart` executable is a Dart script and requires presence of
 `dart` executable in your `PATH`.
 
 **To build a standalone executable from the source:**
 
-- Run `dart pub get` in `protoc_plugin`
-- Build standalone executable with `dart compile exe bin/protoc_plugin.dart` in
-  `protoc_plugin`
+- Run `dart pub get` in `better_protoc_plugin`
+- Build standalone executable with `dart compile exe bin/better_protoc_plugin.dart` in
+  `better_protoc_plugin`
 
 The generated executable does not require a `dart` executable to run. You
-should copy the generated executable `protoc_plugin/bin/protoc_plugin.exe` to
+should copy the generated executable `better_protoc_plugin/bin/better_protoc_plugin.exe` to
 your `PATH` with name `protoc-gen-dart`, or pass the path to it to `protoc`'s
 `--plugin` option when invoking `protoc`.
 

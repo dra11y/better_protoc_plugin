@@ -1,2 +1,2 @@
 @echo off
-dart "%~dp0protoc_plugin.dart" -c "$@"
+dart "%~dp0better_protoc_plugin.dart" -c "$@"
